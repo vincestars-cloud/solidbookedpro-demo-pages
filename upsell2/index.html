@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>One Last Thing — SolidBookedPro</title>
+<meta name="robots" content="noindex"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--slate:#0f172a;--blue:#2563eb;--blue-deep:#1e3a8a;--blue-hover:#1d4ed8;--bg:#ffffff;--tint:#eef4ff;--gray:#6b7280;}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--slate);min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+.confirm{background:#dcfce7;color:#15803d;text-align:center;padding:9px 16px;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:7px;}
+.confirm svg{width:15px;height:15px;flex-shrink:0;}
+.wait{background:var(--blue-deep);color:#fff;text-align:center;padding:10px 16px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.wait span{color:#bfdbfe;}
+.wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:36px 18px;}
+.box{max-width:640px;width:100%;text-align:center;}
+h1{font-size:clamp(24px,4.4vw,40px);font-weight:900;letter-spacing:-.025em;line-height:1.1;margin-bottom:10px;}
+h1 em{font-style:normal;color:var(--blue);}
+.truism{font-size:clamp(14px,2vw,17px);font-weight:600;color:var(--slate);margin-bottom:6px;}
+.bridge{font-size:clamp(13px,1.8vw,15px);color:var(--gray);margin-bottom:26px;}
+.video{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 20px 60px rgba(15,23,42,.22),0 0 0 1px rgba(0,0,0,.08);margin-bottom:24px;cursor:pointer;}
+.video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000;display:block;}
+.vsound{position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.62);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);color:#fff;font-size:13px;font-weight:700;padding:7px 12px;border-radius:8px;cursor:pointer;z-index:10;transition:opacity .2s;user-select:none;}
+.vsound:hover{background:rgba(0,0,0,.82);}
+.vsound.hide{display:none;}
+.vsound svg{width:15px;height:15px;flex-shrink:0;}
+.stack{background:#fff;border:1.5px solid rgba(15,23,42,.13);border-radius:14px;overflow:hidden;margin-bottom:14px;text-align:left;}
+.stack-item{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;gap:12px;border-bottom:1px solid rgba(15,23,42,.07);}
+.stack-item:last-of-type{border-bottom:none;}
+.stack-name{font-size:14px;font-weight:800;color:var(--slate);margin-bottom:2px;}
+.stack-desc{font-size:12px;color:var(--gray);font-weight:400;}
+.stack-val{font-size:15px;font-weight:800;color:var(--blue);white-space:nowrap;flex-shrink:0;}
+.stack-val small{font-size:11px;font-weight:500;color:var(--gray);}
+.stack-footer{background:linear-gradient(135deg,#2563eb,#1d4ed8);padding:16px 18px;}
+.stack-compare{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.stack-compare-label{font-size:12px;color:rgba(255,255,255,.7);font-weight:500;}
+.stack-compare-val{font-size:14px;font-weight:700;color:rgba(255,255,255,.7);text-decoration:line-through;}
+.stack-today{display:flex;justify-content:space-between;align-items:center;}
+.stack-today-label{font-size:13px;color:#fff;font-weight:700;}
+.stack-today-val{font-size:22px;font-weight:900;color:#fff;}
+.stack-today-val small{font-size:12px;font-weight:500;color:rgba(255,255,255,.7);margin-left:3px;}
+.demo-box{background:var(--tint);border:1.5px solid rgba(37,99,235,.2);border-radius:12px;padding:16px 18px;margin-bottom:16px;text-align:center;}
+.demo-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gray);margin-bottom:10px;}
+.demo-call{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;font-size:15px;font-weight:800;padding:11px 20px;border-radius:10px;text-decoration:none;margin-bottom:8px;}
+.demo-call:hover{background:var(--blue-hover);}
+.demo-sub{font-size:12px;color:var(--gray);margin-top:4px;}
+.math{font-size:13px;color:var(--gray);margin-bottom:24px;font-style:italic;}
+.yes-q{font-size:clamp(14px,2vw,16px);font-weight:700;color:var(--slate);margin-bottom:18px;line-height:1.45;}
+.err{color:#dc2626;font-size:13px;margin-bottom:12px;display:none;}
+.add{display:flex;align-items:center;justify-content:center;width:100%;max-width:480px;margin:0 auto;background:linear-gradient(to bottom,#22c55e,#15803d);color:#fff;font-size:clamp(16px,2.2vw,20px);font-weight:900;letter-spacing:.02em;padding:clamp(17px,2.4vw,22px) 30px;border:none;border-radius:14px;cursor:pointer;font-family:inherit;box-shadow:0 16px 40px -10px rgba(21,128,61,.5);transition:transform .14s;}
+.add:hover{transform:translateY(-1px);}
+.add:disabled{opacity:.65;cursor:not-allowed;transform:none;}
+.skip{display:block;width:100%;text-align:center;margin-top:16px;background:none;border:none;color:var(--gray);font-size:13px;font-family:inherit;cursor:pointer;}
+.skip:hover{color:var(--slate);}
+footer{padding:18px;text-align:center;font-size:12px;color:rgba(15,23,42,.3);}
+</style>
+</head>
+<body>
+
+<div class="confirm" id="confirmBar">
+  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+  Your order is confirmed — check your email.
+</div>
+
+<div class="wait">Last Step — <span>One-Time Offer · This Page Only · Never Shown Again</span></div>
+
+<div class="wrap">
+  <div class="box">
+
+    <h1>What if you woke up Monday to<br><em>new appointments already booked?</em></h1>
+
+    <p class="truism">Every job you'll ever get started with someone picking up the phone.</p>
+    <p class="bridge">Your website brings the traffic. Your 24/7 Receptionist makes sure none of it walks away.</p>
+
+    <div class="video">
+      <video id="upvid" playsinline preload="auto" autoplay muted loop
+        src="https://xxxmrbrwucsqeqbmwggd.supabase.co/storage/v1/object/public/vsl/upsell.mp4?v=1"
+        poster="https://xxxmrbrwucsqeqbmwggd.supabase.co/storage/v1/object/public/vsl/upsell-poster.jpg?v=1"></video>
+      <div class="vsound" id="vsound">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/></svg>
+        Enable sound
+      </div>
+    </div>
+
+    <div class="stack">
+      <div class="stack-item">
+        <div><div class="stack-name">24/7 Call Handler</div><div class="stack-desc">Answers every call — nights, weekends, and holidays</div></div>
+        <div class="stack-val">$400<small>/mo</small></div>
+      </div>
+      <div class="stack-item">
+        <div><div class="stack-name">Lead Lock System</div><div class="stack-desc">Captures every caller's name, number, and job details</div></div>
+        <div class="stack-val">$200<small>/mo</small></div>
+      </div>
+      <div class="stack-item">
+        <div><div class="stack-name">Auto-Book Engine</div><div class="stack-desc">Schedules appointments directly to your calendar</div></div>
+        <div class="stack-val">$149<small>/mo</small></div>
+      </div>
+      <div class="stack-footer">
+        <div class="stack-compare"><span class="stack-compare-label">Combined monthly cost elsewhere</span><span class="stack-compare-val">$749/mo ($8,988/yr)</span></div>
+        <div class="stack-today"><span class="stack-today-label">Your price today</span><span class="stack-today-val">$500<small>one time</small></span></div>
+      </div>
+    </div>
+
+    <div class="demo-box">
+      <p class="demo-label">Want to hear it for yourself?</p>
+      <a class="demo-call" href="tel:+14709180516">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        Call the demo line now — (470) 918-0516
+      </a>
+      <p class="demo-sub">A receptionist picks up. That's what your customers will hear.</p>
+    </div>
+
+    <p class="math">One average job pays for this. That's all it needs to do — once.</p>
+
+    <p class="yes-q">If all this did was save you one job you would have missed — does $500 make sense?</p>
+
+    <div class="err" id="err"></div>
+    <button class="add" id="addBtn" onclick="addUpsell()">Yes — Add 24/7 Receptionist · $500</button>
+    <button class="skip" onclick="skip()">No thanks — I'll handle missed calls myself</button>
+
+  </div>
+</div>
+<footer>&copy; 2026 SolidBookedPro</footer>
+
+<script>
+window.SBP = { N8N:'https://n8n.americanlifeteam.com/webhook' };
+(function(){
+  var N8N=window.SBP.N8N;
+  var v=document.getElementById('upvid'), vsound=document.getElementById('vsound'), RATE=1.2;
+  function enableSound(){ v.muted=false; v.loop=false; v.currentTime=0; v.playbackRate=RATE; v.play(); v.setAttribute('controls','controls'); vsound.classList.add('hide'); v.removeEventListener('click',enableSound); }
+  vsound.addEventListener('click',function(e){ e.stopPropagation(); enableSound(); });
+  v.addEventListener('click',enableSound);
+  var qs=new URLSearchParams(location.search);
+  var sessionId=qs.get('session_id')||''; var email=qs.get('email')||'';
+  try{ if(sessionId) localStorage.setItem('ssos_checkout_session', sessionId); else sessionId=localStorage.getItem('ssos_checkout_session')||''; if(email) localStorage.setItem('ssos_email',email); }catch(e){}
+  function setupUrl(extra){ var em=''; try{em=localStorage.getItem('ssos_email')||''}catch(e){} return '/setup/?session_id='+encodeURIComponent(sessionId)+(em?'&email='+encodeURIComponent(em):'')+(extra||''); }
+  window.skip=function(){ location.href=setupUrl(''); };
+  window.addUpsell=function(){
+    var btn=document.getElementById('addBtn'), err=document.getElementById('err');
+    err.style.display='none'; btn.disabled=true; btn.textContent='Adding to your order…';
+    fetch(N8N+'/sbp-receptionist-charge',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session_id:sessionId,product:'sbp_receptionist_500'})})
+      .then(function(r){return r.json()}).then(function(d){
+        if(d&&d.ok){ try{localStorage.setItem('ssos_bought_receptionist','1')}catch(e){} location.href=setupUrl('&recep=1'); }
+        else{ err.textContent=(d&&d.error)||'Could not add it right now. Your order is safe.'; err.style.display='block'; btn.disabled=false; btn.textContent='Yes — Add 24/7 Receptionist · $500'; }
+      }).catch(function(){ err.textContent='Network error. Your order is safe.'; err.style.display='block'; btn.disabled=false; btn.textContent='Yes — Add 24/7 Receptionist · $500'; });
+  };
+})();
+</script>
+</body>
+</html>

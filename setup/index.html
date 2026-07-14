@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Set Up Your Website — SolidBookedPro</title>
+<meta name="robots" content="noindex"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0f172a;--gold:#2563eb;--gold-bg:rgba(37,99,235,.08);--gold-border:rgba(37,99,235,.30);--cream:#ffffff;--gray:#6b7280;--line:rgba(15,23,42,.12);--green:#16a34a;}
+html,body{height:100%;}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(--navy);min-height:100vh;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;}
+.topbar{background:linear-gradient(135deg,#2563eb,#1e3a8a);color:#fff;padding:13px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:20;flex-shrink:0;}
+.topbar .brand{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#bfdbfe;}
+.topbar .save{margin-left:auto;font-size:12px;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:6px;}
+.topbar .save .dot{width:7px;height:7px;border-radius:50%;background:#4ade80;}
+.topbar .save.saving .dot{background:var(--gold);}
+.prog{height:4px;background:rgba(255,255,255,.12);flex-shrink:0;}
+.prog .fill{height:100%;width:25%;background:var(--gold);transition:width .35s;}
+.body{flex:1;display:flex;flex-direction:column;min-height:0;}
+.narrowpad{max-width:720px;margin:0 auto;width:100%;padding:26px 18px 60px;}
+.stepwrap{display:none;animation:f .2s ease both;}
+.stepwrap.active{display:block;}
+.stepwrap.step-editor.active{display:flex;flex-direction:column;flex:1;min-height:0;}
+@keyframes f{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+h2.q{font-size:clamp(22px,4vw,30px);font-weight:800;letter-spacing:-.02em;margin-bottom:6px;}
+.hint{font-size:14px;color:var(--gray);margin-bottom:20px;line-height:1.5;}
+label{display:block;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.04em;margin:14px 0 6px;}
+input[type=text],input[type=tel],input[type=email],input[type=url],textarea,select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit;color:var(--navy);background:#fff;outline:none;transition:.15s;}
+textarea{min-height:84px;resize:vertical;line-height:1.5;}
+input:focus,textarea:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(37,99,235,.1);}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:560px){.two{grid-template-columns:1fr;}}
+.nav{display:flex;gap:12px;margin-top:26px;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border:none;border-radius:11px;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer;transition:transform .14s;}
+.btn-primary{background:linear-gradient(to bottom,#22c55e,#15803d);color:#fff;flex:1;box-shadow:0 10px 26px -8px rgba(21,128,61,.5);}
+.btn-primary:hover{transform:translateY(-1px);}
+.btn-ghost{background:#fff;color:var(--navy);border:1.5px solid var(--line);}
+.btn-ghost:hover{background:var(--cream);}
+.btn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+
+/* ── full-screen editor (step 2) ── */
+.ed-head{padding:16px 22px 10px;flex-shrink:0;}
+.ed-head h2{font-size:clamp(20px,3vw,26px);font-weight:800;letter-spacing:-.02em;}
+.ed-head p{font-size:13px;color:var(--gray);margin-top:3px;}
+.match-status{font-size:13px;padding:8px 12px;border-radius:8px;margin-top:10px;display:inline-flex;align-items:center;gap:8px;}
+.match-status.ok{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;}
+.match-status.searching{background:var(--gold-bg);color:#7a6023;border:1px solid var(--gold-border);}
+.match-status.none{background:#fff7ed;color:#9a3412;border:1px solid #fed7aa;}
+.ed-split{flex:1;display:flex;min-height:0;border-top:1px solid var(--line);}
+.epanel{width:430px;min-width:360px;max-width:46vw;overflow-y:auto;padding:18px 22px 90px;border-right:1px solid var(--line);background:#fff;}
+.preview{flex:1;display:flex;flex-direction:column;background:#fff;min-width:0;}
+.preview .bar{padding:8px 14px;border-bottom:1px solid var(--line);font-size:12px;color:var(--gray);display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.preview .bar a{color:var(--green);text-decoration:none;font-weight:700;margin-left:auto;}
+.preview iframe{flex:1;border:0;width:100%;background:#fff;}
+@media(max-width:820px){
+  .ed-split{flex-direction:column;}
+  .epanel{width:100%;max-width:none;border-right:0;border-bottom:1px solid var(--line);max-height:none;padding-bottom:24px;}
+  .preview{min-height:420px;}
+}
+.ed-foot{position:sticky;bottom:0;background:rgba(255,255,255,.97);border-top:1px solid var(--line);padding:12px 22px;display:flex;gap:12px;z-index:5;flex-shrink:0;}
+.ed-foot .btn{padding:13px 22px;}
+.sec{margin-top:16px;}
+.sec .stitle{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:3px;}
+.sec .ssub{font-size:12px;color:var(--gray);margin-bottom:9px;line-height:1.45;}
+.imgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;}
+.imgcard{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fafafa;}
+.imgcard img{width:100%;height:70px;object-fit:cover;display:block;background:#eee;}
+.imgcard button{width:100%;border:0;border-top:1px solid var(--line);background:#fff;color:var(--green);font-size:11px;font-weight:700;padding:6px;cursor:pointer;font-family:inherit;}
+.imgcard button:hover{background:#f0fdf4;}
+.imgcard.swapped{outline:2px solid var(--green);}
+.imgcard.blank{border-style:dashed;border-color:var(--gold-border);}
+.imgcard.blank img{opacity:.7;}
+.addimg{margin-top:8px;border:1.5px dashed var(--line);color:var(--gray);border-radius:9px;padding:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;width:100%;background:none;}
+.addimg:hover{border-color:var(--gold);color:var(--navy);}
+.imgcard .ilbl{font-size:10px;color:var(--gray);padding:3px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-top:1px solid var(--line);}
+/* structured booking step editor */
+.bk-step{border:1px solid var(--line);border-radius:10px;padding:11px 12px;margin-bottom:10px;background:#fafbfc;}
+.bk-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;}
+.bk-head .num{font-size:11px;font-weight:800;color:#7a6023;background:var(--gold-bg);border-radius:6px;padding:2px 9px;}
+.bk-head .x{background:none;border:0;color:#b91c1c;font-size:11px;font-weight:700;cursor:pointer;}
+.bk-q{width:100%;padding:9px 11px;font-size:13px;font-weight:600;margin-bottom:8px;}
+.bk-opts{display:flex;flex-direction:column;gap:5px;padding-left:6px;}
+.bk-optrow{display:flex;gap:6px;align-items:center;}
+.bk-optrow input{flex:1;padding:7px 10px;font-size:12px;}
+.bk-optrow .x{background:none;border:0;color:#b91c1c;font-size:14px;cursor:pointer;padding:0 4px;flex-shrink:0;}
+.bk-addopt{background:none;border:0;color:var(--green);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;padding:4px 6px;margin-top:5px;}
+.bk-addopt:hover{text-decoration:underline;}
+.subnote{font-size:12px;color:var(--gray);margin-top:6px;line-height:1.5;}
+
+/* receptionist card */
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:clamp(20px,3vw,30px);box-shadow:0 10px 30px -18px rgba(10,31,58,.3);}
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px;}
+.card-grid .full{grid-column:1/-1;}
+@media(max-width:640px){.card-grid{grid-template-columns:1fr;}}
+.card-grid label{margin-top:0;}
+
+.done{text-align:center;padding:48px 20px;}
+.done .ico{width:70px;height:70px;border-radius:50%;background:#dcfce7;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
+.done h2{font-size:28px;font-weight:900;margin-bottom:10px;}
+.done p{font-size:15px;color:var(--gray);line-height:1.65;max-width:440px;margin:0 auto 18px;}
+.pill{display:inline-flex;align-items:center;gap:7px;background:var(--gold-bg);border:1px solid var(--gold-border);color:#7a6023;border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="brand">SolidBookedPro</span>
+  <span class="save" id="saveind"><span class="dot"></span><span id="savetext">Saved</span></span>
+</div>
+<div class="prog"><div class="fill" id="progfill"></div></div>
+
+<div class="body">
+
+  <!-- STEP 1: Business details -->
+  <div class="stepwrap active" data-step="1"><div class="narrowpad">
+    <h2 class="q">Tell us about your business</h2>
+    <p class="hint">This is everything we need to finish your site. It saves automatically — you can leave and come back anytime.</p>
+    <label>Business name</label>
+    <input type="text" id="business_name" placeholder="e.g. 24-7 Mobile Mechanic"/>
+    <p class="subnote">Use the exact name your draft was built under — we'll pull it up on the next step.</p>
+    <div class="two">
+      <div><label>Industry / trade</label><input type="text" id="industry" placeholder="e.g. Mobile Mechanic"/></div>
+      <div><label>Business phone</label><input type="tel" id="phone" placeholder="(555) 555-5555"/></div>
+    </div>
+    <div class="two">
+      <div><label>City</label><input type="text" id="city" placeholder="Hollywood"/></div>
+      <div><label>State</label><input type="text" id="state" placeholder="FL"/></div>
+    </div>
+    <label>Service area (cities / counties you cover)</label>
+    <input type="text" id="service_area" placeholder="e.g. Broward &amp; Miami-Dade"/>
+    <label>Business hours</label>
+    <input type="text" id="hours" placeholder="e.g. Mon–Sat 7am–7pm, 24/7 emergency"/>
+    <label>Your top services</label>
+    <textarea id="services" placeholder="One per line"></textarea>
+    <label>What makes you different? (we'll feature this)</label>
+    <textarea id="differentiator" placeholder="e.g. Same-day service, ASE-certified, flat-rate pricing"></textarea>
+    <label>Where should we send your updates &amp; login? (your email)</label>
+    <input type="email" id="client_email" placeholder="you@yourbusiness.com"/>
+    <div class="nav"><button class="btn btn-primary" onclick="next()">Save &amp; Continue</button></div>
+  </div></div>
+
+  <!-- STEP 2: Full-screen editor -->
+  <div class="stepwrap step-editor" data-step="2">
+    <div class="ed-head">
+      <h2>Here's your website</h2>
+      <p>This is the draft we built for you — swap any photo, edit the booking steps, or describe any change. Nothing here is final.</p>
+      <div class="match-status searching" id="matchStatus"><span>Pulling up your draft…</span></div>
+    </div>
+    <div class="ed-split">
+      <div class="epanel">
+        <div class="sec">
+          <div class="stitle">Changes you'd like</div>
+          <div class="ssub">Headlines, wording, layout, what to add or remove — anything.</div>
+          <textarea id="change_notes" placeholder="e.g. Change the headline to “Same-Day Mobile Repair in Hollywood”. Add a fleet-service section."></textarea>
+        </div>
+        <div class="sec" id="imgsec" style="display:none">
+          <div class="stitle">Replace a photo</div>
+          <div class="ssub">Click any photo to swap it for one of yours. It updates everywhere it appears.</div>
+          <div class="imgrid" id="imgrid"></div>
+          <button class="addimg" onclick="addPhoto()">+ Add a new photo</button>
+          <div class="subnote" id="addedNote"></div>
+        </div>
+        <div class="sec" id="booksec" style="display:none">
+          <div class="stitle">Your booking steps</div>
+          <div class="ssub">These are the questions your booking form asks. Edit the wording, reorder, add or remove.</div>
+          <div id="bookList"></div>
+          <button class="addimg" onclick="addStep('')">+ Add a step</button>
+        </div>
+        <div class="sec">
+          <div class="stitle">Custom form or process?</div>
+          <div class="ssub">Use an existing form, booking link, or a specific intake you want.</div>
+          <textarea id="custom_forms" placeholder="e.g. Use my quote form at /contact, or collect vehicle year/make/model before booking"></textarea>
+        </div>
+      </div>
+      <div class="preview">
+        <div class="bar"><span id="previewLabel">Your draft</span><a id="previewLink" href="#" target="_blank" rel="noopener" style="display:none">Open ↗</a></div>
+        <iframe id="previewFrame" title="Your website draft"></iframe>
+      </div>
+    </div>
+    <div class="ed-foot">
+      <button class="btn btn-ghost" onclick="prev()">Back</button>
+      <button class="btn btn-primary" onclick="next()">Save &amp; Continue</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: Receptionist (only if billed) -->
+  <div class="stepwrap" data-step="3"><div class="narrowpad" style="max-width:880px">
+    <h2 class="q">Set up your AI receptionist</h2>
+    <p class="hint">This is what your callers will hear and how it represents you. You can fine-tune it anytime.</p>
+    <div class="card"><div class="card-grid">
+      <div><label>Receptionist name</label><input type="text" id="r_name" placeholder="e.g. Ava"/></div>
+      <div><label>Transfer calls to (your number)</label><input type="tel" id="r_transfer" placeholder="(555) 555-5555"/></div>
+      <div class="full"><label>First thing every caller hears (greeting)</label><textarea id="r_greeting" placeholder="e.g. Thanks for calling 24-7 Mobile Mechanic, this is Ava — how can I help?"></textarea></div>
+      <div class="full"><label>About your business &amp; services (so it can answer questions)</label><textarea id="r_business" placeholder="What you do, areas served, pricing ranges, what to say for common questions…"></textarea></div>
+      <div class="full"><label>When should it transfer to a human?</label><input type="text" id="r_transfer_when" placeholder="e.g. Ready to book, or an emergency"/></div>
+      <div class="full"><label>Common questions it should be ready for (FAQs)</label><textarea id="r_faqs" placeholder="One question + answer per line"></textarea></div>
+    </div></div>
+    <div class="nav"><button class="btn btn-ghost" onclick="prev()">Back</button><button class="btn btn-primary" onclick="next()">Save &amp; Continue</button></div>
+  </div></div>
+
+  <!-- STEP 4: Done -->
+  <div class="stepwrap" data-step="4"><div class="narrowpad">
+    <div class="done">
+      <div class="ico"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <h2>You're all set</h2>
+      <p>We've got everything we need. Your site is being finalized — we'll email you the moment it's ready to review at the address you gave us.</p>
+      <div class="pill">Tip: bookmark your private access link from that email to make changes later</div>
+      <div class="nav" style="max-width:360px;margin:26px auto 0;"><button class="btn btn-primary" onclick="finish()">Submit &amp; Finish</button></div>
+    </div>
+  </div></div>
+
+</div>
+
+<script>
+window.SSOS_FN = { N8N:'https://n8n.americanlifeteam.com/webhook' };
+(function(){
+  var N8N=window.SSOS_FN.N8N;
+  var qs=new URLSearchParams(location.search);
+  var email = qs.get('email') || (function(){try{return localStorage.getItem('ssos_email')||''}catch(e){return ''}})();
+  var sessionId = qs.get('session_id') || (function(){try{return localStorage.getItem('ssos_checkout_session')||''}catch(e){return ''}})();
+  var boughtRecep = qs.get('recep')==='1' || (function(){try{return localStorage.getItem('ssos_bought_receptionist')==='1'}catch(e){return false}})();
+
+  var STEPS=[1,2,4], cur=0;
+  var state={ email:email, session_id:sessionId, bought_receptionist:boughtRecep, business_name:'', slug:'', demo_match:'', client_email:email, custom_forms:'',
+    answers:{ business:{}, change_notes:'', image_swaps:[], added_images:[], booking_steps:[], receptionist:{} } };
+  function computeSteps(){ STEPS = state.bought_receptionist ? [1,2,3,4] : [1,2,4]; }
+
+  function LS(){ return 'ssos_intake_'+((state.email||'anon').toLowerCase()); }
+  function saveLocal(){ try{ localStorage.setItem(LS(), JSON.stringify(state)); }catch(e){} }
+  var saveTimer=null, ind=document.getElementById('saveind'), savetext=document.getElementById('savetext');
+  function persist(){
+    saveLocal(); ind.classList.add('saving'); savetext.textContent='Saving…';
+    clearTimeout(saveTimer);
+    saveTimer=setTimeout(function(){
+      fetch(N8N+'/sbp-funnel-intake-save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(state),keepalive:true})
+        .then(function(){ind.classList.remove('saving');savetext.textContent='Saved';})
+        .catch(function(){ind.classList.remove('saving');savetext.textContent='Saved offline';});
+    }, 700);
+  }
+  window.addEventListener('pagehide',function(){ try{ navigator.sendBeacon(N8N+'/sbp-funnel-intake-save', new Blob([JSON.stringify(state)],{type:'application/json'})); }catch(e){} });
+
+  function get(p){var o=state,a=p.split('.');for(var i=0;i<a.length;i++){if(o==null)return null;o=o[a[i]];}return o;}
+  function set(p,v){var o=state,a=p.split('.');for(var i=0;i<a.length-1;i++){if(o[a[i]]==null)o[a[i]]={};o=o[a[i]];}o[a[a.length-1]]=v;
+    if(p==='business.business_name')state.business_name=v; if(p==='client_email'){state.client_email=v; if(v)state.email=v;} }
+  function bind(id,p){var el=document.getElementById(id);if(!el)return;var v=get(p);if(v!=null&&v!=='')el.value=v;el.addEventListener('input',function(){set(p,el.value);persist();});}
+
+  function render(){
+    var step=STEPS[cur];
+    document.querySelectorAll('.stepwrap').forEach(function(el){ el.classList.toggle('active',+el.dataset.step===step); });
+    document.getElementById('progfill').style.width=Math.round(((cur+1)/STEPS.length)*100)+'%';
+    window.scrollTo({top:0,behavior:'smooth'});
+    if(step===2) ensureMatch();
+  }
+  window.next=function(){ if(cur<STEPS.length-1){ cur++; render(); } };
+  window.prev=function(){ if(cur>0){ cur--; render(); } };
+
+  // ---- step 2: match + editor ----
+  var matched=false;
+  function ensureMatch(){
+    if(matched) return;
+    var biz=get('business.business_name')||state.business_name;
+    var st=document.getElementById('matchStatus');
+    if(!biz){ st.className='match-status none'; st.innerHTML='<span>Add your business name on the previous step so we can pull up your draft.</span>'; return; }
+    st.className='match-status searching'; st.innerHTML='<span>Pulling up “'+esc(biz)+'”…</span>';
+    fetch(N8N+'/ssos-funnel-github-match?business='+encodeURIComponent(biz))
+      .then(function(r){return r.json()}).then(function(d){
+        if(d&&d.matched){
+          matched=true; state.slug=d.slug; state.demo_match=d.slug; persist();
+          st.className='match-status ok'; st.innerHTML='<span>Loaded your draft — make your changes below.</span>';
+          document.getElementById('previewLabel').textContent=d.slug;
+          var url=d.url||('https://demo.scalingsos.com/'+d.slug+'/');
+          var lk=document.getElementById('previewLink'); lk.href=url; lk.style.display='inline';
+          loadPage(url);
+        } else { st.className='match-status none'; st.innerHTML='<span>We couldn’t find a draft under that exact name — describe what you want below and we’ll build it.</span>'; }
+      }).catch(function(){ st.className='match-status none'; st.innerHTML='<span>Could not load the preview right now. You can still request changes below.</span>'; });
+  }
+  function absUrl(src,base){ try{ return new URL(src,base).href; }catch(e){ return src; } }
+  var prevBlob=null;
+  function loadPage(url){
+    var frame=document.getElementById('previewFrame');
+    fetch(url).then(function(r){return r.text()}).then(function(html){
+      var doc=null; try{ doc=new DOMParser().parseFromString(html,'text/html'); }catch(e){}
+      extractImages(html,doc,url); loadBooking(html);
+      try{
+        var prev=transformPreview(html,url);
+        if(prevBlob) URL.revokeObjectURL(prevBlob);
+        prevBlob=URL.createObjectURL(new Blob([prev],{type:'text/html'}));
+        frame.src=prevBlob;
+      }catch(e){ frame.src=url; }
+    }).catch(function(){ frame.src=url; });
+  }
+  function clientPhone(){
+    var raw=(get('business.phone')||'').replace(/\D/g,'');
+    if(raw.length===11 && raw.charAt(0)==='1') raw=raw.slice(1);
+    if(raw.length!==10) return null;
+    return { display:'('+raw.slice(0,3)+') '+raw.slice(3,6)+'-'+raw.slice(6,10), tel:'+1'+raw };
+  }
+  function transformPreview(html,baseUrl){
+    var doc=new DOMParser().parseFromString(html,'text/html');
+    if(doc.head){ var base=doc.createElement('base'); base.href=baseUrl; doc.head.insertBefore(base,doc.head.firstChild); }
+    // strip the demo bar + demo code + its injector scripts
+    doc.querySelectorAll('#sos-launch,[id*="sos-launch"],[class*="demo-bar"],[class*="demobar"],[class*="preview-bar"]').forEach(function(e){ e.remove(); });
+    Array.prototype.forEach.call(doc.querySelectorAll('script'),function(s){ var t=s.textContent||''; if(/sos-launch|demo[_\s-]?code/i.test(t)) s.remove(); });
+    doc.querySelectorAll('body *').forEach(function(e){ if(e.children.length===0 && /demo code/i.test(e.textContent||'')) e.remove(); });
+    // swap the demo phone for the client's everywhere
+    var ph=clientPhone();
+    if(ph){
+      doc.querySelectorAll('a[href^="tel:"]').forEach(function(a){ a.setAttribute('href','tel:'+ph.tel); });
+      var rx=/(?:\+?1[\s.\-]?)?\(?\d{3}\)?[\s.\-]?\d{3}[\s.\-]?\d{4}/g;
+      try{ var w=doc.createTreeWalker(doc.body,NodeFilter.SHOW_TEXT,null),nodes=[];
+        while(w.nextNode()) nodes.push(w.currentNode);
+        nodes.forEach(function(n){ if(n.nodeValue && rx.test(n.nodeValue)){ rx.lastIndex=0; n.nodeValue=n.nodeValue.replace(rx,ph.display); } rx.lastIndex=0; });
+      }catch(e){}
+    }
+    return '<!DOCTYPE html>'+doc.documentElement.outerHTML;
+  }
+  var PLACEHOLDER='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="120" height="80"><rect width="120" height="80" fill="#eef2f7"/><text x="60" y="44" font-family="sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">add photo</text></svg>');
+  function uniquePrefix(target, others){
+    var max=Math.min(target.length, 6000);
+    for(var L=200; L<max; L+=200){ var p=target.slice(0,L), uniq=true; for(var j=0;j<others.length;j++){ if(others[j].length>=L && others[j].slice(0,L)===p){ uniq=false; break; } } if(uniq) return p; }
+    return target.slice(0,max);
+  }
+  function extractImages(html,doc,url){
+    var items=[], seenFull={};
+    function addImg(uri,label,blank,slot){ if(!blank){ if(!uri||seenFull[uri]) return; seenFull[uri]=1; } items.push({uri:uri,label:(label||'image'),blank:!!blank,slot:slot}); }
+    if(doc){
+      Array.prototype.forEach.call(doc.querySelectorAll('img'),function(im,idx){
+        var src=(im.getAttribute('src')||im.getAttribute('data-src')||'').trim();
+        var label=(im.getAttribute('alt')||(im.getAttribute('class')||'').split(' ').filter(Boolean)[0]||'image').slice(0,40);
+        if(/^data:image/i.test(src)){ addImg(src,label,false); }
+        else { var a=absUrl(src,url);
+          if(/^https?:/.test(a)&&!/\.svg(\?|$)/i.test(a)){ addImg(a,label,false); }
+          else { addImg(PLACEHOLDER,label||'photo',true,idx); } // blank / founder placeholder slot
+        }
+      });
+    } else {
+      var imgRe=/<img\b[^>]*>/gi,t; while((t=imgRe.exec(html))){ var ds=(t[0].match(/src\s*=\s*"(data:[^"]+)"/i)||[])[1]||(t[0].match(/src\s*=\s*'(data:[^']+)'/i)||[])[1]; if(ds) addImg(ds,'image',false); }
+    }
+    var bgRe=/url\(\s*['"]?(data:image[^'")]+)['"]?\s*\)/gi,m; while((m=bgRe.exec(html))){ addImg(m[1],'background image',false); }
+    var hre=/url\((['"]?)(https?:[^'")]+)\1\)/g; while((m=hre.exec(html))){ var u=m[2]; if(/\.(png|jpe?g|webp|gif|avif)(\?|$)/i.test(u)||/unsplash|images\.|googleusercontent|githubusercontent|supabase|cloudinary|\/photo/i.test(u)) addImg(u,'background image',false); }
+    // assign a UNIQUE locator per image (data URIs share long headers — a 180-char prefix collides)
+    var datas=items.filter(function(x){return !x.blank && x.uri.indexOf('data:')===0;}).map(function(x){return x.uri;});
+    items.forEach(function(x){
+      if(x.blank){ x.key='slot:'+x.slot+':'+x.label; }
+      else if(x.uri.indexOf('data:')===0){ x.key=uniquePrefix(x.uri, datas.filter(function(d){return d!==x.uri;})); }
+      else { x.key=x.uri; }
+    });
+    buildImageGrid(items.slice(0,30));
+  }
+  function buildImageGrid(list){
+    if(!list.length) return;
+    document.getElementById('imgsec').style.display='block';
+    var grid=document.getElementById('imgrid'); grid.innerHTML='';
+    list.forEach(function(im){
+      var c=document.createElement('div'); c.className='imgcard'+(im.blank?' blank':'');
+      var img=document.createElement('img'); img.src=im.uri; img.loading='lazy'; if(!im.blank) img.onerror=function(){ c.style.display='none'; }; c.appendChild(img);
+      var lbl=document.createElement('div'); lbl.className='ilbl'; lbl.textContent=im.label; lbl.title=im.label; c.appendChild(lbl);
+      var b=document.createElement('button'); b.textContent=im.blank?'Add photo':'Replace'; b.onclick=function(){ pickImage(im,img,c,b); }; c.appendChild(b);
+      grid.appendChild(c);
+    });
+  }
+  function uploadFile(file,cb){
+    var rd=new FileReader();
+    rd.onload=function(){ var b64=String(rd.result).split(',')[1];
+      fetch(N8N+'/sbp-funnel-upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({filename:file.name,contentType:file.type,data_base64:b64,email:state.email})})
+        .then(function(r){return r.json()}).then(function(d){ cb((d&&d.url)||rd.result, rd.result); }).catch(function(){ cb(rd.result, rd.result); });
+    };
+    rd.readAsDataURL(file);
+  }
+  function pickImage(im,imgEl,card,btn){
+    var inp=document.createElement('input'); inp.type='file'; inp.accept='image/*';
+    inp.onchange=function(){ var f=inp.files[0]; if(!f) return; btn.textContent='Uploading…';
+      uploadFile(f,function(url,localPrev){ imgEl.src=localPrev; card.classList.add('swapped'); btn.textContent=im.blank?'Added ✓':'Replaced ✓';
+        var arr=state.answers.image_swaps, ex=arr.filter(function(s){return s.original===im.key})[0];
+        if(ex){ ex.replacement=url; } else { arr.push({original:im.key, original_label:im.label, replacement:url, blank:!!im.blank}); } persist();
+      });
+    };
+    inp.click();
+  }
+  window.addPhoto=function(){
+    var inp=document.createElement('input'); inp.type='file'; inp.accept='image/*';
+    inp.onchange=function(){ var f=inp.files[0]; if(!f) return;
+      uploadFile(f,function(url){ state.answers.added_images.push(url); persist(); document.getElementById('addedNote').textContent=state.answers.added_images.length+' photo(s) added.'; });
+    };
+    inp.click();
+  };
+
+  // ---- booking steps (parse the template's QUESTIONS=[{q,opts}] array) ----
+  function matchBlock(s, open, close){ // balanced bracket slice starting at first `open` at/after index in s
+    var i=s.indexOf(open); if(i<0) return null; var d=0,j=i;
+    for(;j<s.length;j++){ var c=s[j]; if(c===open)d++; else if(c===close){d--; if(d===0) return {text:s.slice(i,j+1), end:j};} }
+    return null;
+  }
+  function unq(str){ return str.slice(1,-1).replace(/\\(['"\\])/g,'$1'); }
+  function parseArray(html,name){
+    var at=html.indexOf(name+'=['); if(at<0) at=html.indexOf(name+' =['); if(at<0) return null;
+    var blk=matchBlock(html.slice(at), '[', ']'); if(!blk) return null;
+    var body=blk.text, steps=[], k=0;
+    while(true){
+      var s=body.indexOf('{',k); if(s<0) break;
+      var ob=matchBlock(body.slice(s), '{', '}'); if(!ob) break;
+      var obj=ob.text;
+      var qm=obj.match(/[\s,{](?:q|question|title)\s*:\s*("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/) || obj.match(/[\s,{]label\s*:\s*("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/);
+      var question = qm ? unq(qm[1]) : '';
+      var opts=[]; var oi=obj.search(/\b(?:opts|options|choices|answers)\s*:/);
+      if(oi>=0){ var oblk=matchBlock(obj.slice(oi), '[', ']'); if(oblk){
+        if(/\[\s*\[/.test(oblk.text)){ var lre=/\[\s*("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/g, lm; while((lm=lre.exec(oblk.text))){ opts.push(unq(lm[1])); } }
+        else { var sre=/("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/g, sm; while((sm=sre.exec(oblk.text))){ opts.push(unq(sm[1])); } }
+      }}
+      if(question) steps.push({q:question, opts:opts});
+      k = s + ob.end + 1;
+    }
+    return steps.length ? steps : null;
+  }
+  function decodeEnt(s){ return String(s).replace(/&amp;/g,'&').replace(/&#39;|&rsquo;/g,"'").replace(/&quot;/g,'"').replace(/\\u2019/g,"'").replace(/\\u2026/g,'…').replace(/&[a-z]+;/g,' ').replace(/\s+/g,' ').trim(); }
+  // The ScalingSOS-factory booking funnel: JS render() with class="bk-h" step questions + option arrays
+  function parseBookingFunnel(html){
+    var named={}, nre=/([A-Z][A-Z0-9_]{2,})\s*=\s*\[([^\[\]]*)\]/g, nm;
+    while((nm=nre.exec(html))){ var arr=[], sre=/("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/g, sm; while((sm=sre.exec(nm[2]))){ arr.push(unq(sm[1])); } if(arr.length) named[nm[1]]=arr; }
+    var hre=/bk-h">([^<]{2,110})</g, hm, pos=[];
+    while((hm=hre.exec(html))){ pos.push({q:decodeEnt(hm[1]), idx:hm.index}); }
+    if(!pos.length) return null;
+    var steps=[], seen={};
+    for(var i=0;i<pos.length;i++){
+      var q=pos[i].q; if(!q||seen[q]) continue; seen[q]=1;
+      var end=(i+1<pos.length)?pos[i+1].idx:pos[i].idx+1600;
+      var block=html.slice(pos[i].idx,end), opts=[];
+      if(/\[\s*\[/.test(block)){ var pre=/\[\s*("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/g, pm; while((pm=pre.exec(block))){ opts.push(unq(pm[1])); } }
+      var ref=block.match(/\b([A-Z][A-Z0-9_]{2,})\s*\.(?:forEach|map)/);
+      if(ref && named[ref[1]]) opts=opts.concat(named[ref[1]]);
+      opts=opts.filter(function(v,j,a){return v && a.indexOf(v)===j;}).slice(0,12);
+      steps.push({q:q, opts:opts});
+    }
+    return steps.length?steps:null;
+  }
+  function parseBooking(html){
+    var r=parseBookingFunnel(html); if(r&&r.length) return r;
+    var names=['QUESTIONS','STEPS','QUIZ','FORM_STEPS','BOOKING_STEPS','BOOKING','WIZARD'];
+    for(var i=0;i<names.length;i++){ var a=parseArray(html,names[i]); if(a&&a.length) return a; }
+    return parseDomSteps(html);
+  }
+  function parseDomSteps(html){
+    var d; try{ d=new DOMParser().parseFromString(html,'text/html'); }catch(e){ return null; }
+    var out=[], seen={};
+    Array.prototype.forEach.call(d.querySelectorAll('[class*="step"],[data-step]'),function(el){
+      var qel=el.querySelector('.step-q,.quiz-q,h1,h2,h3,h4,label,p'); var q=qel?qel.textContent.trim().replace(/\s+/g,' '):'';
+      if(!q||q.length<4||q.length>140||seen[q]) return;
+      var opts=[]; Array.prototype.forEach.call(el.querySelectorAll('button,.opt,[class*="opt"],label'),function(o){ var ot=o.textContent.trim().replace(/\s+/g,' '); if(ot&&ot.length<=60&&ot!==q&&opts.indexOf(ot)<0) opts.push(ot); });
+      seen[q]=1; out.push({q:q,opts:opts.slice(0,8)});
+    });
+    return out.length?out.slice(0,10):null;
+  }
+  function normBooking(){
+    var b=state.answers.booking_steps;
+    if(!Array.isArray(b)) { state.answers.booking_steps=[]; return; }
+    state.answers.booking_steps=b.map(function(st){ return (typeof st==='string')?{q:st,opts:[]}:{q:st.q||'',opts:(st.opts||[])}; });
+  }
+  function loadBooking(html){
+    normBooking();
+    // always sync booking to the pulled template; keep edits only if they're for THIS slug + parser version
+    var ver=state.slug+':bf2';
+    if(state.answers.booking_slug !== ver || !state.answers.booking_steps.length){
+      var p=parseBooking(html);
+      state.answers.booking_steps = p || [];
+      state.answers.booking_slug = ver;
+      persist();
+    }
+    renderBooking();
+  }
+  function renderBooking(){
+    document.getElementById('booksec').style.display='block';
+    var wrap=document.getElementById('bookList'); wrap.innerHTML='';
+    (state.answers.booking_steps||[]).forEach(function(st,si){ wrap.appendChild(stepCard(st,si)); });
+  }
+  function stepCard(st,si){
+    var card=document.createElement('div'); card.className='bk-step';
+    var head=document.createElement('div'); head.className='bk-head';
+    var n=document.createElement('span'); n.className='num'; n.textContent='Step '+(si+1); head.appendChild(n);
+    var del=document.createElement('button'); del.className='x'; del.textContent='✕ remove step';
+    del.onclick=function(){ state.answers.booking_steps.splice(si,1); persist(); renderBooking(); }; head.appendChild(del);
+    card.appendChild(head);
+    var q=document.createElement('input'); q.type='text'; q.className='bk-q'; q.value=st.q||''; q.placeholder='Question, e.g. Who needs care?';
+    q.addEventListener('input',function(){ st.q=q.value; persist(); }); card.appendChild(q);
+    var opts=document.createElement('div'); opts.className='bk-opts';
+    (st.opts||[]).forEach(function(o,oi){ opts.appendChild(optRow(st,oi)); });
+    card.appendChild(opts);
+    var addO=document.createElement('button'); addO.className='bk-addopt'; addO.textContent='+ Add option';
+    addO.onclick=function(){ st.opts=st.opts||[]; st.opts.push(''); persist(); renderBooking(); }; card.appendChild(addO);
+    return card;
+  }
+  function optRow(st,oi){
+    var row=document.createElement('div'); row.className='bk-optrow';
+    var inp=document.createElement('input'); inp.type='text'; inp.value=st.opts[oi]||''; inp.placeholder='Option';
+    inp.addEventListener('input',function(){ st.opts[oi]=inp.value; persist(); }); row.appendChild(inp);
+    var x=document.createElement('button'); x.className='x'; x.textContent='✕'; x.onclick=function(){ st.opts.splice(oi,1); persist(); renderBooking(); }; row.appendChild(x);
+    return row;
+  }
+  window.addStep=function(){ normBooking(); state.answers.booking_steps.push({q:'',opts:['']}); persist(); renderBooking(); };
+
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  window.finish=function(){
+    state.status='submitted';
+    fetch(N8N+'/sbp-funnel-intake-save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(state),keepalive:true})
+      .finally(function(){ location.href='/account/?email='+encodeURIComponent(state.email||state.client_email||''); });
+  };
+
+  function hydrateFields(){
+    bind('business_name','business.business_name'); bind('industry','business.industry'); bind('phone','business.phone');
+    bind('city','business.city'); bind('state','business.state'); bind('service_area','business.service_area');
+    bind('hours','business.hours'); bind('services','business.services'); bind('differentiator','business.differentiator');
+    bind('client_email','client_email');
+    var cn=document.getElementById('change_notes'); if(cn){ cn.value=state.answers.change_notes||''; cn.addEventListener('input',function(){state.answers.change_notes=cn.value;persist();}); }
+    var cf=document.getElementById('custom_forms'); if(cf){ cf.value=state.custom_forms||''; cf.addEventListener('input',function(){state.custom_forms=cf.value;persist();}); }
+    bind('r_name','answers.receptionist.name'); bind('r_greeting','answers.receptionist.greeting'); bind('r_business','answers.receptionist.business');
+    bind('r_transfer','answers.receptionist.transfer'); bind('r_transfer_when','answers.receptionist.transfer_when'); bind('r_faqs','answers.receptionist.faqs');
+  }
+
+  function applyLoaded(d){
+    if(d&&d.found&&d.intake){ var i=d.intake;
+      state.business_name=i.business_name||state.business_name; state.slug=i.slug||''; state.demo_match=i.demo_match||'';
+      state.custom_forms=i.custom_forms||state.custom_forms; state.client_email=i.client_email||state.client_email;
+      if(i.answers) state.answers=Object.assign(state.answers,i.answers);
+      if(i.bought_receptionist) state.bought_receptionist=true;
+    }
+  }
+  function boot(){
+    try{ var s=localStorage.getItem(LS()); if(s) state=Object.assign(state,JSON.parse(s)); }catch(e){}
+    var chain=Promise.resolve();
+    if(sessionId){
+      chain=fetch(N8N+'/sbp-funnel-order?session_id='+encodeURIComponent(sessionId)).then(function(r){return r.json()})
+        .then(function(d){ if(d){ if(d.email){state.email=d.email; if(!state.client_email)state.client_email=d.email;} if(d.bought_receptionist) state.bought_receptionist=true; if(d.business_name&&!state.business_name)state.business_name=d.business_name; } }).catch(function(){});
+    }
+    chain.then(function(){
+      var em=state.email||state.client_email;
+      if(em) return fetch(N8N+'/sbp-funnel-intake-load?email='+encodeURIComponent(em)).then(function(r){return r.json()}).then(applyLoaded).catch(function(){});
+    }).then(function(){ computeSteps(); hydrateFields(); render(); });
+  }
+  boot();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Your Account — SolidBookedPro</title>
+<meta name="robots" content="noindex"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--slate:#0f172a;--blue:#2563eb;--blue-deep:#1e3a8a;--blue-hover:#1d4ed8;--bg:#f6f8fc;--tint:#eef4ff;--gray:#6b7280;--line:rgba(15,23,42,.12);}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--slate);min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+/* ---------- LOGIN ---------- */
+.loginwrap{flex:1;display:flex;align-items:center;justify-content:center;padding:28px 18px;}
+.card{background:#fff;border-radius:20px;max-width:480px;width:100%;box-shadow:0 30px 80px -25px rgba(15,23,42,.4);overflow:hidden;}
+.lhead{background:linear-gradient(135deg,#2563eb,#1e3a8a);padding:26px 30px;}
+.brand{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#bfdbfe;margin-bottom:8px;}
+.lhead h1{font-size:22px;font-weight:800;color:#fff;line-height:1.25;}
+.lhead p{font-size:14px;color:rgba(255,255,255,.75);margin-top:8px;line-height:1.5;}
+.lbody{padding:26px 30px 30px;}
+label{display:block;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.04em;margin:0 0 6px;}
+input,textarea,select{width:100%;padding:13px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit;color:var(--slate);outline:none;transition:.15s;background:#fff;}
+input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.12);}
+textarea{resize:vertical;line-height:1.5;}
+.btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:15px;background:var(--blue);color:#fff;font-size:15px;font-weight:800;border:none;border-radius:11px;cursor:pointer;font-family:inherit;box-shadow:0 10px 26px -10px rgba(37,99,235,.6);transition:.14s;}
+.btn:hover{background:var(--blue-hover);transform:translateY(-1px);}
+.btn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+.btn.green{background:linear-gradient(to bottom,#22c55e,#15803d);box-shadow:0 10px 26px -10px rgba(21,128,61,.5);}
+.btn.ghost{background:#fff;color:var(--slate);border:1.5px solid var(--line);box-shadow:none;}
+.btn.sm{width:auto;padding:10px 16px;font-size:13px;}
+.msg{font-size:14px;padding:12px 14px;border-radius:10px;margin-bottom:14px;display:none;line-height:1.5;}
+.msg.ok{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;display:block;}
+.msg.err{background:#fef2f2;color:#b91c1c;border:1px solid #fecaca;display:block;}
+.hidden{display:none!important;}
+/* ---------- APP ---------- */
+.topbar{background:#fff;border-bottom:1px solid var(--line);padding:14px 22px;display:flex;align-items:center;gap:14px;}
+.topbar .logo{font-weight:900;font-size:18px;letter-spacing:-.02em;color:var(--slate);}
+.topbar .logo b{color:var(--blue);}
+.topbar .who{margin-left:auto;font-size:13px;color:var(--gray);}
+.topbar .who b{color:var(--slate);}
+.topbar .out{background:none;border:none;color:var(--blue);font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;}
+.tabs{background:#fff;border-bottom:1px solid var(--line);padding:0 22px;display:flex;gap:4px;overflow-x:auto;}
+.tab{background:none;border:none;padding:15px 16px;font-size:14.5px;font-weight:700;color:var(--gray);cursor:pointer;font-family:inherit;border-bottom:3px solid transparent;white-space:nowrap;}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue);}
+.app{flex:1;max-width:1040px;width:100%;margin:0 auto;padding:24px 22px 60px;}
+.panel{display:none;}
+.panel.active{display:block;}
+.h2{font-size:20px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px;}
+.sub{font-size:14px;color:var(--gray);margin-bottom:20px;}
+.tile{display:flex;align-items:center;gap:14px;padding:16px;border:1px solid var(--line);border-radius:12px;text-decoration:none;color:var(--slate);transition:.14s;cursor:pointer;background:#fff;margin-bottom:12px;}
+.tile:hover{border-color:var(--blue);background:var(--tint);}
+.tile .ic{width:42px;height:42px;border-radius:10px;background:var(--tint);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.tile h3{font-size:15px;font-weight:700;}
+.tile p{font-size:13px;color:var(--gray);margin-top:2px;}
+.tile .arw{margin-left:auto;color:var(--gray);}
+/* sub-tabs */
+.subtabs{display:flex;gap:6px;margin-bottom:20px;background:var(--tint);padding:4px;border-radius:11px;width:fit-content;}
+.subtab{background:none;border:none;padding:9px 18px;font-size:13.5px;font-weight:700;color:var(--gray);cursor:pointer;font-family:inherit;border-radius:8px;}
+.subtab.active{background:#fff;color:var(--blue);box-shadow:0 1px 4px rgba(15,23,42,.08);}
+.subpanel{display:none;} .subpanel.active{display:block;}
+/* reviews layout */
+.rev-grid{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start;}
+@media(max-width:760px){.rev-grid{grid-template-columns:1fr;}}
+.box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:18px;}
+.box h3{font-size:15px;font-weight:800;margin-bottom:3px;}
+.box .bsub{font-size:12.5px;color:var(--gray);margin-bottom:14px;}
+.fieldlabel{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 0;}
+.chip{font-size:11px;font-weight:700;background:var(--tint);color:var(--blue);border:none;border-radius:20px;padding:4px 10px;cursor:pointer;font-family:inherit;}
+.row{display:flex;gap:10px;align-items:center;margin-top:12px;}
+.row input{flex:1;}
+.uploadrow{display:flex;align-items:center;gap:12px;margin-top:6px;}
+.thumb{width:54px;height:54px;border-radius:9px;object-fit:cover;background:var(--tint);border:1px solid var(--line);display:none;}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;}
+.pill{font-size:13px;font-weight:700;border:1.5px solid var(--line);background:#fff;color:var(--slate);border-radius:9px;padding:9px 13px;cursor:pointer;font-family:inherit;}
+.pill.active{border-color:var(--blue);background:var(--tint);color:var(--blue);}
+/* toggle */
+.toggle{position:relative;width:46px;height:26px;border-radius:20px;background:#cbd5e1;cursor:pointer;transition:.18s;flex-shrink:0;}
+.toggle.on{background:#22c55e;}
+.toggle::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.18s;box-shadow:0 1px 3px rgba(0,0,0,.3);}
+.toggle.on::after{left:23px;}
+.togglerow{display:flex;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid var(--line);margin-top:16px;padding-top:16px;}
+.togglerow h4{font-size:14px;font-weight:700;} .togglerow p{font-size:12.5px;color:var(--gray);}
+/* benefits */
+.benefit{display:flex;gap:11px;margin-bottom:13px;}
+.benefit svg{flex-shrink:0;width:20px;height:20px;color:var(--blue);margin-top:1px;}
+.benefit b{font-size:13.5px;font-weight:700;display:block;} .benefit span{font-size:12.5px;color:var(--gray);line-height:1.4;}
+/* phone preview */
+.phone{position:sticky;top:18px;width:270px;margin:0 auto;border-radius:34px;background:#0f172a;padding:11px;box-shadow:0 26px 56px -18px rgba(15,23,42,.5);}
+.phone-notch{height:22px;display:flex;justify-content:center;}.phone-notch span{width:90px;height:22px;background:#0f172a;border-radius:0 0 14px 14px;}
+.screen{background:#fff;border-radius:26px;overflow:hidden;padding:14px 12px 20px;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;}
+.p-img{align-self:center;width:78%;border-radius:11px;margin-bottom:4px;display:none;}
+.p-bub{background:#2563eb;color:#fff;font-size:12.5px;line-height:1.45;text-align:left;padding:9px 12px;border-radius:16px 16px 16px 4px;max-width:92%;align-self:flex-start;white-space:pre-wrap;word-break:break-word;}
+.p-reply{background:#22c55e;color:#fff;font-size:12.5px;padding:9px 12px;border-radius:16px 16px 4px 16px;max-width:80%;align-self:flex-end;}
+.p-cap{text-align:center;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;}
+/* customers */
+.guide{background:var(--tint);border:1px solid rgba(37,99,235,.2);border-radius:10px;padding:14px 16px;font-size:13px;color:var(--slate);line-height:1.6;margin-bottom:16px;}
+.guide code{background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12px;}
+.drop{border:2px dashed var(--blue);border-radius:12px;padding:26px;text-align:center;color:var(--blue);font-weight:700;cursor:pointer;background:var(--tint);font-size:14px;}
+table{width:100%;border-collapse:collapse;margin-top:16px;font-size:13.5px;}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--gray);}
+.badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;background:var(--tint);color:var(--blue);}
+.saved{font-size:13px;color:#15803d;font-weight:700;opacity:0;transition:.2s;}.saved.show{opacity:1;}
+footer{padding:18px;text-align:center;font-size:12px;color:rgba(15,23,42,.3);}
+</style>
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<div class="loginwrap" id="loginView">
+  <div class="card">
+    <div class="lhead">
+      <div class="brand">SolidBookedPro</div>
+      <h1 id="title">Access Your Account</h1>
+      <p id="subtitle">Enter your email and we'll send you a secure sign-in link — no password needed.</p>
+    </div>
+    <div class="lbody">
+      <div class="msg" id="msg"></div>
+      <div id="requestView">
+        <label>Your email</label>
+        <input type="email" id="email" placeholder="you@yourbusiness.com" style="margin-bottom:14px"/>
+        <button class="btn" id="reqBtn" onclick="requestLink()">Send my secure link</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ APP ============ -->
+<div id="appView" class="hidden" style="flex:1;display:flex;flex-direction:column;">
+  <div class="topbar">
+    <div class="logo">Solid<b>Booked</b>Pro</div>
+    <div class="who">Signed in as <b id="whoEmail"></b></div>
+    <button class="out" onclick="signOut()">Sign out</button>
+  </div>
+  <div class="tabs" id="tabbar">
+    <button class="tab active" data-tab="website" onclick="setTab('website')">Website</button>
+    <button class="tab hidden" id="tabReviews" data-tab="reviews" onclick="setTab('reviews')">Reviews</button>
+    <button class="tab hidden" id="tabRecep" data-tab="receptionist" onclick="setTab('receptionist')">Receptionist</button>
+  </div>
+
+  <div class="app">
+    <!-- WEBSITE -->
+    <section class="panel active" id="p-website">
+      <div class="h2">Your Website</div>
+      <div class="sub">Make changes anytime — swap photos, edit text, update your details.</div>
+      <a class="tile" id="editSite">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+        <div><h3>Edit my website</h3><p>Swap photos, request changes, update details</p></div>
+        <span class="arw">→</span>
+      </a>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="panel" id="p-reviews">
+      <div class="h2">Reviews Request</div>
+      <div class="sub">Turn happy customers into 5-star reviews — automatically.</div>
+      <div class="subtabs">
+        <button class="subtab active" data-s="settings" onclick="setSub('settings')">Settings</button>
+        <button class="subtab" data-s="customers" onclick="setSub('customers')">Customers</button>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="subpanel active" id="s-settings">
+        <div class="rev-grid">
+          <!-- phone preview -->
+          <div>
+            <div class="p-cap">Live preview</div>
+            <div class="phone"><div class="phone-notch"><span></span></div>
+              <div class="screen">
+                <img class="p-img" id="pvImg"/>
+                <div class="p-bub" id="pvMsg"></div>
+                <div class="p-reply">Just left a review — thanks!</div>
+              </div>
+            </div>
+          </div>
+          <!-- editors -->
+          <div>
+            <div class="box">
+              <h3>Your Google review link</h3>
+              <div class="bsub">Where customers land to leave a review. Inserted wherever you use <b>{review_link}</b>.</div>
+              <input type="url" id="reviewUrl" placeholder="https://g.page/your-business/review" oninput="renderPreview();markDirty()"/>
+            </div>
+
+            <div class="box">
+              <h3>Initial review request</h3>
+              <div class="bsub">The first text every customer gets after their job.</div>
+              <div class="fieldlabel"><label style="margin:0">Image (optional)</label></div>
+              <div class="uploadrow">
+                <input type="file" id="imgFile" accept="image/*" style="font-size:13px" onchange="uploadImage(this)"/>
+                <img class="thumb" id="imgThumb"/>
+              </div>
+              <div class="fieldlabel" style="margin-top:16px"><label style="margin:0">Message</label></div>
+              <textarea id="msg1" rows="4" oninput="renderPreview();markDirty()"></textarea>
+              <div class="chips">
+                <button class="chip" onclick="insertToken('msg1','{first_name}')">+ First name</button>
+                <button class="chip" onclick="insertToken('msg1','{business}')">+ Business</button>
+                <button class="chip" onclick="insertToken('msg1','{review_link}')">+ Review link</button>
+              </div>
+              <div class="row">
+                <input type="tel" id="testPhone" placeholder="Send a test to (your #)" inputmode="tel"/>
+                <button class="btn green sm" id="testBtn" onclick="sendTest()">Send Test</button>
+              </div>
+            </div>
+
+            <div class="box">
+              <h3>When to send</h3>
+              <div class="bsub">How long after a job is marked complete.</div>
+              <div class="pills" id="timingPills">
+                <button class="pill" data-t="immediate" onclick="setTiming('immediate')">As soon as complete</button>
+                <button class="pill" data-t="30m" onclick="setTiming('30m')">30 minutes after</button>
+                <button class="pill" data-t="24h" onclick="setTiming('24h')">24 hours after</button>
+              </div>
+            </div>
+
+            <div class="box">
+              <h3>Follow-up review request</h3>
+              <div class="bsub">A gentle nudge for customers who don't respond the first time.</div>
+              <textarea id="msgFollow" rows="3" oninput="renderPreview();markDirty()"></textarea>
+              <div class="chips">
+                <button class="chip" onclick="insertToken('msgFollow','{first_name}')">+ First name</button>
+                <button class="chip" onclick="insertToken('msgFollow','{review_link}')">+ Review link</button>
+              </div>
+              <div style="margin-top:16px">
+                <div class="benefit"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><div><b>Results without spam</b><span>Strict limits on follow-up frequency.</span></div></div>
+                <div class="benefit"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 2"/></svg><div><b>Perfect timing</b><span>We find the optimal time to follow up.</span></div></div>
+                <div class="benefit"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 19V10M10 19V5M16 19v-7M22 19H2"/></svg><div><b>Proven results</b><span>42% of reviews come from a follow-up.</span></div></div>
+              </div>
+              <div class="row" style="margin-top:14px">
+                <label style="margin:0;flex:1">Send follow-up after</label>
+                <select id="followDelay" style="width:130px" onchange="markDirty()">
+                  <option value="1">1 day</option><option value="2">2 days</option><option value="3" selected>3 days</option><option value="5">5 days</option><option value="7">7 days</option>
+                </select>
+              </div>
+              <div class="togglerow">
+                <div><h4>Enable follow-ups</h4><p>Let the system handle follow-up timing and messaging.</p></div>
+                <div class="toggle on" id="followToggle" onclick="toggleFollow()"></div>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:16px">
+              <button class="btn" style="width:auto" id="saveRevBtn" onclick="saveReviews()">Save changes</button>
+              <span class="saved" id="savedMsg">Saved ✓</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CUSTOMERS -->
+      <div class="subpanel" id="s-customers">
+        <div class="box">
+          <h3>Import past customers</h3>
+          <div class="bsub">Upload a CSV to send review requests to customers you've already served.</div>
+          <div class="guide">
+            Your CSV needs a header row with these columns:<br>
+            <code>first_name</code>, <code>phone</code> &nbsp;(optional: <code>email</code>, <code>last_name</code>)<br>
+            Example: &nbsp;<code>first_name,phone</code> → <code>Jessica,4045551212</code>
+            &nbsp;·&nbsp; <a href="#" onclick="downloadTemplate();return false">Download template</a>
+          </div>
+          <input type="file" id="csvFile" accept=".csv,text/csv" class="hidden" onchange="parseCsv(this)"/>
+          <div class="drop" onclick="document.getElementById('csvFile').click()">Click to upload your CSV file</div>
+          <div id="csvResult" style="margin-top:16px"></div>
+        </div>
+        <div class="box" id="custListBox">
+          <h3>Your customers (<span id="custCount">0</span>)</h3>
+          <div class="bsub">Everyone here gets your review request on the schedule you set.</div>
+          <div id="custTableWrap"><p style="font-size:13px;color:var(--gray)">No customers imported yet.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECEPTIONIST -->
+    <section class="panel" id="p-receptionist">
+      <div class="h2">24/7 Receptionist</div>
+      <div class="sub">Greeting, services, and transfer rules for your AI receptionist.</div>
+      <a class="tile" id="editRecep">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M3 5h18M3 12h18M3 19h12"/></svg></div>
+        <div><h3>Receptionist settings</h3><p>Greeting, services, transfer rules</p></div>
+        <span class="arw">→</span>
+      </a>
+    </section>
+  </div>
+  <footer>&copy; 2026 SolidBookedPro</footer>
+</div>
+
+<script>
+window.SBP = { N8N:'https://n8n.americanlifeteam.com/webhook' };
+(function(){
+  var N8N=window.SBP.N8N, qs=new URLSearchParams(location.search);
+  var token=qs.get('token')||'', presetEmail=qs.get('email')||'';
+  var msg=document.getElementById('msg');
+  var EMAIL='', BIZ='', REV={settings:{},customers:[]}, dirty=false;
+  function show(t,cls){ msg.textContent=t; msg.className='msg '+cls; }
+
+  // ---------- LOGIN ----------
+  window.requestLink=function(){
+    var email=(document.getElementById('email').value||'').trim();
+    if(!email||email.indexOf('@')<0){ show('Please enter a valid email.','err'); return; }
+    var btn=document.getElementById('reqBtn'); btn.disabled=true; btn.textContent='Sending…';
+    fetch(N8N+'/sbp-funnel-magic-request',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email})})
+      .then(function(r){return r.json()}).then(function(){ show('Check your inbox — we sent a secure sign-in link to '+email+'. Good for 30 minutes.','ok'); btn.textContent='Link sent'; })
+      .catch(function(){ show('Could not send the link right now. Please try again.','err'); btn.disabled=false; btn.textContent='Send my secure link'; });
+  };
+  if(token){
+    show('Verifying your link…','ok');
+    fetch(N8N+'/sbp-funnel-magic-verify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:token})})
+      .then(function(r){return r.json()}).then(function(d){
+        if(d&&d.ok){ enterApp(d); } else { show('That link expired or was already used. Enter your email below for a fresh one.','err'); }
+      }).catch(function(){ show('Could not verify right now. Enter your email below for a new link.','err'); });
+  } else if(presetEmail){ document.getElementById('email').value=presetEmail; }
+
+  // ---------- ENTER APP ----------
+  function enterApp(d){
+    EMAIL=d.email||''; try{localStorage.setItem('ssos_email',EMAIL);}catch(e){}
+    var intake=d.intake||{}; BIZ=intake.business_name||'';
+    document.getElementById('loginView').classList.add('hidden');
+    document.getElementById('appView').classList.remove('hidden');
+    document.getElementById('whoEmail').textContent=EMAIL;
+    var e=encodeURIComponent(EMAIL);
+    document.getElementById('editSite').setAttribute('href','/setup/?email='+e);
+    document.getElementById('editRecep').setAttribute('href','/setup/?email='+e+'&recep=1');
+    if(d.bought_reviews){ document.getElementById('tabReviews').classList.remove('hidden'); loadReviews(); }
+    if(d.bought_receptionist){ document.getElementById('tabRecep').classList.remove('hidden'); }
+  }
+  window.signOut=function(){ try{localStorage.removeItem('ssos_email');}catch(e){} location.href='/account/'; };
+  window.setTab=function(t){
+    document.querySelectorAll('.tab').forEach(function(b){b.classList.toggle('active',b.dataset.tab===t);});
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('active',p.id==='p-'+t);});
+  };
+  window.setSub=function(s){
+    document.querySelectorAll('.subtab').forEach(function(b){b.classList.toggle('active',b.dataset.s===s);});
+    document.querySelectorAll('.subpanel').forEach(function(p){p.classList.toggle('active',p.id==='s-'+s);});
+  };
+
+  // ---------- REVIEWS ----------
+  function loadReviews(){
+    fetch(N8N+'/sbp-reviews-load?email='+encodeURIComponent(EMAIL)).then(function(r){return r.json()}).then(function(d){
+      if(d&&d.reviews){ REV=d.reviews; var s=REV.settings||{};
+        document.getElementById('reviewUrl').value=s.review_url||'';
+        document.getElementById('msg1').value=s.msg1||'';
+        document.getElementById('msgFollow').value=s.followup||'';
+        document.getElementById('followDelay').value=String(s.followup_delay_days||3);
+        setTiming(s.send_timing||'24h',true);
+        document.getElementById('followToggle').classList.toggle('on', s.followup_enabled!==false);
+        if(s.image_url){ var t=document.getElementById('imgThumb'); t.src=s.image_url; t.style.display='block'; }
+        renderCustomers(); renderPreview();
+      }
+    }).catch(function(){});
+  }
+  window.setTiming=function(t,silent){ REV.settings.send_timing=t; document.querySelectorAll('#timingPills .pill').forEach(function(p){p.classList.toggle('active',p.dataset.t===t);}); if(!silent)markDirty(); };
+  window.toggleFollow=function(){ document.getElementById('followToggle').classList.toggle('on'); markDirty(); };
+  window.insertToken=function(id,tok){ var el=document.getElementById(id); var s=el.selectionStart||el.value.length; el.value=el.value.slice(0,s)+tok+el.value.slice(s); renderPreview(); markDirty(); el.focus(); };
+  window.markDirty=function(){ dirty=true; document.getElementById('savedMsg').classList.remove('show'); };
+  function renderPreview(){
+    var url=document.getElementById('reviewUrl').value||'<Review Link>';
+    var m=document.getElementById('msg1').value||'Hi {first_name}, we hope you enjoyed your experience with {business}! Would you mind taking a moment to leave us a review? {review_link}';
+    m=m.replace(/\{first_name\}/g,'Jessica').replace(/\{business\}/g,BIZ||'our team').replace(/\{review_link\}/g,url);
+    document.getElementById('pvMsg').textContent=m;
+    var img=document.getElementById('imgThumb');
+    var pv=document.getElementById('pvImg');
+    if(img.src&&img.style.display!=='none'){ pv.src=img.src; pv.style.display='block'; } else { pv.style.display='none'; }
+  }
+  window.renderPreview=renderPreview;
+  window.uploadImage=function(inp){
+    var f=inp.files&&inp.files[0]; if(!f) return;
+    var rd=new FileReader();
+    rd.onload=function(){ var b64=(rd.result+'').split(',')[1];
+      fetch(N8N+'/sbp-funnel-upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({filename:f.name,contentType:f.type,data_base64:b64})})
+        .then(function(r){return r.json()}).then(function(d){ if(d&&d.url){ REV.settings.image_url=d.url; var t=document.getElementById('imgThumb'); t.src=d.url; t.style.display='block'; renderPreview(); markDirty(); } });
+    }; rd.readAsDataURL(f);
+  };
+  window.sendTest=function(){
+    var to=document.getElementById('testPhone').value||''; var btn=document.getElementById('testBtn');
+    if(to.replace(/\D/g,'').length<10){ alert('Enter a 10-digit phone number to send a test.'); return; }
+    btn.disabled=true; btn.textContent='Sending…';
+    fetch(N8N+'/sbp-reviews-test',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to:to,message:document.getElementById('msg1').value,review_url:document.getElementById('reviewUrl').value,image_url:REV.settings.image_url||'',first_name:'there',business:BIZ})})
+      .then(function(r){return r.json()}).then(function(d){ btn.disabled=false; btn.textContent='Send Test'; alert(d&&d.ok?'Test sent — check your phone.':'Could not send: '+((d&&d.error)||'try again')); })
+      .catch(function(){ btn.disabled=false; btn.textContent='Send Test'; alert('Network error.'); });
+  };
+  window.saveReviews=function(){
+    var s={review_url:document.getElementById('reviewUrl').value,msg1:document.getElementById('msg1').value,followup:document.getElementById('msgFollow').value,
+      send_timing:REV.settings.send_timing||'24h',followup_delay_days:parseInt(document.getElementById('followDelay').value,10),
+      followup_enabled:document.getElementById('followToggle').classList.contains('on'),image_url:REV.settings.image_url||''};
+    var btn=document.getElementById('saveRevBtn'); btn.disabled=true; btn.textContent='Saving…';
+    fetch(N8N+'/sbp-reviews-save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:EMAIL,settings:s})})
+      .then(function(r){return r.json()}).then(function(d){ btn.disabled=false; btn.textContent='Save changes'; if(d&&d.ok){ REV.settings=d.reviews.settings; dirty=false; document.getElementById('savedMsg').classList.add('show'); } else { alert('Could not save.'); } })
+      .catch(function(){ btn.disabled=false; btn.textContent='Save changes'; alert('Network error.'); });
+  };
+
+  // ---------- CUSTOMERS ----------
+  window.parseCsv=function(inp){
+    var f=inp.files&&inp.files[0]; if(!f) return;
+    var rd=new FileReader();
+    rd.onload=function(){
+      var lines=(rd.result+'').split(/\r?\n/).filter(function(l){return l.trim();});
+      if(!lines.length){ document.getElementById('csvResult').innerHTML='<p style="color:#b91c1c">Empty file.</p>'; return; }
+      var hdr=lines[0].split(',').map(function(h){return h.trim().toLowerCase();});
+      var fi=hdr.indexOf('first_name'), pi=hdr.indexOf('phone'), ei=hdr.indexOf('email');
+      if(fi<0||pi<0){ document.getElementById('csvResult').innerHTML='<p style="color:#b91c1c">CSV must include <b>first_name</b> and <b>phone</b> columns.</p>'; return; }
+      var out=[];
+      for(var i=1;i<lines.length;i++){ var c=lines[i].split(','); var ph=(c[pi]||'').replace(/\D/g,''); if(!ph)continue; out.push({first_name:(c[fi]||'').trim(),phone:ph,email:ei>=0?(c[ei]||'').trim():'',status:'pending'}); }
+      window._pending=out;
+      document.getElementById('csvResult').innerHTML='<p style="font-size:14px;margin-bottom:10px"><b>'+out.length+'</b> customers ready to import.</p><button class="btn sm" onclick="importCustomers()">Import '+out.length+' customers</button>';
+    }; rd.readAsText(f);
+  };
+  window.importCustomers=function(){
+    var add=window._pending||[]; if(!add.length) return;
+    fetch(N8N+'/sbp-reviews-save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:EMAIL,customers:add,append:true})})
+      .then(function(r){return r.json()}).then(function(d){ if(d&&d.ok){ REV.customers=d.reviews.customers||add; window._pending=null; document.getElementById('csvResult').innerHTML='<p style="color:#15803d;font-weight:700">Imported ✓</p>'; renderCustomers(); setSub('customers'); } else { alert('Could not import.'); } })
+      .catch(function(){ alert('Network error.'); });
+  };
+  function renderCustomers(){
+    var list=REV.customers||[]; document.getElementById('custCount').textContent=list.length;
+    var w=document.getElementById('custTableWrap');
+    if(!list.length){ w.innerHTML='<p style="font-size:13px;color:var(--gray)">No customers imported yet.</p>'; return; }
+    var rows=list.slice(0,200).map(function(c){ return '<tr><td>'+(c.first_name||'')+'</td><td>'+(c.phone||'')+'</td><td><span class="badge">'+(c.status||'pending')+'</span></td></tr>'; }).join('');
+    w.innerHTML='<table><thead><tr><th>Name</th><th>Phone</th><th>Status</th></tr></thead><tbody>'+rows+'</tbody></table>';
+  }
+  window.downloadTemplate=function(){ var csv='first_name,phone,email\nJessica,4045551212,jessica@example.com\nMark,4045553434,'; var a=document.createElement('a'); a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv); a.download='solidbookedpro-customers-template.csv'; a.click(); };
+})();
+</script>
+</body>
+</html>
