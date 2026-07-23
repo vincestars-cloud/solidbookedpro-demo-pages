@@ -1,0 +1,1356 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Concurrent Conflict Test — Plumber in Austin, TX</title>
+  <meta name="description" content="Concurrent Conflict Test — trusted local plumber in Austin, TX. Emergency plumbing, drain cleaning, water heaters, and leak repair for homes & businesses. Call 5125550170.">
+  <style>
+    :root{
+      --navy:#111d3a;
+      --navy-2:#07142c;
+      --blue:#0069aa;
+      --blue-2:#004f8e;
+      --red:#e7122c;
+      --red-2:#bd0e22;
+      --cream:#f4f5ef;
+      --panel:#ffffff;
+      --muted:#697389;
+      --ink:#111c36;
+      --line:#dfe4ec;
+      --shadow:0 22px 52px rgba(9,21,45,.16);
+      --radius:12px;
+      --headline:"Impact","Haettenschweiler","Arial Narrow Bold","Arial Black",sans-serif;
+      --body:Arial,Helvetica,sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--body);
+      color:var(--ink);
+      background:#fff;
+      line-height:1.55;
+    }
+    img{display:block;max-width:100%}
+    a{text-decoration:none;color:inherit}
+    button,input,select,textarea{font:inherit}
+    .container{width:min(1160px,calc(100% - 40px));margin-inline:auto}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      font-weight:900;text-transform:uppercase;font-size:13px;letter-spacing:.08em;color:var(--navy);
+      margin-bottom:12px;
+    }
+    .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:10px 0 0 rgba(231,18,44,.25)}
+    .eyebrow.light{color:#fff}
+    .eyebrow.center{justify-content:center}
+    h1,h2,h3,.brand-word,.nav a,.btn,.service-title,.card-title,.comparison-title,.footer-title{
+      font-family:var(--headline);
+      text-transform:uppercase;
+      letter-spacing:.025em;
+    }
+    h1,h2,h3,p{margin:0}
+    h1{font-size:clamp(46px,6.5vw,86px);line-height:.94;color:#fff;text-shadow:0 4px 0 rgba(0,0,0,.1)}
+    h2{font-size:clamp(34px,4.2vw,58px);line-height:.98;color:var(--navy)}
+    h3{font-size:clamp(22px,2.4vw,34px);line-height:1;color:var(--navy)}
+    .lead{font-size:17px;color:#d9e2f2;max-width:620px}
+    .copy{color:#556173;font-size:15px}
+    .btn{
+      border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      min-height:48px;padding:15px 24px;border-radius:4px;background:var(--red);color:white;
+      font-size:16px;line-height:1;box-shadow:0 10px 20px rgba(231,18,44,.28);transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-2px);background:var(--red-2)}
+    .btn.outline{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 2px #d7dce6}
+    .btn.outline:hover{background:#f6f8fb}
+    .btn.dark-outline{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 2px #8791a4}
+    .btn.phone{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 2px #cfd5e1;min-height:46px}
+    .btn.small{font-size:14px;padding:13px 18px;min-height:42px}
+
+    /* HEADER */
+    .topbar{background:#fff;border-bottom:1px solid #e7ebf1;position:relative;z-index:20}
+    .topbar-inner{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .logo{display:flex;align-items:center;gap:10px;min-width:220px}
+    .client-logo{max-height:46px;width:auto;max-width:220px;object-fit:contain;display:block}
+    @media(max-width:720px){.topbar .client-logo{max-height:38px;max-width:152px}}
+    .drop{width:34px;height:42px;background:linear-gradient(180deg,#1485ca,#005b9f);border-radius:58% 58% 58% 10%;transform:rotate(45deg);position:relative;box-shadow:0 5px 0 #dce7ef}
+    .drop::after{content:"";position:absolute;width:15px;height:15px;border-radius:50%;background:#fff;opacity:.35;left:8px;top:8px}
+    .brand-word{font-size:34px;color:#075ea6;line-height:.78;text-shadow:2px 2px 0 rgba(0,0,0,.07)}
+    .brand-sub{font-family:var(--headline);display:block;font-size:16px;color:#fff;background:var(--red);padding:2px 8px;border-radius:3px;margin-top:1px;box-shadow:0 3px 0 rgba(0,0,0,.12)}
+    .top-actions{display:flex;gap:14px;align-items:center}
+    .nav{background:var(--navy-2);color:#fff;position:sticky;top:0;z-index:19;box-shadow:0 12px 20px rgba(0,0,0,.08)}
+    .nav-inner{height:46px;display:flex;align-items:center;justify-content:center;gap:58px}
+    .nav a{font-size:14px;letter-spacing:.08em;color:#eaf0fa;opacity:.96}
+    .nav a:hover{color:#fff;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+
+    /* HERO */
+    .hero{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 90% 20%,rgba(0,105,170,.36),transparent 32%),linear-gradient(90deg,#0d1a38 0%,#111f42 48%,#18294f 100%)}
+    .hero-inner{position:relative;display:grid;grid-template-columns:.92fr 1.08fr;align-items:center;min-height:575px;gap:34px;padding:58px 0 92px}
+    .hero-copy{position:relative;z-index:2;padding-top:10px}
+    .hero-copy h1{max-width:650px;margin-bottom:24px}
+    .hero-copy .lead{margin-bottom:26px}
+    .checks{display:grid;grid-template-columns:repeat(2,minmax(170px,1fr));gap:12px 22px;margin:25px 0 30px;max-width:560px}
+    .check{display:flex;align-items:center;gap:9px;font-weight:900;text-transform:uppercase;font-size:14px;letter-spacing:.03em;color:#fff}
+    .check::before{content:"✓";width:24px;height:24px;border-radius:50%;background:var(--red);display:grid;place-items:center;font-weight:900;font-size:14px}
+    .hero-media{position:relative;min-height:510px;margin-right:calc((100vw - min(1160px,calc(100vw - 40px)))/-2);align-self:stretch;isolation:isolate}
+    .hero-photo{position:absolute;inset:0 0 0 0;clip-path:polygon(12% 0,100% 0,100% 100%,0 100%,20% 50%,0 0);background:#d7e0ea;overflow:hidden;box-shadow:inset 12px 0 0 rgba(231,18,44,.95)}
+    .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:saturate(1.1) contrast(1.02)}
+    .hero-photo::after{content:"";position:absolute;left:1%;top:0;width:22px;height:100%;background:var(--red);transform:skewX(-15deg);transform-origin:top;box-shadow:10px 0 0 rgba(255,255,255,.92)}
+    .hero-card{position:absolute;right:28px;bottom:38px;background:#fff;color:var(--navy);border-radius:10px;padding:17px 18px;box-shadow:var(--shadow);display:flex;align-items:center;gap:14px;z-index:2}
+    .hero-card strong{font-family:var(--headline);font-size:28px;line-height:1;display:block}
+    .hero-card span{font-size:12px;font-weight:800;text-transform:uppercase;color:var(--muted)}
+    .hero-card .seal{width:56px;height:56px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:26px;border:4px solid #e6eef7}
+
+    /* REQUEST */
+    .request-wrap{position:relative;background:linear-gradient(180deg,#eef0ea 0,#f8f9f5 100%);padding:0 0 44px}
+    .request-card{position:relative;z-index:6;margin-top:-52px;background:#fff;border-radius:7px;box-shadow:0 18px 45px rgba(7,20,44,.18);padding:24px 28px 28px}
+    .request-head{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:16px}
+    .request-title{font-family:var(--headline);font-size:28px;letter-spacing:.03em;text-transform:uppercase;color:var(--navy)}
+    .request-options{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;font-weight:800;color:#3b4558}
+    .request-options span{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+    .request-options span::before{content:"";width:15px;height:15px;border-radius:50%;background:var(--red);box-shadow:inset 0 0 0 4px #fff,0 0 0 1px var(--red)}
+    .request-form{display:grid;grid-template-columns:1.1fr 1.1fr 1fr 1fr auto;gap:12px}
+    .field{position:relative}
+    .field input,.field select{width:100%;height:52px;border:0;background:#f5f6f3;padding:0 16px 0 45px;border-radius:3px;color:#1f2b43;font-weight:700;outline:1px solid transparent}
+    .field input:focus,.field select:focus{outline-color:var(--blue);background:#fff}
+    .field .ico{position:absolute;left:16px;top:50%;translate:0 -50%;opacity:.65}
+    .trust-row{display:grid;grid-template-columns:repeat(7,1fr);gap:18px;align-items:center;padding-top:34px}
+    .badge{height:86px;display:grid;place-items:center;text-align:center;font-weight:900;text-transform:uppercase;font-size:10px;color:#fff;line-height:1.05}
+    .badge span{display:grid;place-items:center;width:78px;height:78px;border-radius:50%;background:linear-gradient(180deg,#0ca764,#006946);border:5px solid #e1efe5;box-shadow:0 9px 18px rgba(0,0,0,.1);padding:8px}
+    .badge.red span{background:linear-gradient(180deg,#d9302d,#9e1f1c)}
+    .badge.orange span{background:linear-gradient(180deg,#f26a3d,#b8341f)}
+    .badge.review span{width:116px;border-radius:8px;background:#fff;color:#17233d;border:0;box-shadow:none}
+    .badge.review em{color:#ffb400;font-style:normal;letter-spacing:1px}
+
+    /* ABOUT */
+    .section{padding:96px 0}
+    .about-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:72px;align-items:center}
+    .about-media{position:relative;min-height:560px}
+    .main-photo{position:absolute;left:0;top:0;width:78%;height:460px;border-radius:4px;border-left:8px solid var(--red);overflow:hidden;box-shadow:0 18px 34px rgba(0,0,0,.16);background:#d9e5ef}
+    .main-photo img{width:100%;height:100%;object-fit:cover;object-position:left top}
+    .round-photo{position:absolute;right:0;bottom:0;width:280px;height:280px;border-radius:50%;background:#fff;padding:7px;box-shadow:0 18px 40px rgba(0,0,0,.16)}
+    .round-photo img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center 42%}
+    .about-content h2{margin-bottom:28px;max-width:620px}
+    .feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px 28px}
+    .feature{display:grid;grid-template-columns:52px 1fr;gap:14px;padding-bottom:22px;border-bottom:1px solid #e6eaf0}
+    .feature-icon{width:48px;height:48px;border-radius:12px;background:#fff1f3;color:var(--red);display:grid;place-items:center;font-size:24px;box-shadow:inset 0 0 0 1px #ffd1d7}
+    .feature h3{font-size:24px;margin-bottom:6px}
+    .feature p{font-size:13px;color:#5f6c80;line-height:1.45}
+
+    /* FRAMED BAND */
+    .frame-band{background:var(--blue);position:relative;padding:58px 0;overflow:hidden}
+    .frame-band::before,.frame-band::after{content:"";position:absolute;left:0;right:0;height:54px;background:linear-gradient(90deg,var(--blue),var(--blue-2));z-index:0}
+    .frame-band::before{top:0;clip-path:polygon(0 0,36% 0,42% 100%,58% 100%,64% 0,100% 0,100% 100%,0 100%)}
+    .frame-band::after{bottom:0;clip-path:polygon(0 0,100% 0,100% 100%,64% 100%,58% 0,42% 0,36% 100%,0 100%)}
+    .frame-panel{position:relative;z-index:1;background:var(--cream);padding:78px 68px;border-radius:46px;box-shadow:inset 0 0 0 8px rgba(255,255,255,.55),0 12px 0 rgba(0,0,0,.16);clip-path:polygon(4% 0,96% 0,100% 16%,100% 84%,96% 100%,4% 100%,0 84%,0 16%)}
+    .section-head{text-align:center;margin-bottom:52px}
+    .section-head .eyebrow{margin-bottom:10px}
+
+    /* TESTIMONIALS */
+    .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;align-items:stretch}
+    .review-card{background:#fff;padding:30px 26px 36px;border-radius:4px;text-align:center;box-shadow:0 12px 34px rgba(13,28,58,.12);position:relative}
+    .stars{color:#f7b500;font-size:19px;letter-spacing:2px;margin-bottom:12px}
+    .avatar{width:52px;height:52px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;color:#fff;font-weight:900;font-size:22px;background:linear-gradient(180deg,#37c767,#07914d)}
+    .review-card:nth-child(2) .avatar{background:linear-gradient(180deg,#33b8dc,#0074ad)}
+    .review-card:nth-child(3) .avatar{background:linear-gradient(180deg,#c25be7,#8b179d)}
+    .review-card h3{font-size:23px;margin-bottom:2px}
+    .review-card small{font-weight:800;color:#6c788c;text-transform:uppercase}
+    .review-card p{margin-top:18px;color:#323d51;font-size:14px;line-height:1.6}
+    .quote-dot{position:absolute;left:50%;bottom:-17px;translate:-50% 0;width:36px;height:36px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-family:Georgia,serif;font-weight:bold}
+    .google-line{text-align:center;margin-top:36px;font-weight:900;color:var(--navy)}
+    .google-line span{color:var(--red)}
+
+    /* SERVICES */
+    .services-intro{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;margin-bottom:42px}
+    .services-intro h2{max-width:740px}
+    .service-list{display:grid;gap:26px}
+    .service-card{display:grid;grid-template-columns:1fr 310px;gap:28px;align-items:center;background:#f5f6f3;border-radius:6px;padding:30px 30px 30px 34px;box-shadow:0 12px 30px rgba(16,33,62,.08);border:1px solid #ebedf1}
+    .service-title{font-size:31px;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+    .service-title .mini{font-family:var(--body);font-size:24px;color:var(--red)}
+    .service-card p{max-width:690px;color:#586477;font-size:14px;margin-bottom:22px}
+    .service-tags{display:flex;flex-wrap:wrap;gap:12px 20px;margin-bottom:24px}
+    .tag{font-family:var(--headline);letter-spacing:.03em;text-transform:uppercase;font-size:17px;color:var(--navy);display:inline-flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid #d7dce5}
+    .tag::after{content:"›";width:23px;height:23px;border-radius:50%;display:grid;place-items:center;border:1px solid #aab2c1;color:#677287;font-family:Arial;font-size:18px}
+    .service-img{height:180px;border-radius:4px;overflow:hidden;background:#dce6ee;box-shadow:0 10px 24px rgba(0,0,0,.12)}
+    .service-img img{width:100%;height:100%;object-fit:cover;object-position:center}
+
+    /* PROCESS */
+    .process{position:relative}
+    .timeline{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:18px}
+    .timeline::before{content:"";position:absolute;left:11%;right:11%;top:34px;height:4px;background:var(--red);z-index:0}
+    .step{position:relative;text-align:center;padding-top:0}
+    .step-icon{position:relative;z-index:1;width:70px;height:70px;border-radius:50%;margin:0 auto 18px;background:var(--red);color:#fff;display:grid;place-items:center;font-size:28px;border:6px solid var(--cream);box-shadow:0 0 0 1px rgba(231,18,44,.25)}
+    .step-box{background:#fff;min-height:186px;padding:28px 24px;border-right:1px solid #e4e8ef;box-shadow:0 12px 28px rgba(13,28,58,.08)}
+    .step:first-child .step-box{border-radius:6px 0 0 6px}
+    .step:last-child .step-box{border-right:0;border-radius:0 6px 6px 0}
+    .step h3{font-size:23px;margin-bottom:10px}
+    .step p{font-size:13px;color:#5e6b7d;line-height:1.5}
+
+    /* COMPARISON */
+    .comparison-wrap{padding:96px 0;background:#fff}
+    .comparison-grid{display:grid;grid-template-columns:1fr 1px 1fr;gap:55px;align-items:start;margin-top:48px}
+    .divider{height:100%;background:#acb4c0;min-height:620px;position:relative}.divider::before,.divider::after{content:"";position:absolute;left:50%;translate:-50% 0;width:6px;height:6px;border-radius:50%;background:#111d3a}.divider::before{top:0}.divider::after{bottom:0}
+    .comparison-card{border:2px solid #cbd2dd;background:#fff;padding:42px 28px 34px;text-align:center;box-shadow:0 12px 28px rgba(13,28,58,.06)}
+    .comparison-icon{font-size:52px;margin-bottom:14px}
+    .comparison-title{font-size:30px;color:var(--navy);margin-bottom:24px}
+    .list{display:grid;gap:12px;text-align:left}
+    .list li{list-style:none;border:1px solid #cfd6e1;border-radius:3px;padding:12px 14px 12px 42px;position:relative;font-weight:800;font-size:14px;color:#28354c;background:#fff}
+    .list li::before{content:"";position:absolute;left:14px;top:50%;translate:0 -50%;width:18px;height:18px;border-radius:50%;background:var(--red)}
+    .list li::after{content:"✓";position:absolute;left:18px;top:50%;translate:0 -55%;font-size:10px;color:#fff;font-weight:900}
+
+    /* AREA */
+    .area-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:54px;align-items:center}
+    .city-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 22px;margin:20px 0 28px}
+    .city{display:flex;align-items:center;gap:10px;font-weight:900;font-size:14px;color:#223047}.city::before{content:"";width:21px;height:21px;border-radius:50%;background:var(--red);box-shadow:inset 0 0 0 5px #ffb5be}
+    .map-card{border-radius:6px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.16);border:8px solid #fff;background:#dce2e9}.map-card img{width:100%;height:330px;object-fit:cover}
+
+    /* PORTFOLIO */
+    .portfolio{padding:86px 0 102px;background:#fff;text-align:center}
+    .portfolio img{width:min(930px,100%);margin:34px auto 0;border-radius:5px;box-shadow:0 14px 34px rgba(10,25,52,.12)}
+
+    /* FAQ */
+    .faq-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:58px;align-items:start}
+    .faq-photo{border-radius:5px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.15);background:#dfe8ef}.faq-photo img{width:100%;height:350px;object-fit:cover;object-position:top center}
+    .faq-left p{margin:24px 0;color:#536075}
+    .accordion{display:grid;gap:12px;margin-top:28px}
+    details{background:#fff;border:1px solid #e1e6ee;border-radius:4px;box-shadow:0 8px 22px rgba(13,28,58,.06);overflow:hidden}
+    summary{list-style:none;cursor:pointer;padding:18px 56px 18px 20px;font-family:var(--headline);text-transform:uppercase;font-size:22px;color:var(--navy);position:relative;line-height:1.1}summary::-webkit-details-marker{display:none}
+    summary::after{content:"+";position:absolute;right:18px;top:50%;translate:0 -50%;width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-family:Arial;font-weight:900;font-size:20px}details[open] summary::after{content:"−"}
+    details p{padding:0 22px 22px;margin:0;color:#5c687a;font-size:14px}
+
+    /* FINAL CTA */
+    .cta-final{background:var(--navy);position:relative;overflow:hidden;color:#fff}
+    .cta-final::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0d1831 0%,#101d3c 50%,transparent 50%)}
+    .cta-final .container{position:relative;display:grid;grid-template-columns:.95fr 1.05fr;align-items:center;min-height:310px}
+    .cta-final h2{color:#fff;margin-bottom:18px}.cta-final p{color:#d7e1ee;margin-bottom:26px;max-width:520px}
+    .cta-img{height:310px;position:relative;margin-right:calc((100vw - min(1160px,calc(100vw - 40px)))/-2);overflow:hidden;clip-path:polygon(13% 0,100% 0,100% 100%,0 100%)}.cta-img::before{content:"";position:absolute;left:0;top:0;width:22px;height:100%;background:var(--red);transform:skewX(-15deg);z-index:2}.cta-img img{width:100%;height:100%;object-fit:cover;object-position:center}
+    .cta-actions{display:flex;gap:16px;flex-wrap:wrap}
+
+    /* FOOTER */
+    footer{background:#fff;color:#25324a;padding:62px 0 26px}
+    .footer-grid{display:grid;grid-template-columns:1.15fr .7fr 1fr .85fr 1fr;gap:42px;border-bottom:1px solid #e0e5ec;padding-bottom:42px}
+    .footer-title{font-size:22px;color:var(--navy);margin-bottom:14px}.footer-list{display:grid;gap:8px;color:#536075;font-size:14px}.footer-brand p{color:#536075;font-size:14px;margin-top:15px}.contact-lines{display:grid;gap:10px;color:#536075;font-size:14px}.social{display:flex;gap:10px;margin-top:16px}.social a{width:36px;height:36px;border-radius:50%;border:1px solid #c8d0dc;display:grid;place-items:center;font-weight:900}.social a:first-child{background:var(--red);border-color:var(--red);color:#fff}.copyright{display:flex;justify-content:space-between;gap:20px;color:#697389;font-size:13px;margin-top:24px}
+
+    @media (max-width:980px){
+      .topbar-inner{height:auto;padding:14px 0;flex-direction:column}.top-actions{flex-wrap:wrap;justify-content:center}.nav-inner{gap:22px;flex-wrap:wrap;height:auto;padding:14px 0}.hero-inner,.about-grid,.area-grid,.faq-grid,.cta-final .container{grid-template-columns:1fr}.hero-media{margin-right:0;min-height:420px}.request-form{grid-template-columns:1fr 1fr}.request-form .btn{grid-column:1/-1}.trust-row{grid-template-columns:repeat(3,1fr)}.feature-grid,.reviews,.timeline,.comparison-grid{grid-template-columns:1fr}.comparison-grid{gap:24px}.divider{display:none}.service-card{grid-template-columns:1fr}.service-img{order:-1;height:250px}.frame-panel{padding:70px 28px;clip-path:none;border-radius:28px}.timeline::before{display:none}.step-box{border-radius:6px!important;border-right:0}.cta-img{margin-right:0;clip-path:none}.footer-grid{grid-template-columns:1fr 1fr}.main-photo{position:relative;width:100%;height:420px}.about-media{min-height:540px}.round-photo{right:20px;bottom:10px;width:220px;height:220px}}
+    @media (max-width:640px){.container{width:min(100% - 26px,1160px)}h1{font-size:46px}.checks,.feature-grid,.city-grid,.request-form{grid-template-columns:1fr}.request-head,.services-intro{align-items:flex-start;flex-direction:column}.trust-row{grid-template-columns:repeat(2,1fr)}.hero-inner{padding-top:42px}.hero-media{min-height:330px}.about-media{min-height:480px}.round-photo{width:180px;height:180px}.frame-band{padding:34px 0}.frame-panel{padding:58px 18px}.comparison-wrap,.section{padding:70px 0}.footer-grid{grid-template-columns:1fr}.copyright{flex-direction:column}.service-title{font-size:26px}summary{font-size:20px}}
+
+
+    /* MOBILE RESPONSIVE FIXES - June update */
+    .logo-marquee{
+      margin-top:28px;
+      overflow:hidden;
+      border-radius:10px;
+      background:#fff;
+      box-shadow:0 10px 28px rgba(7,20,44,.09);
+      border:1px solid #edf0f5;
+      padding:14px 0;
+      -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);
+      mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);
+    }
+    .logo-marquee-track{
+      display:flex;
+      width:max-content;
+      align-items:center;
+      animation:logoScroll 28s linear infinite;
+      will-change:transform;
+    }
+    .logo-marquee:hover .logo-marquee-track{animation-play-state:paused}
+    .logo-set{display:flex;align-items:center;gap:28px;flex:0 0 auto;padding-right:28px}
+    .logo-tile{flex:0 0 164px;height:72px;display:grid;place-items:center;background:#fff;border-radius:8px;padding:9px 16px}
+    .logo-tile.google{flex-basis:210px}
+    .logo-tile img{max-width:100%;max-height:54px;width:auto;height:auto;object-fit:contain}
+    .logo-tile.google img{max-height:64px}
+    .logo-txt{font-family:var(--headline);font-size:21px;letter-spacing:.02em;line-height:1;text-transform:uppercase;text-align:center;color:#3a4763;white-space:nowrap}
+    .logo-tile.google .logo-txt{color:#0069aa}
+    @media(max-width:720px){.logo-txt{font-size:15px}}
+    @keyframes logoScroll{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+
+    @media (prefers-reduced-motion:reduce){.logo-marquee-track{animation:none}}
+
+    @media (max-width:980px){
+      .topbar{position:sticky;top:0;z-index:30;box-shadow:0 10px 22px rgba(7,20,44,.09)}
+      .topbar-inner{flex-direction:row;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;min-height:64px}
+      .logo{min-width:auto;gap:8px}.drop{width:27px;height:34px}.brand-word{font-size:28px}.brand-sub{font-size:13px;padding:1px 7px}
+      .top-actions{display:flex;gap:8px;flex-wrap:nowrap;justify-content:flex-end}.top-actions .btn{min-height:42px;padding:12px 14px;font-size:14px;white-space:nowrap}.top-actions .btn.phone{box-shadow:inset 0 0 0 1px #cfd5e1}
+      .nav{position:relative;top:auto}.nav-inner{justify-content:flex-start;flex-wrap:nowrap;gap:28px;height:44px;padding:0}.nav a{font-size:13px;flex:0 0 auto}
+      .hero-inner{grid-template-columns:1fr;min-height:auto;padding:56px 0 64px;overflow:hidden}.hero-media{margin-right:0}.hero-copy{max-width:720px}.hero-copy h1{max-width:680px}
+      .timeline{grid-template-columns:repeat(4,minmax(0,1fr));gap:0}.timeline::before{display:block}.step-box{border-radius:0!important;border-right:1px solid #e4e8ef;min-height:220px;padding:24px 16px}.step:first-child .step-box{border-radius:6px 0 0 6px!important}.step:last-child .step-box{border-radius:0 6px 6px 0!important;border-right:0}.step h3{font-size:21px}.step p{font-size:12px;line-height:1.45}
+      .comparison-grid{grid-template-columns:1fr 1px 1fr;gap:28px}.divider{display:block;min-height:520px}
+    }
+
+    @media (max-width:720px){
+      .topbar-inner{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"logo call" "estimate estimate";row-gap:8px}.topbar .logo{grid-area:logo}.top-actions{display:contents}.top-actions .btn:not(.phone){grid-area:call;justify-self:end}.top-actions .btn.phone{grid-area:estimate;width:100%;justify-self:stretch}.top-actions .btn{font-size:13px;padding:11px 12px}.top-actions .btn:not(.phone){max-width:190px;overflow:hidden;text-overflow:ellipsis}
+      .hero{min-height:auto}.hero::before{z-index:0;background:linear-gradient(90deg,rgba(7,20,44,.94),rgba(13,31,64,.9)),radial-gradient(circle at 85% 15%,rgba(0,105,170,.45),transparent 42%)}.hero-inner{position:relative;display:block;padding:46px 0 46px}.hero-media{position:absolute;inset:0;min-height:0;height:100%;opacity:.23;z-index:0;pointer-events:none}.hero-photo{position:absolute;inset:0;clip-path:none;box-shadow:none;background:transparent}.hero-photo::after{display:none}.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center}.hero-card{right:10px;bottom:12px;transform:scale(.78);transform-origin:right bottom;opacity:.95}.hero-copy{position:relative;z-index:2;padding-top:0}.hero-copy h1{font-size:clamp(39px,13vw,54px);line-height:.9;margin-bottom:16px}.lead{font-size:15px;line-height:1.55;color:#eef4ff}.checks{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px;margin:18px 0 24px}.check{font-size:12px;align-items:flex-start}.check::before{width:21px;height:21px;flex:0 0 21px}
+      .request-card{margin-top:-24px;padding:20px 16px 18px}.request-title{font-size:24px}.request-options{gap:9px;font-size:11px}.request-form{grid-template-columns:1fr!important}.field input,.field select{height:48px}.logo-marquee{margin-top:18px;padding:10px 0;border-radius:8px}.logo-set{gap:16px;padding-right:16px}.logo-tile{flex-basis:128px;height:56px;padding:7px 12px}.logo-tile.google{flex-basis:174px}.logo-tile img{max-height:39px}.logo-tile.google img{max-height:48px}.logo-marquee-track{animation-duration:20s}
+      .about-grid{gap:28px}.about-media{min-height:auto}.main-photo{height:300px}.round-photo{position:absolute;width:130px;height:130px;right:12px;bottom:-28px}.about-content{padding-top:34px}.feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px}.feature{display:block;padding:13px 10px;border:1px solid #e6eaf0;border-radius:8px;background:#fff}.feature-icon{width:36px;height:36px;font-size:18px;margin-bottom:8px}.feature h3{font-size:18px}.feature p{font-size:11px;line-height:1.35}
+      .frame-band{padding:30px 0}.frame-panel{padding:44px 14px;border-radius:18px}.section-head{margin-bottom:26px}.section-head h2{font-size:30px}
+      .reviews{display:flex!important;overflow-x:auto;gap:16px;scroll-snap-type:x mandatory;padding:0 2px 18px;-webkit-overflow-scrolling:touch}.review-card{flex:0 0 84%;scroll-snap-align:start;padding:24px 20px 32px}
+      .services-intro{gap:18px;margin-bottom:24px}.services-intro h2{font-size:30px}.service-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.service-card{display:block;padding:12px 8px;border-radius:8px}.service-img{height:86px;margin:-4px 0 10px;order:0}.service-title{font-size:16px!important;line-height:1.05;margin-bottom:8px;display:block}.service-title .mini{display:block;font-size:18px;margin-bottom:4px}.service-card p{font-size:10.5px;line-height:1.35;margin-bottom:8px}.service-tags{display:none}.service-card .btn{font-size:10px;min-height:32px;padding:8px 7px;width:100%}
+      .timeline{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px;margin-top:8px}.timeline::before{display:none!important}.step-icon{width:46px;height:46px;font-size:20px;border-width:4px;margin-bottom:8px}.step-box{min-height:208px;padding:14px 6px;border:0!important;border-radius:7px!important}.step h3{font-size:15px;line-height:1.02;margin-bottom:8px}.step p{font-size:10.2px;line-height:1.32}
+      .comparison-wrap{padding:58px 0}.comparison-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px;margin-top:24px}.comparison-grid .divider{display:none!important}.comparison-card{padding:18px 7px 14px;border-width:1px}.comparison-icon{font-size:31px;margin-bottom:8px}.comparison-title{font-size:19px;line-height:1;margin-bottom:12px}.list{gap:7px}.list li{font-size:9.7px;line-height:1.15;padding:8px 6px 8px 24px}.list li::before{left:7px;width:13px;height:13px}.list li::after{left:10px;font-size:8px}
+      .faq-photo img,.map-card img{height:auto;aspect-ratio:16/11;object-fit:cover}.portfolio{padding:58px 0}.portfolio img{margin-top:22px}.cta-final::before{background:#0d1831}.cta-final .container{display:block;min-height:auto;padding:42px 0 0}.cta-final h2{font-size:33px}.cta-actions .btn{flex:1 1 100%}.cta-img{height:auto;min-height:0;margin:26px 0 0;clip-path:none;border-radius:10px 10px 0 0}.cta-img::before{display:none}.cta-img img{height:auto;width:100%;object-fit:contain;object-position:center bottom}
+    }
+
+    @media (max-width:380px){
+      .timeline{gap:4px}.step-box{min-height:230px}.step h3{font-size:13px}.step p{font-size:9.4px}.service-list{gap:8px}.service-title{font-size:14px!important}.comparison-title{font-size:17px}.list li{font-size:8.8px;padding-left:22px}.top-actions .btn:not(.phone){max-width:165px;font-size:12px}.brand-word{font-size:24px}.brand-sub{font-size:12px}
+    }
+  
+
+    /* MOBILE STICKY CTA + MENU - added update */
+    .mobile-menu-toggle,
+    .mobile-sticky-cta{display:none}
+    .mobile-menu-toggle{
+      border:0;
+      width:46px;
+      height:46px;
+      border-radius:8px;
+      background:var(--navy-2);
+      color:#fff;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:5px;
+      box-shadow:0 10px 22px rgba(7,20,44,.16);
+      cursor:pointer;
+    }
+    .mobile-menu-toggle span{
+      width:22px;
+      height:2px;
+      background:#fff;
+      border-radius:99px;
+      display:block;
+      transition:transform .2s ease,opacity .2s ease;
+    }
+    .mobile-menu-toggle.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .mobile-menu-toggle.is-open span:nth-child(2){opacity:0}
+    .mobile-menu-toggle.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+    @media (max-width:720px){
+      body{padding-bottom:86px}
+      .topbar{position:sticky;top:0;z-index:1001;box-shadow:0 10px 22px rgba(7,20,44,.10)}
+      .topbar-inner{
+        display:grid!important;
+        grid-template-columns:auto 46px!important;
+        grid-template-areas:"logo menu"!important;
+        align-items:center!important;
+        min-height:66px!important;
+        padding:9px 0!important;
+        row-gap:0!important;
+        gap:12px!important;
+      }
+      .topbar .logo{grid-area:logo!important;min-width:0!important}
+      .topbar .drop{width:28px;height:35px}
+      .topbar .brand-word{font-size:28px}
+      .topbar .brand-sub{font-size:13px}
+      .mobile-menu-toggle{display:flex!important;grid-area:menu;justify-self:end}
+      .top-actions{display:none!important}
+      .nav{
+        position:fixed!important;
+        top:66px!important;
+        left:0;
+        right:0;
+        z-index:1000;
+        background:var(--navy-2);
+        box-shadow:0 18px 30px rgba(7,20,44,.24);
+        max-height:0;
+        opacity:0;
+        overflow:hidden;
+        pointer-events:none;
+        transform:translateY(-8px);
+        transition:max-height .25s ease,opacity .2s ease,transform .2s ease;
+      }
+      .nav.is-open{max-height:430px;opacity:1;pointer-events:auto;transform:translateY(0)}
+      .nav-inner{
+        width:min(100% - 26px,1160px)!important;
+        height:auto!important;
+        display:grid!important;
+        grid-template-columns:1fr!important;
+        gap:0!important;
+        padding:8px 0 12px!important;
+        margin-inline:auto;
+        justify-content:stretch!important;
+      }
+      .nav a{
+        display:flex;
+        align-items:center;
+        min-height:44px;
+        padding:12px 14px;
+        border-bottom:1px solid rgba(255,255,255,.12);
+        font-size:15px!important;
+        letter-spacing:.08em;
+      }
+      .nav a:last-child{border-bottom:0}
+      .mobile-sticky-cta{
+        position:fixed;
+        left:0;
+        right:0;
+        bottom:0;
+        z-index:1002;
+        display:flex!important;
+        gap:10px;
+        padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+        background:#fff;
+        border-top:1px solid #dfe4ec;
+        box-shadow:0 -14px 34px rgba(7,20,44,.16);
+      }
+      .mobile-sticky-cta a{
+        flex:1;
+        min-height:52px;
+        border-radius:7px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:7px;
+        font-family:var(--headline);
+        text-transform:uppercase;
+        letter-spacing:.03em;
+        font-size:14px;
+        line-height:1;
+        text-align:center;
+      }
+      .mobile-sticky-cta .sticky-estimate{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 2px #cfd5e1}
+      .mobile-sticky-cta .sticky-call{background:var(--red);color:#fff;box-shadow:0 10px 22px rgba(231,18,44,.25)}
+    }
+
+    @media (max-width:380px){
+      .mobile-sticky-cta{gap:8px;padding-left:10px;padding-right:10px}
+      .mobile-sticky-cta a{font-size:12px;min-height:50px}
+    }
+
+
+
+    /* MULTI-STEP BOOKING FORM */
+    .booking-card{
+      max-width:1060px;
+      margin:-52px auto 0;
+      border:1px solid #d5deea;
+      border-radius:24px;
+      padding:34px 38px 36px;
+      background:#fff;
+      box-shadow:0 22px 54px rgba(7,20,44,.14);
+      overflow:hidden;
+    }
+    .booking-progress{
+      height:9px;
+      border-radius:999px;
+      background:#e7eef5;
+      overflow:hidden;
+      margin-bottom:16px;
+    }
+    .booking-progress span{
+      display:block;
+      height:100%;
+      width:25%;
+      border-radius:inherit;
+      background:#14b8ad;
+      transition:width .25s ease;
+    }
+    .booking-meta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      color:#64748b;
+      font-size:13px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      margin-bottom:24px;
+    }
+    .booking-step{display:none;animation:bookingFade .18s ease}
+    .booking-step.is-active{display:block}
+    @keyframes bookingFade{from{opacity:.35;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+    .booking-step h2{
+      font-family:var(--body);
+      text-transform:none;
+      letter-spacing:-.03em;
+      line-height:1.08;
+      color:#142033;
+      font-size:clamp(25px,3vw,36px);
+      margin-bottom:8px;
+    }
+    .booking-subtitle{
+      color:#64748b;
+      font-size:17px;
+      line-height:1.45;
+      margin-bottom:28px;
+    }
+    .booking-label{
+      display:block;
+      margin:18px 0 10px;
+      color:#64748b;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+    .booking-service-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:12px;
+      margin-bottom:18px;
+    }
+    .booking-option,
+    .day-option,
+    .time-option,
+    .property-option{
+      appearance:none;
+      border:1px solid #d5deea;
+      background:#fff;
+      color:#142033;
+      border-radius:14px;
+      min-height:74px;
+      padding:15px 14px;
+      font-weight:900;
+      text-align:left;
+      cursor:pointer;
+      transition:.16s ease;
+      box-shadow:0 8px 20px rgba(7,20,44,.04);
+    }
+    .booking-option:hover,
+    .day-option:hover,
+    .time-option:hover,
+    .property-option:hover{border-color:#14b8ad;transform:translateY(-1px)}
+    .booking-option.is-selected,
+    .day-option.is-selected,
+    .time-option.is-selected,
+    .property-option.is-selected{
+      border-color:#14b8ad;
+      background:#ecfeff;
+      box-shadow:inset 0 0 0 1px #14b8ad,0 12px 24px rgba(20,184,173,.12);
+    }
+    .booking-option span,
+    .time-option span{
+      display:block;
+      margin-top:4px;
+      font-size:12px;
+      line-height:1.25;
+      color:#64748b;
+      font-weight:800;
+    }
+    .time-option.emergency{color:var(--red)}
+    .time-option.emergency span{color:var(--red);font-weight:900}
+    .day-grid{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+    .day-option{
+      min-width:122px;
+      min-height:74px;
+      text-align:center;
+      padding:12px 16px;
+    }
+    .day-option strong{display:block;font-size:18px;line-height:1.1}
+    .day-option span{display:block;font-size:13px;color:#64748b;line-height:1.2;font-weight:900}
+    .time-grid{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+    .time-option{min-width:160px;text-align:center;min-height:70px}
+    .time-option strong{display:block;font-size:18px;line-height:1.1}
+    .booking-note{color:#64748b;font-size:17px;margin:10px 0 18px}
+    .booking-fields{display:grid;grid-template-columns:1fr 1fr;gap:18px 18px;margin-top:8px}
+    .booking-field{display:grid;gap:9px}
+    .booking-field.full{grid-column:1/-1}
+    .booking-field label,
+    .booking-field .field-title{
+      font-size:13px;
+      font-weight:900;
+      color:#142033;
+    }
+    .booking-input,
+    .booking-textarea{
+      width:100%;
+      border:1px solid #d5deea;
+      border-radius:15px;
+      background:#fff;
+      color:#142033;
+      outline:none;
+      font-size:17px;
+      padding:0 18px;
+      min-height:58px;
+      transition:.15s ease;
+    }
+    .booking-textarea{padding:15px 18px;min-height:110px;resize:vertical;line-height:1.45}
+    .booking-input:focus,
+    .booking-textarea:focus{border-color:#14b8ad;box-shadow:0 0 0 4px rgba(20,184,173,.13)}
+    .property-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .property-option{min-height:56px;text-align:center;padding:12px 10px}
+    .summary-box{
+      margin:20px 0 18px;
+      border:1px solid #dbe4ef;
+      border-radius:16px;
+      background:#f8fafc;
+      padding:18px;
+    }
+    .summary-title{
+      font-weight:900;
+      font-size:13px;
+      color:#64748b;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      margin-bottom:12px;
+    }
+    .summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+    .summary-item{font-size:14px;color:#334155;line-height:1.35}
+    .summary-item strong{display:block;color:#142033;font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:2px}
+    .privacy-line{display:flex;align-items:center;gap:9px;color:#64748b;font-size:15px;margin:18px 0 22px}
+    .privacy-line .lock{color:#10b981;font-size:18px}
+    .booking-actions{display:grid;grid-template-columns:112px 1fr;gap:14px;align-items:center;margin-top:20px}
+    .booking-actions.first{grid-template-columns:1fr}
+    .booking-btn{
+      min-height:58px;
+      border-radius:15px;
+      border:0;
+      cursor:pointer;
+      font-weight:900;
+      color:#142033;
+      background:#fff;
+      box-shadow:inset 0 0 0 1px #d5deea;
+      transition:.16s ease;
+    }
+    .booking-btn:hover{transform:translateY(-1px)}
+    .booking-btn.primary{
+      color:#fff;
+      background:var(--red);
+      box-shadow:0 12px 24px rgba(231,18,44,.22);
+    }
+    .booking-btn.confirm{
+      background:#f7b3a2;
+      color:#fff;
+      box-shadow:none;
+    }
+    .booking-success{
+      display:none;
+      margin-top:18px;
+      padding:16px 18px;
+      border-radius:14px;
+      background:#ecfdf5;
+      color:#065f46;
+      font-weight:900;
+      border:1px solid #a7f3d0;
+    }
+    .booking-success.is-visible{display:block}
+
+    @media (max-width:720px){
+      .booking-card{
+        margin-top:-22px;
+        border-radius:18px;
+        padding:20px 16px 18px;
+      }
+      .booking-meta{font-size:11px;margin-bottom:20px}
+      .booking-step h2{font-size:25px;letter-spacing:-.035em}
+      .booking-subtitle{font-size:15px;margin-bottom:22px}
+      .booking-service-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+      .booking-option{min-height:68px;padding:12px 10px;font-size:13px;border-radius:12px}
+      .booking-option span{font-size:10.5px}
+      .day-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+      .day-option{min-width:0;min-height:60px;padding:10px 4px;border-radius:12px}
+      .day-option strong{font-size:14px}.day-option span{font-size:11px}
+      .time-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+      .time-option{min-width:0;min-height:60px;padding:10px 6px;border-radius:12px}
+      .time-option strong{font-size:14px}.time-option span{font-size:10.5px}
+      .booking-note{font-size:14px;margin:8px 0 16px}
+      .booking-fields{grid-template-columns:1fr;gap:14px}
+      .property-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .summary-grid{grid-template-columns:1fr}
+      .booking-actions{grid-template-columns:82px 1fr;gap:10px;margin-top:16px}
+      .booking-btn{min-height:50px;border-radius:13px;font-size:14px}
+      .privacy-line{font-size:13px;align-items:flex-start}
+      .request-wrap{padding-bottom:28px}
+    }
+
+    @media (max-width:380px){
+      .day-grid{gap:6px}.day-option strong{font-size:12px}.day-option span{font-size:10px}
+      .time-grid{gap:6px}.time-option strong{font-size:12px}.time-option span{font-size:9.5px}
+      .booking-card{padding-left:12px;padding-right:12px}
+      .booking-actions{grid-template-columns:76px 1fr}
+    }
+
+  
+
+    /* CLEAN MULTI-STEP BOOKING OVERRIDES */
+    .compact-booking{overflow:hidden;padding:24px 28px 26px}
+    .compact-booking .booking-progress{height:7px;background:#e8edf3;border-radius:999px;margin-bottom:16px;overflow:hidden}
+    .compact-booking .booking-progress span{display:block;height:100%;width:25%;background:var(--red);border-radius:999px;transition:width .2s ease}
+    .compact-booking .booking-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;color:#657389;text-transform:uppercase;letter-spacing:.15em;font-size:12px;font-weight:900}
+    .booking-step{display:none}.booking-step.is-active{display:block}
+    .booking-headline{margin-bottom:18px}
+    .booking-subtitle{margin:0 0 18px;color:#607087;font-size:17px;line-height:1.45}.booking-subtitle.compact{margin:6px 0 0;font-size:14px}
+    .compact-start{grid-template-columns:1.25fr .75fr auto;align-items:stretch}.compact-start .btn{min-width:150px;height:52px;white-space:nowrap}
+    .compact-booking h2{font-family:var(--body);font-size:30px;line-height:1.1;letter-spacing:-.03em;text-transform:none;color:#142033;margin:0 0 8px}
+    .booking-label{display:block;font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:#6b778d;margin:20px 0 10px}
+    .day-grid,.time-grid{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}.day-grid{margin-bottom:20px}
+    .day-option,.time-option,.property-option{border:1px solid #d5deea;background:#fff;color:#142033;border-radius:14px;cursor:pointer;font-weight:900;transition:.15s ease;padding:12px 16px;min-height:62px}
+    .day-option.is-selected,.time-option.is-selected,.property-option.is-selected{border-color:var(--red);background:#fff1f3;box-shadow:0 0 0 3px rgba(231,18,44,.08)}
+    .day-option{min-width:118px;text-align:center}.day-option strong{display:block;font-size:17px;line-height:1.1}.day-option span{display:block;font-size:12px;color:#64748b;margin-top:3px}
+    .time-option{min-width:165px;text-align:center}.time-option strong{display:block;font-size:17px;line-height:1.1}.time-option span{display:block;font-size:12px;color:#64748b;margin-top:4px}.time-option.emergency strong,.time-option.emergency span{color:var(--red)}
+    .booking-note{font-size:16px;color:#64748b;margin:4px 0 18px}.booking-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}.booking-field{display:grid;gap:8px}.booking-field.full{grid-column:1/-1}.booking-field label,.booking-field .field-title{font-size:13px;font-weight:900;color:#142033}
+    .booking-input,.booking-textarea{width:100%;border:1px solid #d5deea;background:#fff;color:#142033;border-radius:14px;outline:none;font-size:16px;padding:0 16px;min-height:54px}.booking-textarea{padding:14px 16px;min-height:94px;resize:vertical;line-height:1.45}.booking-input:focus,.booking-textarea:focus{border-color:var(--red);box-shadow:0 0 0 4px rgba(231,18,44,.1)}
+    .property-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.property-option{min-height:54px;text-align:center;padding:12px 10px}
+    .privacy-line{display:flex;align-items:center;gap:9px;color:#64748b;font-size:15px;margin:18px 0}.privacy-line .lock{color:#10b981;font-size:18px}.summary-box{border:1px solid #dbe4ef;border-radius:16px;background:#f8fafc;padding:16px;margin:0 0 18px}.summary-title{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:#64748b;font-weight:900;margin-bottom:12px}.summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px}.summary-item{font-size:14px;color:#334155}.summary-item strong{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#142033;margin-bottom:2px}
+    .booking-actions{display:grid;grid-template-columns:110px 1fr;gap:12px;margin-top:18px}.booking-btn{min-height:54px;border-radius:12px;border:0;background:#fff;color:#142033;box-shadow:inset 0 0 0 1px #d5deea;font-weight:900;cursor:pointer}.booking-btn.primary{background:var(--red);color:#fff;box-shadow:0 10px 22px rgba(231,18,44,.2)}.booking-success{display:none;margin-top:16px;padding:15px 18px;border-radius:12px;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;font-weight:900}.booking-success.is-visible{display:block}
+    @media (max-width:720px){.compact-booking{padding:18px 14px 16px;margin-top:-24px;border-radius:10px}.compact-booking .booking-progress{height:6px;margin-bottom:12px}.compact-booking .booking-meta{font-size:10px;margin-bottom:14px}.booking-headline{display:block}.compact-booking .request-title{font-size:25px}.booking-subtitle.compact{font-size:13px}.compact-start{grid-template-columns:1fr!important;gap:10px}.compact-start .btn{width:100%;height:50px}.compact-booking h2{font-size:25px}.booking-subtitle{font-size:15px}.day-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}.day-option{min-width:0;min-height:56px;padding:9px 3px;border-radius:10px}.day-option strong{font-size:12px}.day-option span{font-size:10px}.time-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.time-option{min-width:0;min-height:58px;padding:9px 5px;border-radius:10px}.time-option strong{font-size:12px}.time-option span{font-size:9.5px}.booking-fields{grid-template-columns:1fr;gap:13px}.property-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.summary-grid{grid-template-columns:1fr}.booking-actions{grid-template-columns:82px 1fr;gap:10px}.booking-btn{min-height:50px}.logo-marquee{margin-top:16px}}
+    @media (max-width:380px){.day-grid,.time-grid{gap:5px}.day-option strong,.time-option strong{font-size:11px}.day-option span,.time-option span{font-size:9px}.compact-booking{padding-left:11px;padding-right:11px}.booking-actions{grid-template-columns:74px 1fr}}
+
+    /* FINAL HERO + REVIEW RESPONSIVE OVERRIDES */
+    @media (max-width:980px){
+      .hero{min-height:auto!important;background:var(--navy)!important}
+      .hero::before{
+        z-index:0!important;
+        background:
+          linear-gradient(90deg,rgba(7,20,44,.96) 0%,rgba(11,27,58,.91) 58%,rgba(11,27,58,.78) 100%),
+          radial-gradient(circle at 82% 18%,rgba(0,105,170,.48),transparent 44%)!important;
+      }
+      .hero-inner{
+        display:block!important;
+        grid-template-columns:1fr!important;
+        min-height:auto!important;
+        padding:52px 0 62px!important;
+        position:relative!important;
+        overflow:hidden!important;
+      }
+      .hero-media{
+        position:absolute!important;
+        inset:0!important;
+        margin:0!important;
+        min-height:0!important;
+        height:100%!important;
+        opacity:.28!important;
+        z-index:0!important;
+        pointer-events:none!important;
+        overflow:hidden!important;
+        isolation:auto!important;
+      }
+      .hero-photo{
+        position:absolute!important;
+        inset:0!important;
+        clip-path:none!important;
+        box-shadow:none!important;
+        background:transparent!important;
+      }
+      .hero-photo::after{display:none!important}
+      .hero-photo img{
+        width:100%!important;
+        height:100%!important;
+        object-fit:cover!important;
+        object-position:center top!important;
+        filter:saturate(1.08) contrast(1.04)!important;
+      }
+      .hero-card{display:none!important}
+      .hero-copy{position:relative!important;z-index:2!important;max-width:690px!important;padding-top:0!important}
+      .hero-copy h1{max-width:680px!important;margin-bottom:18px!important}
+      .hero-copy .lead{max-width:640px!important;margin-bottom:22px!important}
+      .request-card.compact-booking{margin-top:-38px!important}
+      .reviews{
+        display:flex!important;
+        grid-template-columns:none!important;
+        gap:18px!important;
+        overflow-x:auto!important;
+        overflow-y:visible!important;
+        scroll-snap-type:x mandatory!important;
+        padding:0 4px 22px!important;
+        -webkit-overflow-scrolling:touch!important;
+        overscroll-behavior-x:contain!important;
+      }
+      .review-card{
+        flex:0 0 min(360px,82vw)!important;
+        scroll-snap-align:start!important;
+      }
+      .reviews::-webkit-scrollbar{height:0!important}
+      .reviews{scrollbar-width:none!important}
+    }
+
+    @media (min-width:721px) and (max-width:980px){
+      .hero-copy h1{font-size:clamp(54px,8.2vw,78px)!important;line-height:.91!important}
+      .checks{max-width:620px!important}
+      .request-wrap{padding-top:0!important}
+    }
+
+    @media (max-width:720px){
+      .hero-inner{padding:38px 0 42px!important}
+      .hero-copy h1{font-size:clamp(38px,12.5vw,52px)!important;line-height:.91!important}
+      .hero-copy .lead{font-size:15px!important;line-height:1.5!important}
+      .checks{margin:17px 0 22px!important}
+      .request-card.compact-booking{margin-top:-18px!important}
+      .review-card{flex-basis:86%!important}
+    }
+
+
+    /* FINAL POLISH: seamless marquees + lean booking fields */
+    .logo-marquee{overflow:hidden!important}
+    .logo-marquee-track{display:flex!important;width:max-content!important;animation:logoLoopFinal 30s linear infinite!important;will-change:transform!important}
+    .logo-set{flex:0 0 auto!important;display:flex!important;align-items:center!important;gap:28px!important;padding-right:28px!important}
+    @keyframes logoLoopFinal{from{transform:translate3d(0,0,0)}to{transform:translate3d(-25%,0,0)}}
+
+    .review-marquee{display:block!important;overflow:hidden!important;padding:2px 0 24px!important;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%)}
+    .review-track{display:flex!important;width:max-content!important;animation:reviewLoopFinal 42s linear infinite!important;will-change:transform!important}
+    .review-set{display:flex!important;align-items:stretch!important;gap:30px!important;flex:0 0 auto!important;padding-right:30px!important}
+    .review-track .review-card{flex:0 0 350px!important;scroll-snap-align:none!important}
+    .review-marquee:hover .review-track,.logo-marquee:hover .logo-marquee-track{animation-play-state:paused!important}
+    @keyframes reviewLoopFinal{from{transform:translate3d(0,0,0)}to{transform:translate3d(-25%,0,0)}}
+
+    .summary-item.full{grid-column:1/-1}
+    .time-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:10px!important}
+    .time-option{min-width:0!important;padding-left:10px!important;padding-right:10px!important}
+    .privacy-line{display:none!important}
+
+    @media (max-width:720px){
+      .logo-marquee-track{animation-duration:22s!important}
+      .logo-set{gap:16px!important;padding-right:16px!important}
+      .review-marquee{padding-bottom:18px!important;margin-left:-2px;margin-right:-2px}
+      .review-track{animation-duration:34s!important}
+      .review-set{gap:14px!important;padding-right:14px!important}
+      .review-track .review-card{flex:0 0 82vw!important;max-width:330px!important}
+      .time-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important}
+      .time-option{min-height:58px!important;padding:8px 3px!important;border-radius:10px!important}
+      .time-option strong{font-size:10.8px!important;line-height:1.05!important}
+      .time-option span{font-size:8.6px!important;line-height:1.1!important}
+    }
+    @media (max-width:380px){
+      .time-option strong{font-size:10px!important}
+      .time-option span{font-size:8px!important}
+    }
+
+
+
+    /* RELIABLE REVIEW MARQUEE + REMOVE MAP IMAGE */
+    .google-review-marquee{
+      display:block!important;
+      overflow:hidden!important;
+      margin:0 -6px!important;
+      padding:4px 6px 34px!important;
+      min-height:286px!important;
+      -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 4%,#000 96%,transparent 100%)!important;
+      mask-image:linear-gradient(90deg,transparent 0,#000 4%,#000 96%,transparent 100%)!important;
+    }
+    .google-review-track{
+      display:flex!important;
+      width:max-content!important;
+      align-items:stretch!important;
+      animation:googleReviewLoopClean 34s linear infinite!important;
+      will-change:transform!important;
+      transform:translate3d(0,0,0);
+    }
+    .google-review-set{
+      display:flex!important;
+      align-items:stretch!important;
+      gap:26px!important;
+      padding-right:26px!important;
+      flex:0 0 auto!important;
+    }
+    .google-review-set .review-card{
+      flex:0 0 350px!important;
+      width:350px!important;
+      min-height:238px!important;
+      display:block!important;
+      visibility:visible!important;
+      opacity:1!important;
+    }
+    .google-review-marquee:hover .google-review-track{animation-play-state:paused!important}
+    @keyframes googleReviewLoopClean{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+    .area-grid-clean{grid-template-columns:1fr!important;max-width:760px;margin:0 auto;text-align:left}
+    .area-grid-clean .city-grid{max-width:660px}
+    .map-card{display:none!important}
+    @media (max-width:720px){
+      .google-review-marquee{min-height:274px!important;margin:0 -14px!important;padding:4px 14px 28px!important}
+      .google-review-track{animation-duration:28s!important}
+      .google-review-set{gap:14px!important;padding-right:14px!important}
+      .google-review-set .review-card{flex-basis:82vw!important;width:82vw!important;max-width:330px!important;min-height:238px!important;padding:22px 18px 32px!important}
+      .google-review-set .review-card p{font-size:13px!important;line-height:1.48!important}
+    }
+    @media (prefers-reduced-motion:reduce){.google-review-track{animation:none!important}}
+
+  </style>
+</head>
+<body><style>.launchbar,.devbar,#preview-bar,.demo-bar{display:none!important}#sos-launch{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;background:#26114F;color:#fff;padding:9px 14px;font:700 13px/1.4 system-ui,-apple-system,sans-serif;text-align:center;position:relative;z-index:2147483646}#sos-launch .sost{background:#FCD34D;color:#26114F;border-radius:6px;padding:3px 8px;font:800 10px/1 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}#sos-launch a{color:#fff;text-decoration:underline;font-weight:900}#sos-launch .sosf{color:#FCD34D;font-weight:900}</style><div id="sos-launch"><span class="sost">Demo</span><span>Call Your 24/7 Receptionist at <a href="tel:15125550170">(512) 555-0170</a></span><span class="sosf">Demo Code: 9352</span></div><script>(function(){function init(){var bar=document.getElementById("sos-launch");if(!bar)return;var ph=["Launch this site","launch this on your site","Business owner? Want this demo","I can launch the site","launch the site for you"];document.querySelectorAll("div,header,section,aside,p").forEach(function(el){if(el===bar)return;var tx=el.textContent||"";if(tx.length<220&&ph.some(function(p){return tx.indexOf(p)>-1}))el.style.display="none";});var fx=[];document.querySelectorAll("header,nav,div").forEach(function(el){if(el===bar||el.id==="sos-cta")return;var s=getComputedStyle(el);if(s.position==="fixed"&&(parseInt(s.top)||0)<5&&el.getBoundingClientRect().top<70&&el.offsetHeight<170)fx.push(el);});function adj(){var b=bar.getBoundingClientRect().bottom;if(b<0)b=0;for(var i=0;i<fx.length;i++)fx[i].style.top=b+"px";var H=document.querySelector("header");if(H&&getComputedStyle(H).position==="absolute"){H.style.top=(window.innerWidth<=920)?(bar.offsetHeight+10)+"px":"";}}adj();window.addEventListener("scroll",adj,{passive:true});window.addEventListener("resize",adj);}if(document.readyState!=="loading")init();else document.addEventListener("DOMContentLoaded",init);})();</script>
+  <header>
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <a class="logo" style="font-size:19px !important;line-height:1.14 !important" href="#" aria-label="Concurrent Conflict Test home">
+          <span class="drop" aria-hidden="true"></span>
+          <span>
+            <span class="brand-word">Concurrent Conflict</span>
+            <span class="brand-sub">Plumbing</span>
+          </span>
+        </a>
+        <button class="mobile-menu-toggle" type="button" aria-label="Open menu" aria-controls="mobile-navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="top-actions">
+          <a class="btn phone" href="#contact">Get Free Estimate</a>
+          <a class="btn" href="tel:15125550170">Call Now: 5125550170</a>
+        </div>
+      </div>
+    </div>
+    <nav class="nav" id="mobile-navigation" aria-label="Main navigation">
+      <div class="container nav-inner">
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#services">Our Services</a>
+        <a href="#areas">Service Areas</a>
+        <a href="#projects">Projects</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow light">Your local plumbing service specialists</span>
+          <h1>Austin, TX Trusted Plumber — Fast &amp; Reliable</h1>
+          <p class="lead">A real plumber you can trust for repairs, drains, water heaters, leaks, and urgent plumbing problems at your home or business.</p>
+          <div class="checks" aria-label="Service highlights">
+            <div class="check">No pressure pricing</div>
+            <div class="check">Residential & Commercial</div>
+            <div class="check">Licensed & insured</div>
+            <div class="check">Same day appointments</div>
+          </div>
+          <a class="btn" href="#contact">Get My Free Plumbing Estimate</a>
+        </div>
+        <div class="hero-media" aria-hidden="true">
+          <div class="hero-photo"><img src="https://demo.solidbookedpro.com/assets/plumbing/hero-clean.webp" data-asset="assets/hero-clean.webp" alt="Plumber standing beside service van"></div>
+          <div class="hero-card">
+            <span class="seal">✓</span>
+            <span><strong>24/7</strong>Emergency Service</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="request-wrap" id="contact">
+      <div class="container">
+        <form class="request-card booking-card compact-booking" action="#" method="post" id="booking-form">
+          <div class="booking-progress" aria-hidden="true"><span></span></div>
+          <div class="booking-meta">
+            <span class="booking-step-count">Step 1 of 4</span>
+            <span class="booking-percent">25%</span>
+          </div>
+
+          <section class="booking-step is-active" data-step="1" aria-label="Step 1">
+            <div class="request-head booking-headline">
+              <div>
+                <div class="request-title">Book A Service</div>
+                <p class="booking-subtitle compact">Start with the service needed and ZIP code. We’ll get the rest after.</p>
+              </div>
+              <div class="request-options" aria-label="Booking benefits">
+                <span>No Obligation</span><span>Fast Response</span><span>Tailored To Your Needs</span>
+              </div>
+            </div>
+            <div class="request-form compact-start">
+              <label class="field"><span class="ico">⌁</span><select id="booking-service" name="service" required>
+                <option value="">Service Needed</option>
+                <option>Emergency plumbing</option>
+                <option>Drain clog / slow drain</option>
+                <option>Water heater</option>
+                <option>Leak repair</option>
+                <option>Toilet / sink / faucet</option>
+                <option>Sewer line</option>
+                <option>Commercial plumbing</option>
+                <option>Not sure yet</option>
+              </select></label>
+              <label class="field"><span class="ico">⌖</span><input id="booking-zip-start" name="zip" placeholder="ZIP Code" autocomplete="postal-code" inputmode="numeric" required></label>
+              <button class="btn" type="button" data-next>Book Service</button>
+            </div>
+          </section>
+
+          <section class="booking-step" data-step="2" aria-label="Step 2">
+            <h2>When works best?</h2>
+            <p class="booking-subtitle">Pick a day and window — we’ll confirm the exact arrival time by text.</p>
+            <span class="booking-label">Preferred Day</span>
+            <div class="day-grid" role="group" aria-label="Preferred day">
+              <button type="button" class="day-option is-selected" data-group="day" data-value="Today" data-date-offset="0"><strong>Today</strong><span></span></button>
+              <button type="button" class="day-option" data-group="day" data-value="Tomorrow" data-date-offset="1"><strong>Tomorrow</strong><span></span></button>
+              <button type="button" class="day-option" data-group="day" data-value="Day 3" data-date-offset="2"><strong></strong><span></span></button>
+              <button type="button" class="day-option" data-group="day" data-value="Day 4" data-date-offset="3"><strong></strong><span></span></button>
+              <button type="button" class="day-option" data-group="day" data-value="Day 5" data-date-offset="4"><strong></strong><span></span></button>
+            </div>
+            <span class="booking-label">Time of Day</span>
+            <div class="time-grid" role="group" aria-label="Time of day">
+              <button type="button" class="time-option emergency is-selected" data-group="time" data-value="ASAP / Emergency"><strong>ASAP / Emergency</strong><span>Fastest available response</span></button>
+              <button type="button" class="time-option" data-group="time" data-value="Morning 8–12pm"><strong>Morning</strong><span>8–12pm</span></button>
+              <button type="button" class="time-option" data-group="time" data-value="Afternoon 12–5pm"><strong>Afternoon</strong><span>12–5pm</span></button>
+              <button type="button" class="time-option" data-group="time" data-value="Evening 5–8pm"><strong>Evening</strong><span>5–8pm</span></button>
+            </div>
+            <p class="booking-note">Pick a window, or choose ASAP / Emergency for the fastest response.</p>
+            <div class="booking-actions">
+              <button class="booking-btn" type="button" data-back>Back</button>
+              <button class="booking-btn primary" type="button" data-next>Continue</button>
+            </div>
+          </section>
+
+          <section class="booking-step" data-step="3" aria-label="Step 3">
+            <h2>Where should we come?</h2>
+            <p class="booking-subtitle">Add the service address and any access details that help us dispatch the right plumber.</p>
+            <div class="booking-fields">
+              <div class="booking-field full">
+                <label for="booking-address">Street address</label>
+                <input class="booking-input" id="booking-address" name="address" autocomplete="street-address" placeholder="Start typing the service address" required>
+              </div>
+              <div class="booking-field full">
+                <span class="field-title">Property type</span>
+                <div class="property-grid" role="group" aria-label="Property type">
+                  <button type="button" class="property-option is-selected" data-group="property" data-value="Home">Home</button>
+                  <button type="button" class="property-option" data-group="property" data-value="Business">Business</button>
+                  <button type="button" class="property-option" data-group="property" data-value="Apartment">Apartment</button>
+                  <button type="button" class="property-option" data-group="property" data-value="Other">Other</button>
+                </div>
+              </div>
+              <div class="booking-field full">
+                <label for="booking-access">Access notes</label>
+                <textarea class="booking-textarea" id="booking-access" name="access" placeholder="Unit number, gate code, parking, cross street, or where the plumber should enter..."></textarea>
+              </div>
+            </div>
+            <div class="booking-actions">
+              <button class="booking-btn" type="button" data-back>Back</button>
+              <button class="booking-btn primary" type="button" data-next>Continue</button>
+            </div>
+          </section>
+
+          <section class="booking-step" data-step="4" aria-label="Step 4">
+            <h2>Last step — where do we send confirmation?</h2>
+            <p class="booking-subtitle">We’ll text your booking details and exact arrival time. No spam, ever.</p>
+            <div class="booking-fields">
+              <div class="booking-field full">
+                <label for="booking-name">Your name</label>
+                <input class="booking-input" id="booking-name" name="name" autocomplete="name" placeholder="First &amp; last name">
+              </div>
+              <div class="booking-field full">
+                <label for="booking-phone">Mobile number</label>
+                <input class="booking-input" id="booking-phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="(512) 555-0170">
+              </div>
+            </div>
+            <div class="summary-box" aria-live="polite">
+              <div class="summary-title">Booking Summary</div>
+              <div class="summary-grid">
+                <div class="summary-item"><strong>Service</strong><span data-summary="service">Service not selected yet</span></div>
+                <div class="summary-item"><strong>Window</strong><span data-summary="window">Today / ASAP</span></div>
+                <div class="summary-item full"><strong>Address</strong><span data-summary="address">Address not entered yet</span></div>
+                <div class="summary-item"><strong>Property</strong><span data-summary="property">Home</span></div>
+              </div>
+            </div>
+            <div class="booking-actions">
+              <button class="booking-btn" type="button" data-back>Back</button>
+              <button class="booking-btn primary" type="submit">Confirm Booking</button>
+            </div>
+            <div class="booking-success">Thanks — your booking request is ready. The plumber will confirm the exact arrival time by text.</div>
+          </section>
+        </form>
+        <div class="logo-marquee" aria-label="Trusted plumbing brands and guarantees">
+          <div class="logo-marquee-track">
+            <div class="logo-set">
+              <div class="logo-tile google"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-google-guaranteed.webp" alt="Google Guaranteed"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-navien.webp" alt="Navien"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-delta.webp" alt="Delta Faucet"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-moen.webp" alt="Moen"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-kohler.webp" alt="Kohler"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-grohe.webp" alt="Grohe"></div>
+            </div>
+            <div class="logo-set">
+              <div class="logo-tile google"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-google-guaranteed.webp" alt="Google Guaranteed"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-navien.webp" alt="Navien"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-delta.webp" alt="Delta Faucet"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-moen.webp" alt="Moen"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-kohler.webp" alt="Kohler"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-grohe.webp" alt="Grohe"></div>
+            </div>
+            <div class="logo-set">
+              <div class="logo-tile google"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-google-guaranteed.webp" alt="Google Guaranteed"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-navien.webp" alt="Navien"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-delta.webp" alt="Delta Faucet"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-moen.webp" alt="Moen"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-kohler.webp" alt="Kohler"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-grohe.webp" alt="Grohe"></div>
+            </div>
+            <div class="logo-set">
+              <div class="logo-tile google"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-google-guaranteed.webp" alt="Google Guaranteed"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-navien.webp" alt="Navien"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-delta.webp" alt="Delta Faucet"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-moen.webp" alt="Moen"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-kohler.webp" alt="Kohler"></div>
+              <div class="logo-tile"><img src="https://demo.solidbookedpro.com/assets/plumbing/logo-grohe.webp" alt="Grohe"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-media">
+          <div class="main-photo"><img src="https://demo.solidbookedpro.com/assets/plumbing/about-stack.webp" data-asset="assets/about-stack.webp" alt="Technician repairing plumbing under sink"></div>
+          <div class="round-photo"><img src="https://demo.solidbookedpro.com/assets/plumbing/hero-clean.webp" data-asset="assets/hero-clean.webp" alt="Smiling plumber"></div>
+        </div>
+        <div class="about-content">
+          <span class="eyebrow">Why choose us</span>
+          <h2>The plumber that shows up, fixes it right, and charges what they quoted</h2>
+          <div class="feature-grid">
+            <article class="feature"><div class="feature-icon">⏱</div><div><h3>Same-day service area</h3><p>When something breaks, we move fast and keep you updated from arrival to completion.</p></div></article>
+            <article class="feature"><div class="feature-icon">🔧</div><div><h3>Licensed plumbing pros</h3><p>Every repair is handled by trained technicians who respect your property.</p></div></article>
+            <article class="feature"><div class="feature-icon">⚠</div><div><h3>Fixes all plumbing issues</h3><p>From clogged drains to leaks, water heaters, repipes, and fixture replacements.</p></div></article>
+            <article class="feature"><div class="feature-icon">💵</div><div><h3>Transparent pricing</h3><p>You get a clear scope before work starts, with no surprise fees at the end.</p></div></article>
+            <article class="feature"><div class="feature-icon">🛡</div><div><h3>Work that lasts</h3><p>We use quality parts and practical solutions, not temporary band-aids.</p></div></article>
+            <article class="feature"><div class="feature-icon">📅</div><div><h3>Convenient scheduling</h3><p>Book urgent help or scheduled service around your day and your building needs.</p></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="frame-band" aria-label="Testimonials">
+      <div class="container frame-panel">
+        <div class="section-head">
+          <span class="eyebrow center">Testimonials</span>
+          <h2>Real Customers. Real Results<br>— 44+ Five-Star Reviews</h2>
+        </div>
+
+        <div class="google-review-marquee" aria-label="Scrolling Google reviews">
+          <div class="google-review-track">
+            <div class="google-review-set">
+              <article class="review-card"><div class="stars">★★★★★</div><div class="avatar">P</div><h3>Petra Sanders</h3><small>Austin, TX</small><p>They showed up exactly when promised, explained the problem clearly, and fixed our leak without turning it into a sales pitch.</p><span class="quote-dot">”</span></article>
+              <article class="review-card"><div class="stars">★★★★★</div><div class="avatar">T</div><h3>Thomas Miller</h3><small>Austin, TX</small><p>A fair price and a clean repair. The technician protected our kitchen, cleaned up, and walked us through the finished work.</p><span class="quote-dot">”</span></article>
+              <article class="review-card"><div class="stars">★★★★★</div><div class="avatar">A</div><h3>Alec McClister</h3><small>Austin, TX</small><p>Emergency drain backup on a weekend. They responded quickly, solved it fast, and were professional the whole time.</p><span class="quote-dot">”</span></article>
+              <article class="review-card"><div class="stars">★★★★★</div><div class="avatar">M</div><h3>Maria Johnson</h3><small>Austin, TX</small><p>The plumber found the leak fast, gave us options, and finished the repair the same day. Very professional from start to finish.</p><span class="quote-dot">”</span></article>
+              <article class="review-card"><div class="stars">★★★★★</div><div class="avatar">R</div><h3>Robert Chen</h3><small>Austin, TX</small><p>Clean work, clear pricing, and no pressure. They handled our water heater issue better than the last company we called.</p><span class="quote-dot">”</span></article>
+            </div>
+            <div class="google-review-set" aria-hidden="true">
+              <article class="review-card"><div class="stars">★★★★★</div><div class="avatar">P</div><h3>Petra Sanders</h3><small>Austin, TX</small><p>They showed up exactly when promised, explained the problem clearly, and fixed our leak without turning it into a sales pitch.</p><span class="quote-dot">”</span></article>
+              <article class="review-card"><div class="stars">★★★★★</div><div class="avatar">T</div><h3>Thomas Miller</h3><small>Austin, TX</small><p>A fair price and a clean repair. The technician protected our kitchen, cleaned up, and walked us through the finished work.</p><span class="quote-dot">”</span></article>
+              <article class="review-card"><div class="stars">★★★★★</div><div class="avatar">A</div><h3>Alec McClister</h3><small>Austin, TX</small><p>Emergency drain backup on a weekend. They responded quickly, solved it fast, and were professional the whole time.</p><span class="quote-dot">”</span></article>
+              <article class="review-card"><div class="stars">★★★★★</div><div class="avatar">M</div><h3>Maria Johnson</h3><small>Austin, TX</small><p>The plumber found the leak fast, gave us options, and finished the repair the same day. Very professional from start to finish.</p><span class="quote-dot">”</span></article>
+              <article class="review-card"><div class="stars">★★★★★</div><div class="avatar">R</div><h3>Robert Chen</h3><small>Austin, TX</small><p>Clean work, clear pricing, and no pressure. They handled our water heater issue better than the last company we called.</p><span class="quote-dot">”</span></article>
+            </div>
+          </div>
+        </div>
+        <div class="google-line"><span>4.8 ★★★★★</span> 44+ reviews on Google</div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="services-intro">
+          <div><span class="eyebrow">Services Overview</span><h2>Complete Plumbing Services Emergency Response to Full System Installations</h2></div>
+          <a class="btn small" href="#contact">See More Services</a>
+        </div>
+        <div class="service-list">
+          <article class="service-card">
+            <div><div class="service-title"><span class="mini">🚰</span>Emergency Plumbing Repair</div><p>Plumbing emergencies can become major headaches fast. We troubleshoot, repair, and stabilize urgent issues before they damage your home or business.</p><div class="service-tags"><span class="tag">Pipe leaks and bursts</span><span class="tag">Water heater failure</span><span class="tag">Sewer backups</span><span class="tag">Urgent valve shutoffs</span></div><a class="btn small" href="#contact">Get My Free Plumbing Estimate</a></div>
+            <div class="service-img"><img src="https://demo.solidbookedpro.com/assets/plumbing/service-emergency.webp" data-asset="assets/service-emergency.webp" alt="Emergency plumbing repair"></div>
+          </article>
+          <article class="service-card">
+            <div><div class="service-title"><span class="mini">🌀</span>Drain Cleaning & Unclogging</div><p>Slow drains and recurring clogs often point to deeper buildup. We clear the blockage and help prevent the same problem from coming back.</p><div class="service-tags"><span class="tag">Kitchen sink clogs</span><span class="tag">Main line backups</span><span class="tag">Bathroom drain cleaning</span><span class="tag">Toilet clogs</span></div><a class="btn dark-outline small" href="#contact">Get Me A Plumbing Deal</a></div>
+            <div class="service-img"><img src="https://demo.solidbookedpro.com/assets/plumbing/service-drain.webp" data-asset="assets/service-drain.webp" alt="Drain cleaning under sink"></div>
+          </article>
+          <article class="service-card">
+            <div><div class="service-title"><span class="mini">🛁</span>Bathroom Plumbing — Remodel & Repipe</div><p>Whether it is a fixture replacement, a remodel, or aging pipework, our plumbers keep water moving safely through every room.</p><div class="service-tags"><span class="tag">Toilet installation repair</span><span class="tag">Leak above washer</span><span class="tag">New shower plumbing</span><span class="tag">Repipe options</span></div><a class="btn dark-outline small" href="#contact">Get My Free Plumbing Estimate</a></div>
+            <div class="service-img"><img src="https://demo.solidbookedpro.com/assets/plumbing/service-bath.webp" data-asset="assets/service-bath.webp" alt="Bathroom plumbing service"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="frame-band process" aria-label="Process">
+      <div class="container frame-panel">
+        <div class="section-head"><span class="eyebrow center">How it works</span><h2>Getting a plumber to your door is faster than you think</h2></div>
+        <div class="timeline">
+          <article class="step"><div class="step-icon">☎</div><div class="step-box"><h3>Call us or request service online</h3><p>For emergencies: Call 5125550170 now. A dispatcher answers 24/7 &amp; dispatches nearest available licensed plumber immediately.</p></div></article>
+          <article class="step"><div class="step-icon">▣</div><div class="step-box"><h3>On-time arrival and diagnosis</h3><p>Your plumber arrives within agreed window, introduces themselves, puts on shoe covers, and asks you to walk them through the problem.</p></div></article>
+          <article class="step"><div class="step-icon">✓</div><div class="step-box"><h3>Upfront flat-rate quote — you approve before we start</h3><p>After diagnosing problem, your plumber presents a flat-rate written quote for the recommended repair. You ask questions, we answer.</p></div></article>
+          <article class="step"><div class="step-icon">✚</div><div class="step-box"><h3>Professional repair — done right the first time</h3><p>We perform the repair using quality materials, proper technique, &amp; code-compliant methods. Every repair is pressure-tested before we leave.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="comparison-wrap">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow center">Emergency vs. scheduled plumbing</span><h2>Emergency plumbing vs. scheduled service how to know what you need</h2></div>
+        <div class="comparison-grid">
+          <div class="comparison-card"><div class="comparison-icon">🏠</div><div class="comparison-title">Residential Plumbing</div><ul class="list"><li>24/7 emergency leaks</li><li>Single-family fixture leaks</li><li>Residential water heater repairs</li><li>Drain service and sewer lines</li><li>Fixture installation and repair</li><li>Toilet, tub, and shower service</li><li>Garbage disposal replacement</li><li>Water pressure problems</li><li>Annual plumbing maintenance</li></ul></div>
+          <div class="divider" aria-hidden="true"></div>
+          <div class="comparison-card"><div class="comparison-icon">🏢</div><div class="comparison-title">Commercial Plumbing</div><ul class="list"><li>Multi-unit property repairs</li><li>Restaurant plumbing systems</li><li>Commercial restroom service</li><li>Tenant improvement plumbing</li><li>Water heater and boiler support</li><li>Backflow inspection support</li><li>After-hours commercial plans</li><li>Retail and office maintenance</li><li>Property manager service</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="frame-band" id="areas">
+      <div class="container frame-panel">
+        <div class="section-head"><span class="eyebrow center">Service area</span><h2>Serving Austin, TX and the surrounding Metro Austin</h2></div>
+        <div class="area-grid area-grid-clean">
+          <div>
+            <strong>We Proudly Serve Clients In:</strong>
+            <div class="city-grid"><div class="city">Austin</div><div class="city">Greater Austin</div><div class="city">North Austin</div><div class="city">South Austin</div><div class="city">East Austin</div><div class="city">West Austin</div><div class="city">Austin Metro</div><div class="city">Downtown Austin</div></div>
+            <p class="copy">Need a plumber near you? Our team serves homes, businesses, remodels, and property managers across the metro.</p>
+            <p style="margin-top:28px"><a class="btn small" href="tel:15125550170">Call Now</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio" id="projects">
+      <div class="container"><span class="eyebrow center">Portfolio</span><h2>Our Work In Action</h2><img src="https://demo.solidbookedpro.com/assets/plumbing/portfolio.webp" data-asset="assets/portfolio.webp" alt="Plumbing project photo collage"></div>
+    </section>
+
+    <section class="frame-band" id="blog">
+      <div class="container frame-panel">
+        <div class="faq-grid">
+          <div class="faq-left"><div class="faq-photo"><img src="https://demo.solidbookedpro.com/assets/plumbing/faq-plumber.webp" data-asset="assets/faq-plumber.webp" alt="Plumber working under sink"></div><p>Have questions about your plumbing problem? Bring them to the table. We answer clearly, recommend practical next steps, and provide upfront options for every situation.</p><a class="btn" href="#contact">Get Fast Plumbing Help Today</a></div>
+          <div><span class="eyebrow">Frequently asked questions</span><h2>Your plumbing questions — answered honestly</h2><div class="accordion"><details open><summary>Do you offer 24/7 emergency plumbing service?</summary><p>Yes. For urgent issues like major leaks, backups, and no-water situations, request emergency support and we will prioritize the appointment.</p></details><details><summary>What counts as a plumbing emergency?</summary><p>A plumbing emergency is any issue that can cause water damage, sanitation problems, or a safety risk if left alone.</p></details><details><summary>Can you fix a leaking pipe?</summary><p>Yes. We diagnose the leak source, explain the repair, and help prevent related damage where possible.</p></details><details><summary>Do you service water heaters?</summary><p>Yes. We service traditional and tankless water heaters, including repairs, replacements, and troubleshooting.</p></details><details><summary>Do you install fixtures?</summary><p>Yes. Faucets, toilets, garbage disposals, tubs, showers, and other fixtures can be installed or replaced.</p></details></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-final">
+      <div class="container">
+        <div><h2>Plumbing Problem?<br>We're Ready Right Now.</h2><p>No emergency should wait. Call now or request service and get a plumber scheduled today.</p><div class="cta-actions"><a class="btn" href="#contact">Schedule Service Today</a><a class="btn phone" href="tel:15125550170">5125550170</a></div></div>
+        <div class="cta-img"><img src="https://demo.solidbookedpro.com/assets/plumbing/cta-van.webp" data-asset="assets/cta-van.webp" alt="Plumbing service van"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a class="logo" style="font-size:19px !important;line-height:1.14 !important" href="#"><span class="drop" aria-hidden="true"></span><span><span class="brand-word">Concurrent Conflict</span><span class="brand-sub">Plumbing</span></span></a><p>Local plumbing service for homes, businesses, remodels, emergencies, and routine maintenance.</p></div>
+        <div><div class="footer-title">Quick Links</div><div class="footer-list"><a>About Us</a><a>Services</a><a>Gallery</a><a>Financing</a><a>Commercial</a><a>Contact</a></div></div>
+        <div><div class="footer-title">Our Services</div><div class="footer-list"><a>Emergency Plumbing Repair</a><a>Drain Cleaning & Hydrojetting</a><a>Water Heater Install & Repair</a><a>Leak Detection & Repair</a><a>Repipes & Remodels</a><a>Bathroom Plumbing Services</a></div></div>
+        <div><div class="footer-title">Service Areas</div><div class="footer-list"><a>Austin</a><a>Greater Austin</a><a>North Austin</a><a>South Austin</a><a>East Austin</a><a style="color:var(--red)">View More...</a></div></div>
+        <div><div class="footer-title">Contact Info</div><div class="contact-lines"><span>☎ 5125550170</span><span>⌖ Serving Austin, TX</span></div><div class="social"><a href="#">f</a><a href="#">in</a><a href="#">▶</a><a href="#">𝕏</a></div></div>
+      </div>
+      <div class="copyright"><span>© 2026 Concurrent Conflict Test. All rights reserved.</span><span>Privacy Policy | Terms of Service</span></div>
+    </div>
+  </footer>
+  <div class="mobile-sticky-cta" aria-label="Mobile quick actions">
+    <a class="sticky-estimate" href="#contact">Get Estimate</a>
+    <a class="sticky-call" href="tel:15125550170">Call Now</a>
+  </div>
+
+  <script>
+    (function(){
+      var btn=document.querySelector('.mobile-menu-toggle');
+      var nav=document.querySelector('.nav');
+      if(!btn||!nav)return;
+      function closeMenu(){
+        btn.classList.remove('is-open');
+        nav.classList.remove('is-open');
+        btn.setAttribute('aria-expanded','false');
+      }
+      btn.addEventListener('click',function(){
+        var open=!nav.classList.contains('is-open');
+        btn.classList.toggle('is-open',open);
+        nav.classList.toggle('is-open',open);
+        btn.setAttribute('aria-expanded',String(open));
+      });
+      nav.querySelectorAll('a').forEach(function(link){link.addEventListener('click',closeMenu);});
+      window.addEventListener('resize',function(){if(window.innerWidth>720)closeMenu();});
+      document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
+    })();
+
+    (function(){
+      var form=document.getElementById('booking-form');
+      if(!form)return;
+      var current=1;
+      var total=4;
+      var state={service:'',zip:'',day:'Today',time:'ASAP / Emergency',property:'Home'};
+      var progress=form.querySelector('.booking-progress span');
+      var stepCount=form.querySelector('.booking-step-count');
+      var percent=form.querySelector('.booking-percent');
+      var success=form.querySelector('.booking-success');
+      var serviceSelect=form.querySelector('#booking-service');
+      var zipStart=form.querySelector('#booking-zip-start');
+      var addressInput=form.querySelector('#booking-address');
+      var phoneInput=form.querySelector('#booking-phone');
+
+      function fmtDate(d){return (d.getMonth()+1)+'/'+d.getDate();}
+      function dayName(d){return d.toLocaleDateString(undefined,{weekday:'short'});}
+      form.querySelectorAll('.day-option').forEach(function(btn){
+        var offset=parseInt(btn.getAttribute('data-date-offset')||'0',10);
+        var d=new Date();
+        d.setDate(d.getDate()+offset);
+        var strong=btn.querySelector('strong');
+        if(offset>=2) strong.textContent=dayName(d);
+        btn.querySelector('span').textContent=fmtDate(d);
+        if(offset>=2) btn.setAttribute('data-value', dayName(d)+' '+fmtDate(d));
+      });
+
+      function val(selector){var el=form.querySelector(selector);return el ? el.value.trim() : '';}
+      function syncStartFields(){
+        state.service = serviceSelect ? serviceSelect.value.trim() : state.service;
+        state.zip = zipStart ? zipStart.value.trim() : state.zip;
+      }
+      function updateSummary(){
+        syncStartFields();
+        var address=val('#booking-address');
+        var addressSummary=address || (state.zip ? 'ZIP '+state.zip+' — address next' : 'Address not entered yet');
+        var data={
+          service:state.service || 'Service not selected yet',
+          window:(state.day||'Today')+' / '+(state.time||'ASAP / Emergency'),
+          address:addressSummary,
+          property:state.property || 'Home'
+        };
+        Object.keys(data).forEach(function(key){
+          var target=form.querySelector('[data-summary="'+key+'"]');
+          if(target) target.textContent=data[key];
+        });
+      }
+      function validateStep(){
+        if(current===1){
+          if(!serviceSelect.value){serviceSelect.focus();serviceSelect.reportValidity && serviceSelect.reportValidity();return false;}
+          if(!zipStart.value.trim()){zipStart.focus();zipStart.reportValidity && zipStart.reportValidity();return false;}
+        }
+        if(current===3 && addressInput && !addressInput.value.trim()){
+          addressInput.focus();
+          addressInput.reportValidity && addressInput.reportValidity();
+          return false;
+        }
+        return true;
+      }
+      function showStep(n,noScroll){
+        current=Math.max(1,Math.min(total,n));
+        form.querySelectorAll('.booking-step').forEach(function(step){
+          step.classList.toggle('is-active', Number(step.getAttribute('data-step'))===current);
+        });
+        var p=Math.round((current/total)*100);
+        if(progress) progress.style.width=p+'%';
+        if(stepCount) stepCount.textContent='Step '+current+' of '+total;
+        if(percent) percent.textContent=p+'%';
+        updateSummary();
+        if(success) success.classList.remove('is-visible');
+        if(!noScroll){ form.scrollIntoView({behavior:'smooth',block:'start'}); }
+      }
+      form.addEventListener('click',function(e){
+        var option=e.target.closest('[data-group]');
+        if(option && form.contains(option)){
+          var group=option.getAttribute('data-group');
+          form.querySelectorAll('[data-group="'+group+'"]').forEach(function(btn){btn.classList.remove('is-selected');});
+          option.classList.add('is-selected');
+          state[group]=option.getAttribute('data-value') || option.textContent.trim();
+          updateSummary();
+        }
+        if(e.target.closest('[data-next]')){
+          if(validateStep()) showStep(current+1);
+        }
+        if(e.target.closest('[data-back]')) showStep(current-1);
+      });
+      [serviceSelect,zipStart,addressInput].forEach(function(el){if(el)el.addEventListener('input',updateSummary); if(el)el.addEventListener('change',updateSummary);});
+      form.querySelectorAll('input, textarea').forEach(function(el){el.addEventListener('input',updateSummary);});
+      function formatPhoneNumber(value){
+        var digits=(value||'').replace(/\D/g,'').slice(0,10);
+        if(digits.length<=3) return digits ? '('+digits : '';
+        if(digits.length<=6) return '('+digits.slice(0,3)+') '+digits.slice(3);
+        return '('+digits.slice(0,3)+') '+digits.slice(3,6)+'-'+digits.slice(6);
+      }
+      if(phoneInput){
+        phoneInput.addEventListener('input',function(){
+          phoneInput.value=formatPhoneNumber(phoneInput.value);
+        });
+      }
+      form.addEventListener('submit',function(e){
+        e.preventDefault();
+        updateSummary();
+        if(success) success.classList.add('is-visible');
+      });
+      showStep(1,true);
+    })();
+
+  </script>
+</body>
+</html>
