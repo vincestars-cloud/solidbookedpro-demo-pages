@@ -26,10 +26,13 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-/* ken-burns scale + reveal transforms extend past the viewport, so we clip at the root.
-   MUST be `clip`, not `hidden`: overflow-x:hidden makes the root a scroll container,
-   which silently kills position:sticky on the nav and breaks scroll reveals. */
-html,body{overflow-x:clip;width:100%}
+/* ken-burns scale + reveal transforms extend past the viewport, so we clip them.
+   Clip on #home (a normal block) — NOT on html/body: Safari re-bases position:fixed
+   (sticky CTA bar) and position:sticky (nav) off the root when overflow-clip is on the
+   root, which floated the bar to the top and killed the sticky nav. Clipping #home
+   instead contains the overflow while the nav + bar stay pinned to the viewport. */
+html,body{width:100%}
+#home{overflow-x:clip}
 body{background:var(--ink);color:var(--text);font:400 16px/24px Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
@@ -69,7 +72,7 @@ section{padding:100px 0 80px}
      transition:background .35s ease,backdrop-filter .35s ease,border-color .35s ease}
 .nav.scrolled{background:rgba(10,10,12,.62);backdrop-filter:blur(18px) saturate(150%);border-bottom-color:rgba(255,255,255,.09)}
 .nav.scrolled .nav-links a,.nav.scrolled .nav-ic a{border-left-color:rgba(255,255,255,.09)}
-.nav-in{display:flex;align-items:stretch;max-width:100%;}
+.nav-in{display:flex;align-items:stretch;max-width:100%;overflow-x:clip}
 .brand{display:flex;align-items:center;gap:10px;padding:0 28px;font-family:"Roboto Condensed",sans-serif;font-style:italic;font-weight:700;font-size:26px;text-transform:uppercase;letter-spacing:-1px;white-space:nowrap}
 .brand .mark{width:26px;height:26px;background:var(--accent);transform:skewX(-12deg)}
 .nav-sp{flex:1}
@@ -178,6 +181,8 @@ label.fl{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.6
 .fi{width:100%;padding:15px 16px;background:#000;border:1px solid var(--line);color:#fff;outline:0}
 .fi:focus{border-color:var(--accent)}
 select.fi{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#fff 50%),linear-gradient(135deg,#fff 50%,transparent 50%);background-position:calc(100% - 20px) 22px,calc(100% - 14px) 22px;background-size:6px 6px;background-repeat:no-repeat}
+select.fi{padding-right:40px;cursor:pointer}
+.fi option{background:#111;color:#fff}
 .chips{display:flex;flex-wrap:wrap;gap:10px}
 .chip{padding:13px 20px;border:1px solid var(--line);background:#000;cursor:pointer;font-family:"Roboto Condensed",sans-serif;font-style:italic;font-weight:700;text-transform:uppercase;font-size:15px;transition:.15s}
 .chip:hover{border-color:var(--accent)}
@@ -400,6 +405,23 @@ body.on-service #svcpage{display:block}
 .pay img{height:20px;width:auto;display:block}
 .pay .txt{background:#000;border:1px solid var(--line);color:#c8c8c8;font-family:"Roboto Condensed",sans-serif;font-style:italic;font-weight:700;text-transform:uppercase;font-size:17px;line-height:20px;padding:9px 14px}
 
+/* clickable service props + detail modal (reference: innovative-ms service popups) */
+.prop{cursor:pointer;transition:background .18s ease}
+.prop:hover{background:rgba(255,255,255,.05)}
+.prop .prop-more{display:block;margin-top:10px;font-family:"Roboto Condensed",sans-serif;font-style:italic;font-weight:700;text-transform:uppercase;font-size:12.5px;letter-spacing:.4px;color:var(--accent)}
+.svc-modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.74);backdrop-filter:blur(6px)}
+.svc-modal.open{display:flex}
+.svc-card{position:relative;background:#0d0d0f;border:1px solid var(--line);max-width:900px;width:100%;max-height:90vh;overflow:auto;display:grid;grid-template-columns:1fr 1fr}
+.svc-card .sm-img{background-size:cover;background-position:center;min-height:360px}
+.svc-card .sm-body{padding:44px 40px 40px}
+.svc-card .sm-x{position:absolute;top:14px;right:14px;width:44px;height:44px;border:1px solid var(--line);background:rgba(0,0,0,.55);color:#fff;font-size:20px;line-height:1;display:grid;place-items:center;cursor:pointer;z-index:3}
+.svc-card .sm-x:hover{background:var(--accent);border-color:var(--accent)}
+.svc-card .sm-tag{font-family:"Roboto Condensed",sans-serif;font-style:italic;font-weight:700;text-transform:uppercase;font-size:14px;letter-spacing:1px;color:var(--accent);margin-bottom:8px}
+.svc-card .sm-points{list-style:none;margin:18px 0 0;padding:0}
+.svc-card .sm-points li{position:relative;padding-left:26px;margin-bottom:11px;color:#e6e6e6;font-size:15px;line-height:22px}
+.svc-card .sm-points li::before{content:"";position:absolute;left:0;top:7px;width:9px;height:9px;background:var(--accent);transform:rotate(45deg)}
+@media(max-width:720px){.svc-card{grid-template-columns:1fr;max-height:92vh}.svc-card .sm-img{min-height:190px}.svc-card .sm-body{padding:28px 22px 26px}}
+
 /* we-repair-all-makes scrolling badge strip (car-brand logos) */
 .mkbar{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#050505;overflow:hidden;position:relative}
 .mkbar::before,.mkbar::after{content:"";position:absolute;top:0;bottom:0;width:56px;z-index:2;pointer-events:none}
@@ -421,7 +443,7 @@ body.on-service #svcpage{display:block}
 .d-sub{font-size:clamp(30px,7vw,56px)!important;line-height:.95!important;letter-spacing:-.03em!important}
 </style>
 </head>
-<body><style>.launchbar,.devbar,#preview-bar,.demo-bar{display:none!important}#sos-launch{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;background:#26114F;color:#fff;padding:9px 14px;font:700 13px/1.4 system-ui,-apple-system,sans-serif;text-align:center;position:relative;z-index:2147483646}#sos-launch .sost{background:#FCD34D;color:#26114F;border-radius:6px;padding:3px 8px;font:800 10px/1 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}#sos-launch a{color:#fff;text-decoration:underline;font-weight:900}#sos-launch .sosf{color:#FCD34D;font-weight:900}</style><div id="sos-launch"><span class="sost">Demo</span><span>Call Your 24/7 Receptionist at <a href="tel:14124991720">(412) 499-1720</a></span><span class="sosf">Demo Code: 5051</span></div><script>(function(){function init(){var bar=document.getElementById("sos-launch");if(!bar)return;var ph=["Launch this site","launch this on your site","Business owner? Want this demo","I can launch the site","launch the site for you"];document.querySelectorAll("div,header,section,aside,p").forEach(function(el){if(el===bar)return;var tx=el.textContent||"";if(tx.length<220&&ph.some(function(p){return tx.indexOf(p)>-1}))el.style.display="none";});var fx=[];document.querySelectorAll("header,nav,div").forEach(function(el){if(el===bar||el.id==="sos-cta")return;var s=getComputedStyle(el);if(s.position==="fixed"&&(parseInt(s.top)||0)<5&&el.getBoundingClientRect().top<70&&el.offsetHeight<170)fx.push(el);});function adj(){var b=bar.getBoundingClientRect().bottom;if(b<0)b=0;for(var i=0;i<fx.length;i++)fx[i].style.top=b+"px";var H=document.querySelector("header");if(H&&getComputedStyle(H).position==="absolute"){H.style.top=(window.innerWidth<=920)?(bar.offsetHeight+10)+"px":"";}}adj();window.addEventListener("scroll",adj,{passive:true});window.addEventListener("resize",adj);}if(document.readyState!=="loading")init();else document.addEventListener("DOMContentLoaded",init);})();</script>
+<body><style>.launchbar,.devbar,#preview-bar,.demo-bar{display:none!important}#sos-launch{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;background:#26114F;color:#fff;padding:9px 14px;font:700 13px/1.4 system-ui,-apple-system,sans-serif;text-align:center;position:relative;z-index:2147483646}#sos-launch .sost{background:#FCD34D;color:#26114F;border-radius:6px;padding:3px 8px;font:800 10px/1 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}#sos-launch a{color:#fff;text-decoration:underline;font-weight:900}#sos-launch .sosf{color:#FCD34D;font-weight:900}</style><div id="sos-launch"><span class="sost">Demo</span><span>Call Your 24/7 Receptionist at <a href="tel:14124991720">(412) 499-1720</a></span><span class="sosf">Demo Code: 8769</span></div><script>(function(){function init(){var bar=document.getElementById("sos-launch");if(!bar)return;var ph=["Launch this site","launch this on your site","Business owner? Want this demo","I can launch the site","launch the site for you"];document.querySelectorAll("div,header,section,aside,p").forEach(function(el){if(el===bar)return;var tx=el.textContent||"";if(tx.length<220&&ph.some(function(p){return tx.indexOf(p)>-1}))el.style.display="none";});var fx=[];document.querySelectorAll("header,nav,div").forEach(function(el){if(el===bar||el.id==="sos-cta")return;var s=getComputedStyle(el);if(s.position==="fixed"&&(parseInt(s.top)||0)<5&&el.getBoundingClientRect().top<70&&el.offsetHeight<170)fx.push(el);});function adj(){var b=bar.getBoundingClientRect().bottom;if(b<0)b=0;for(var i=0;i<fx.length;i++)fx[i].style.top=b+"px";var H=document.querySelector("header");if(H&&getComputedStyle(H).position==="absolute"){H.style.top=(window.innerWidth<=920)?(bar.offsetHeight+10)+"px":"";}}adj();window.addEventListener("scroll",adj,{passive:true});window.addEventListener("resize",adj);}if(document.readyState!=="loading")init();else document.addEventListener("DOMContentLoaded",init);})();</script>
 
 <!-- NAV -->
 <nav class="nav">
@@ -471,15 +493,15 @@ body.on-service #svcpage{display:block}
   <div class="props">
   <div class="prop">
     <div class="prop-h"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 3 6v6c0 5 3.8 9.4 9 10 5.2-.6 9-5 9-10V6l-9-4z"/></svg><h3 class="d d-h3">Collision Repair</h3></div>
-    <p>Frame and unibody straightening with computerized measuring, repaired back to factory tolerances.</p>
+    <p>Frame and unibody straightening with computerized measuring, repaired back to factory tolerances.</p><span class="prop-more">View details →</span>
   </div>
   <div class="prop">
     <div class="prop-h"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v4l9 5 9-5V5a2 2 0 0 0-2-2zM3 11.5V19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7.5l-9 5-9-5z"/></svg><h3 class="d d-h3">Paint &amp; Refinish</h3></div>
-    <p>Controlled-booth refinishing, computerized color match, blended into the surrounding panels.</p>
+    <p>Controlled-booth refinishing, computerized color match, blended into the surrounding panels.</p><span class="prop-more">View details →</span>
   </div>
   <div class="prop">
     <div class="prop-h"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-3V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zM9 4h6v2H9V4z"/></svg><h3 class="d d-h3">Claims Handled</h3></div>
-    <p>We work directly with every major carrier. You pay your deductible — we invoice the rest.</p>
+    <p>We work directly with every major carrier. You pay your deductible — we invoice the rest.</p><span class="prop-more">View details →</span>
     </div>
   </div>
 </header>
@@ -533,7 +555,7 @@ body.on-service #svcpage{display:block}
         <div class="fstep" data-step="2">
           <div class="fgrid" style="margin-bottom:20px">
             <div><label class="fl">Year</label><input class="fi" id="yr" placeholder="2021"></div>
-            <div><label class="fl">Make</label><input class="fi" id="mk" placeholder="Toyota"></div>
+            <div><label class="fl">Make</label><select class="fi" id="mk"><option value="" disabled selected>Select make</option><option>Acura</option><option>Audi</option><option>BMW</option><option>Buick</option><option>Cadillac</option><option>Chevrolet</option><option>Chrysler</option><option>Dodge</option><option>Ford</option><option>GMC</option><option>Honda</option><option>Hyundai</option><option>Infiniti</option><option>Jeep</option><option>Kia</option><option>Lexus</option><option>Lincoln</option><option>Mazda</option><option>Mercedes-Benz</option><option>Nissan</option><option>Ram</option><option>Subaru</option><option>Tesla</option><option>Toyota</option><option>Volkswagen</option><option>Volvo</option><option>Other</option></select></div>
           </div>
           <div class="fgrid" style="margin-bottom:20px">
             <div><label class="fl">Model</label><input class="fi" id="md" placeholder="Camry"></div>
@@ -625,20 +647,8 @@ body.on-service #svcpage{display:block}
   </div>
 </div>
 
-<!-- FULL-BLEED BAND : craft -->
-<section class="band">
-  <div class="band-bg" data-px="0.10" style="background-image:url(https://demo.solidbookedpro.com/assets/body-shop/sec-tech.jpg)"></div>
-  <div class="band-scrim" style="background:linear-gradient(90deg,rgba(0,0,0,.94) 0%,rgba(0,0,0,.72) 50%,rgba(0,0,0,.42) 100%)"></div>
-  <div class="wrap">
-    <h2 class="d d-h2" style="max-width:760px">Straight panels are<br><span class="accent">the easy part.</span></h2>
-    <p class="mute" style="max-width:520px;margin-top:16px">Anyone can make a car look fixed. Getting the structure back to spec, the paint to match in daylight, and the safety systems reading correctly again is the job.</p>
-    <div class="band-stat">
-      <div><div class="n">100%</div><span>Repairs written to manufacturer procedures</span></div>
-      <div><div class="n">Life</div><span>Workmanship warranty for as long as you own it</span></div>
-      <div><div class="n">$0</div><span>Written estimates, always</span></div>
-    </div>
-  </div>
-</section>
+<!-- (craft band "Straight panels are the easy part" removed per request —
+     the FREE PHOTO ESTIMATE intake above is the post-services section) -->
 
 <!-- SERVICES ACCORDION -->
 <section id="services" class="band" style="padding:110px 0 90px">
@@ -841,6 +851,24 @@ body.on-service #svcpage{display:block}
 
 <div class="sbar"><a href="tel:14124991720">Call Us Now</a><a href="#estimate">Get A Free Estimate</a></div>
 
+<!-- SERVICE DETAIL MODAL (opened by clicking a service under the hero) -->
+<div class="svc-modal" id="svcModal" role="dialog" aria-modal="true">
+  <div class="svc-card">
+    <button class="sm-x" id="smX" aria-label="Close">&times;</button>
+    <div class="sm-img" id="smImg"></div>
+    <div class="sm-body">
+      <div class="sm-tag" id="smTag"></div>
+      <h3 class="d d-h3" id="smTitle"></h3>
+      <p id="smDesc" style="color:var(--mute);margin:14px 0 0;font-size:16px;line-height:26px"></p>
+      <ul class="sm-points" id="smPoints"></ul>
+      <div class="hero-cta" style="margin-top:26px">
+        <a class="est-cta" id="smEst" href="#estimate" style="background:var(--accent);color:#fff;padding:16px 26px;font-family:'Roboto Condensed',sans-serif;font-style:italic;font-weight:700;text-transform:uppercase;font-size:16px">Get A Free Estimate</a>
+        <a href="tel:14124991720" style="border:1px solid var(--line);color:#fff;padding:16px 26px;font-family:'Roboto Condensed',sans-serif;font-style:italic;font-weight:700;text-transform:uppercase;font-size:16px">Call (412) 499-1720</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
   // nav
@@ -958,6 +986,33 @@ body.on-service #svcpage{display:block}
       es.forEach(function(e){ bar.classList.toggle('show', !e.isIntersecting); });
     },{threshold:0});
     io.observe(cue);
+  })();
+  /* clickable service props -> detail modal (reference: innovative-ms service popups) */
+  (function(){
+    var modal=document.getElementById('svcModal'); if(!modal) return;
+    var SVC=[
+      {tag:'Structural Repair',title:'Collision Repair',img:'https://demo.solidbookedpro.com/assets/body-shop/sec-bay.jpg',desc:'Frame and unibody straightening on a computerized bench, measured back to factory tolerances so the car drives straight and the safety cage protects like new.',pts:['Computerized frame measuring','OEM structural repair procedures','Pre- and post-repair diagnostic scans']},
+      {tag:'Finish Work',title:'Paint & Refinish',img:'https://demo.solidbookedpro.com/assets/body-shop/sec-booth.jpg',desc:'Controlled downdraft booth with a computerized color match to your exact factory code, blended into the surrounding panels so the repair disappears in daylight.',pts:['Exact factory color match','Downdraft booth refinishing','Blended, invisible panel repairs']},
+      {tag:'Insurance',title:'Claims Handled',img:'https://demo.solidbookedpro.com/assets/body-shop/sec-tech.jpg',desc:'We work directly with every major carrier, document the loss, and handle the claim paperwork start to finish. You pay your deductible and we invoice the rest.',pts:['Direct-to-carrier billing','Full documentation & photos','You only pay your deductible']}
+    ];
+    function openM(i){var s=SVC[i]; if(!s) return;
+      document.getElementById('smImg').style.backgroundImage="url('"+s.img+"')";
+      document.getElementById('smTag').textContent=s.tag;
+      document.getElementById('smTitle').textContent=s.title;
+      document.getElementById('smDesc').textContent=s.desc;
+      document.getElementById('smPoints').innerHTML=s.pts.map(function(p){return '<li>'+p+'</li>';}).join('');
+      modal.classList.add('open'); document.body.style.overflow='hidden';
+    }
+    function closeM(){modal.classList.remove('open'); document.body.style.overflow='';}
+    [].slice.call(document.querySelectorAll('.prop')).forEach(function(p,i){
+      p.setAttribute('role','button'); p.setAttribute('tabindex','0');
+      p.addEventListener('click',function(){openM(i);});
+      p.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openM(i);}});
+    });
+    document.getElementById('smX').addEventListener('click',closeM);
+    document.getElementById('smEst').addEventListener('click',closeM);
+    modal.addEventListener('click',function(e){if(e.target===modal)closeM();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeM();});
   })();
   // below the fold: only fetch each pair as it approaches the viewport
   (function(){
