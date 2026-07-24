@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 130" role="img" aria-label="HSA/FSA Eligible">
+  <g fill="none" stroke="#1a1a1a" stroke-width="9">
+    <circle cx="62" cy="65" r="50"/>
+    <path d="M38 66 l18 20 l34 -46" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="135" y="58" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="46" fill="#1a1a1a">HSA/FSA</text>
+  <text x="135" y="108" font-family="Arial,Helvetica,sans-serif" font-weight="600" font-size="42" fill="#1a1a1a">Eligible</text>
+</svg>
