@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="348" height="457" viewBox="0 0 348 457">
+  <rect x="1" y="1" width="346" height="455" rx="18" fill="rgba(255,255,255,.06)"
+        stroke="rgba(255,255,255,.28)" stroke-width="2" stroke-dasharray="10 8"/>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
+        font-family="Helvetica,Arial,sans-serif" font-size="17" fill="rgba(255,255,255,.55)">
+    hero figure slot
+  </text>
+</svg>
