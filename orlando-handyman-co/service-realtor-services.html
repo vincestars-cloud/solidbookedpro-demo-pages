@@ -3775,4 +3775,12 @@ jQuery(function ($) {
 })();
 </script>
 
+<script>
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href="#book"]');
+  if (!a) return;
+  e.preventDefault();
+  if (typeof window.wgbOpen === 'function') window.wgbOpen();
+});
+</script>
 </body></html>
