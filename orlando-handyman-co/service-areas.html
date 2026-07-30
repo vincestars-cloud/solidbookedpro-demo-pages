@@ -3695,9 +3695,21 @@ jQuery(function ($) {
 
     if (WG_BOOKING.endpoint) {
       next.disabled = true;
+      // the intake workflow routes on _type === 'form'; anything else is
+      // logged as a generic event and never reaches the leads table
+      var payload = Object.assign({
+        _type: 'form',
+        form_type: 'estimate_request',
+        source: 'handyman-demo',
+        business_name: WG_BOOKING.business || '',
+        business_id: WG_BOOKING.businessId || '',
+        slug: WG_BOOKING.slug || '',
+        page_url: location.href,
+        created_at: new Date().toISOString()
+      }, data);
       fetch(WG_BOOKING.endpoint, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify(payload)
       }).catch(function () { /* already stored locally */ })
         .finally(function () { next.disabled = false; step = LAST; render(); });
       return;
