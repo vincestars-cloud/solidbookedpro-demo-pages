@@ -1,10 +1,13 @@
-name: Deploy Pages (scheduled, churn-proof)
+name: Deploy Pages (churn-proof)
 
-# Decoupled from the demo-generator's constant commits: instead of a per-push
-# build (which the pipeline's rapid commits kept cancelling -> "errored"),
-# publish the current repo state on a timer. Concurrency serializes deploys so
-# they queue instead of cancelling each other.
+# Event-driven + scheduled. concurrency (cancel-in-progress:false) COALESCES:
+# at most one deploy runs while one stays pending; rapid demo-generator commits
+# collapse into the latest pending run instead of cancelling the in-flight one.
+# => near-instant (~1 deploy cycle) AND no cancellation churn. Repo is public,
+# so Actions minutes are free.
 on:
+  push:
+    branches: [main]
   workflow_dispatch: {}
   schedule:
     - cron: '*/5 * * * *'
