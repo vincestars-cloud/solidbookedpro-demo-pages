@@ -1,0 +1,127 @@
+name: Cleanup demos (EOD)
+
+# Frees space in the published GitHub Pages site, which has a HARD 1 GB limit.
+#
+# Two independent cleaners:
+#   1. screenshots/mms/*  - MMS images. Only needed at send time. No DB needed.
+#   2. <slug>/            - demo pages. Keeps ONLY prospects who replied positively,
+#                           plus protected slugs and a recent-build grace window.
+#
+# Safety: DRY_RUN is the default for BOTH manual and scheduled runs. Nothing is
+# deleted until you set vars.CLEANUP_ARMED = 'true' in repo settings.
+
+on:
+  schedule:
+    # 04:00 UTC = 11pm EST / midnight EDT. GitHub cron is UTC and does NOT shift for DST.
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Report only, delete nothing'
+        type: boolean
+        default: true
+      what:
+        description: 'Which cleaner to run'
+        type: choice
+        options: [both, screenshots, demos]
+        default: both
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cleanup-demos
+  cancel-in-progress: false
+
+env:
+  # --- retention knobs -------------------------------------------------------
+  SCREENSHOT_RETENTION_DAYS: '3'    # MMS images older than this are removed
+  DEMO_GRACE_HOURS: '48'            # never delete a demo built within this window
+  # Normalised dispositions that KEEP a demo alive. Normalisation matches the
+  # Supabase classifier: lower(trim(x)) with non-letters collapsed to '_'.
+  KEEP_DISPOSITIONS: 'considering,interested_sms,client,clients,booked,appointment_set,customer,won'
+  # --- circuit breaker -------------------------------------------------------
+  MAX_DELETE_PCT: '85'              # abort if a run would delete more than this % of demos
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0            # need history for per-file dates
+
+      - name: Resolve mode
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            DRY="${{ inputs.dry_run }}"; WHAT="${{ inputs.what }}"
+          else
+            DRY="true"; WHAT="both"
+          fi
+          # Scheduled runs only delete once explicitly armed.
+          if [ "${{ vars.CLEANUP_ARMED }}" != "true" ]; then DRY="true"; fi
+          echo "dry=$DRY"   >> "$GITHUB_OUTPUT"
+          echo "what=$WHAT" >> "$GITHUB_OUTPUT"
+          echo "::notice::mode dry_run=$DRY what=$WHAT armed=${{ vars.CLEANUP_ARMED }}"
+
+      # ---------------------------------------------------------------- 1. MMS
+      - name: Sweep screenshots
+        if: steps.mode.outputs.what == 'both' || steps.mode.outputs.what == 'screenshots'
+        run: |
+          set -euo pipefail
+          DIR=screenshots/mms
+          [ -d "$DIR" ] || { echo "no $DIR, skipping"; exit 0; }
+          CUTOFF=$(date -u -d "${SCREENSHOT_RETENTION_DAYS} days ago" +%Y-%m-%dT%H:%M:%SZ)
+          echo "keeping screenshots committed since $CUTOFF"
+
+          # One git pass for everything touched since the cutoff.
+          git log --since="$CUTOFF" --name-only --pretty=format: -- "$DIR" \
+            | sed '/^$/d' | sort -u > /tmp/keep.txt || true
+          find "$DIR" -type f | sort > /tmp/all.txt
+          comm -23 /tmp/all.txt /tmp/keep.txt > /tmp/del.txt || true
+
+          ALL=$(wc -l < /tmp/all.txt); DEL=$(wc -l < /tmp/del.txt)
+          BYTES=$(xargs -r -a /tmp/del.txt stat -c%s 2>/dev/null | awk '{s+=$1} END{print s+0}')
+          echo "screenshots: $ALL total, $DEL older than ${SCREENSHOT_RETENTION_DAYS}d ($((BYTES/1048576)) MB)"
+          {
+            echo "### Screenshots"
+            echo "- total: **$ALL**"
+            echo "- to delete: **$DEL** ($((BYTES/1048576)) MB)"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "${{ steps.mode.outputs.dry }}" = "true" ]; then
+            echo "DRY RUN - nothing removed"; head -5 /tmp/del.txt
+          elif [ "$DEL" -gt 0 ]; then
+            xargs -r -a /tmp/del.txt git rm -q --cached --
+            xargs -r -a /tmp/del.txt rm -f --
+          fi
+
+      # -------------------------------------------------------------- 2. demos
+      - name: Sweep demo pages
+        if: steps.mode.outputs.what == 'both' || steps.mode.outputs.what == 'demos'
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          DRY_RUN: ${{ steps.mode.outputs.dry }}
+        run: node .github/scripts/sweep-demos.mjs
+        continue-on-error: false
+
+      # --------------------------------------------------------------- commit
+      - name: Commit
+        if: steps.mode.outputs.dry == 'false'
+        run: |
+          set -euo pipefail
+          if git diff --cached --quiet && git diff --quiet; then
+            echo "nothing to commit"; exit 0
+          fi
+          git config user.name  "cleanup-bot"
+          git config user.email "cleanup-bot@users.noreply.github.com"
+          git add -A
+          git commit -m "Cleanup: EOD sweep [skip ci]"
+          # One commit => one Pages rebuild, instead of hundreds of API deletes.
+          for i in 1 2 3 4 5; do
+            git push && break
+            echo "push failed, rebasing (attempt $i)"; git pull --rebase --autostash || true
+            sleep $((i*5))
+          done
