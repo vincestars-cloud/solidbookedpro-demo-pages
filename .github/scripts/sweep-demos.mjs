@@ -11,7 +11,7 @@ import { appendFileSync } from 'node:fs';
 
 const {
   SUPABASE_URL, SUPABASE_SERVICE_KEY,
-  KEEP_DISPOSITIONS = '', DEMO_GRACE_HOURS = '48', MAX_DELETE_PCT = '85',
+  KEEP_DISPOSITIONS = '', DEMO_GRACE_HOURS = '48', MAX_DELETE_PCT = '97', MIN_KEEP_PHONES = '50',
 } = process.env;
 const DRY = process.env.DRY_RUN !== 'false';
 
@@ -97,6 +97,12 @@ if (existsSync('protected.json')) {
 }
 
 if (!keepSlugs.size) abort('keep-list resolved to 0 slugs — refusing to delete everything');
+// Most demos SHOULD be deleted (only positive replies survive), so a high delete
+// percentage is expected. The real failure mode is the keep-list collapsing —
+// a renamed disposition value, a schema change, a broken phone join. Guard that.
+if (keepPhones.size < Number(MIN_KEEP_PHONES)) {
+  abort(`only ${keepPhones.size} prospects matched KEEP_DISPOSITIONS (floor is ${MIN_KEEP_PHONES}) — the keep-list looks broken, not genuinely small`);
+}
 
 // ------------------------------------------------------------------- sweep
 const dirs = readdirSync('.', { withFileTypes: true })
