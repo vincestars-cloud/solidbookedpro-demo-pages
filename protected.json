@@ -1,0 +1,15 @@
+{
+  "_comment": "Slugs the EOD cleanup must never delete. Add client demos and reference pages here. Matched exactly against the directory name.",
+  "protected": [
+    "biz-msaoi2ji",
+    "concurrent-conflict-test",
+    "hc-gihon-verify",
+    "lawn-and-order",
+    "sbp-lawn-verify",
+    "septic-demo",
+    "test-landscaping-b",
+    "test-rid-landscaping-b",
+    "tmpl-hc-test",
+    "tmpl-mech-test"
+  ]
+}
