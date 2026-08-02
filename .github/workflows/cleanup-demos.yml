@@ -45,7 +45,11 @@ env:
   # Supabase classifier: lower(trim(x)) with non-letters collapsed to '_'.
   KEEP_DISPOSITIONS: 'considering,interested_sms,client,clients,booked,appointment_set,customer,won'
   # --- circuit breaker -------------------------------------------------------
-  MAX_DELETE_PCT: '85'              # abort if a run would delete more than this % of demos
+  # Most demos SHOULD go (only positive replies survive), so the % ceiling is just a
+  # backstop. The meaningful guard is MIN_KEEP_PHONES: if fewer than this many
+  # prospects match KEEP_DISPOSITIONS the keep-list is broken, not small.
+  MAX_DELETE_PCT: '97'
+  MIN_KEEP_PHONES: '50'
 
 jobs:
   cleanup:
@@ -111,6 +115,7 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           DRY_RUN: ${{ steps.mode.outputs.dry }}
+          MIN_KEEP_PHONES: ${{ env.MIN_KEEP_PHONES }}
         run: node .github/scripts/sweep-demos.mjs
         continue-on-error: false
 
