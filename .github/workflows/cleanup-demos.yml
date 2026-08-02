@@ -39,7 +39,7 @@ concurrency:
 
 env:
   # --- retention knobs -------------------------------------------------------
-  SCREENSHOT_RETENTION_DAYS: '2'    # MMS images older than this are removed (only needed at send time)
+  SCREENSHOT_RETENTION_DAYS: '1'    # MMS images older than this are removed (Telnyx fetches at send time; recoverable from git history)
   DEMO_GRACE_HOURS: '48'            # never delete a demo built within this window
   # Normalised dispositions that KEEP a demo alive. Normalisation matches the
   # Supabase classifier: lower(trim(x)) with non-letters collapsed to '_'.
