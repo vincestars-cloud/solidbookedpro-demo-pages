@@ -111,6 +111,16 @@ const freed = doomed.reduce((a, d) => a + du(d), 0);
 
 log(`demo dirs=${dirs.length} keep=${dirs.length - doomed.length} delete=${doomed.length} (${pct.toFixed(1)}%) freeing ${(freed / 1048576).toFixed(0)} MB`);
 log(`  keep breakdown: positive-reply=${keepSlugs.size - graceKept} within-${DEMO_GRACE_HOURS}h-grace=${graceKept}`);
+// --- diagnostics: how well does the DB keep-list line up with what's on disk?
+const onDisk = new Set(dirs);
+const keepOnDisk = [...keepSlugs].filter((s) => onDisk.has(s));
+const keepMissing = [...keepSlugs].filter((s) => !onDisk.has(s));
+log(`  DIAG businesses rows=${businesses.length} prospects rows=${prospects.length}`);
+log(`  DIAG keep-slugs total=${keepSlugs.size} | present on disk=${keepOnDisk.length} | not in this repo=${keepMissing.length}`);
+log(`  DIAG keepPhones (positive dispositions)=${keepPhones.size}`);
+log(`  DIAG sample KEEP on disk: ${keepOnDisk.slice(0, 12).join(', ')}`);
+log(`  DIAG sample keep NOT on disk: ${keepMissing.slice(0, 6).join(', ')}`);
+log(`  DIAG sample DOOMED: ${doomed.slice(0, 12).join(', ')}`);
 summary([
   '### Demos',
   `- on disk: **${dirs.length}**`,
