@@ -25,6 +25,10 @@ on:
         type: choice
         options: [both, screenshots, demos]
         default: both
+      screenshot_days:
+        description: 'Keep MMS screenshots newer than N days (blank = use default)'
+        type: string
+        default: ''
 
 permissions:
   contents: write
@@ -35,7 +39,7 @@ concurrency:
 
 env:
   # --- retention knobs -------------------------------------------------------
-  SCREENSHOT_RETENTION_DAYS: '3'    # MMS images older than this are removed
+  SCREENSHOT_RETENTION_DAYS: '2'    # MMS images older than this are removed (only needed at send time)
   DEMO_GRACE_HOURS: '48'            # never delete a demo built within this window
   # Normalised dispositions that KEEP a demo alive. Normalisation matches the
   # Supabase classifier: lower(trim(x)) with non-letters collapsed to '_'.
@@ -72,6 +76,9 @@ jobs:
           set -euo pipefail
           DIR=screenshots/mms
           [ -d "$DIR" ] || { echo "no $DIR, skipping"; exit 0; }
+          if [ -n "${{ inputs.screenshot_days }}" ]; then
+            SCREENSHOT_RETENTION_DAYS="${{ inputs.screenshot_days }}"
+          fi
           CUTOFF=$(date -u -d "${SCREENSHOT_RETENTION_DAYS} days ago" +%Y-%m-%dT%H:%M:%SZ)
           echo "keeping screenshots committed since $CUTOFF"
 
