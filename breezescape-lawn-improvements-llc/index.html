@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+
+<!-- Single-file build: local CSS, JavaScript, and images are embedded. Google Fonts load online; system fallbacks are defined for offline use. -->
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#0f3a26" name="theme-color"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjggMjYgMjg0IDE1MiI+PHN0eWxlPi5wa3tmaWxsOiMxYzZiM2F9QG1lZGlhKHByZWZlcnMtY29sb3Itc2NoZW1lOmRhcmspey5wa3tmaWxsOiM4ZmQxNGZ9fTwvc3R5bGU+PHBhdGggY2xhc3M9InBrIiBkPSJNMTgsMTUwIEM3OCwxNTAgMTIwLDY0IDE1MCwzNiBDMTgwLDY0IDIyMiwxNTAgMjgyLDE1MCBDMjI0LDE1MCAxODIsMTA0IDE1MCw4NiBDMTE4LDEwNCA3NiwxNTAgMTgsMTUwIFoiLz48cGF0aCBkPSJNMjA4LDEyMiBDMjE0LDg0IDIzOCw1OCAyNzAsNTAgQzI1Miw4MiAyMzgsMTA4IDIwOCwxMjIgWiIgZmlsbD0iIzhiYzM0YSIvPjxwYXRoIGQ9Ik0yMDgsMTIyIEMyMzYsMTA0IDI1Niw4MCAyNzAsNTAgQzI1OCw4NCAyNDAsMTA2IDIxNCwxMjAgWiIgZmlsbD0iI2MzZTA4YSIvPjwvc3ZnPg=="/>
+<meta content="BreezeScape Lawn Improvements & Landscape provides lawn mowing, edging, yard cleanup, tree and shrub care, mulch and sod services across  with reliable scheduling and clean, professional work." name="description"/>
+<title>BreezeScape Lawn Improvements | Lawn Care &amp; Landscaping in </title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --navy: #0f3a26;
+  --navy-2: #17492f;
+  --navy-3: #24603f;
+  --gold: #6cae2f;
+  --gold-deep: #4d8a1e;
+  --gold-soft: #cdeaa0;
+  --ink: #17212b;
+  --slate: #5f6b76;
+  --line: #d9dde0;
+  --paper: #f1f4ec;
+  --paper-2: #e7ecdd;
+  --white: #ffffff;
+  --success: #2d815d;
+  --danger: #a73737;
+  --font-display: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --container: 1240px;
+  --shadow-sm: 0 12px 30px rgba(13, 34, 56, 0.11);
+  --shadow-lg: 0 28px 70px rgba(13, 34, 56, 0.22);
+  --radius: 4px;
+  --ease: cubic-bezier(.2, .75, .2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 112px; }
+body { margin: 0; color: var(--ink); background: var(--white); font-family: var(--font-body); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+body.nav-open { overflow: hidden; }
+img, svg { display: block; max-width: 100%; }
+img { height: auto; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+::selection { color: var(--navy); background: var(--gold-soft); }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+
+h1, h2, h3, p { margin-top: 0; }
+h1, h2, h3 { color: var(--navy); font-family: var(--font-display); font-weight: 800; line-height: .98; letter-spacing: -.025em; }
+h1 { font-size: clamp(4.1rem, 7.4vw, 7.2rem); text-transform: uppercase; }
+h2 { margin-bottom: 22px; font-size: clamp(2.8rem, 4.8vw, 5.2rem); text-transform: uppercase; }
+h3 { font-size: clamp(1.75rem, 2.5vw, 2.25rem); }
+p { margin-bottom: 1.2em; }
+ul, ol { margin-top: 0; }
+
+.svg-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
+.skip-link { position: fixed; z-index: 9999; top: 12px; left: 12px; padding: 12px 18px; color: var(--navy); background: var(--gold); font-weight: 800; transform: translateY(-160%); transition: transform .2s ease; }
+.skip-link:focus { transform: translateY(0); }
+.container { width: min(calc(100% - 44px), var(--container)); margin-inline: auto; }
+.section { padding: 110px 0; }
+.center-action { display: flex; justify-content: center; margin-top: 54px; }
+
+.eyebrow { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 18px; color: var(--gold-deep); font-family: var(--font-display); font-size: .92rem; font-weight: 800; letter-spacing: .15em; line-height: 1.2; text-transform: uppercase; }
+.eyebrow::before { width: 30px; height: 3px; background: currentColor; content: ""; }
+.eyebrow--light { color: var(--gold); }
+.eyebrow--dark { color: var(--navy); }
+
+.button { min-height: 54px; display: inline-flex; align-items: center; justify-content: center; gap: 13px; padding: 15px 25px; border: 2px solid transparent; border-radius: 2px; font-family: var(--font-display); font-size: 1rem; font-weight: 800; letter-spacing: .06em; line-height: 1; text-transform: uppercase; transition: transform .2s var(--ease), background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease; }
+.button:hover { transform: translateY(-2px); }
+.button svg, .text-link svg { width: 20px; height: 20px; flex: 0 0 auto; }
+.button--primary { color: var(--navy); background: var(--gold); box-shadow: 0 10px 26px rgba(244, 165, 28, .22); }
+.button--primary:hover { background: #7cc23a; box-shadow: 0 14px 34px rgba(244, 165, 28, .3); }
+.button--dark { color: var(--white); background: var(--navy); }
+.button--dark:hover { background: var(--navy-2); }
+.button--ghost { color: var(--white); border-color: rgba(255,255,255,.65); background: rgba(15,58,38,.16); backdrop-filter: blur(6px); }
+.button--ghost:hover { border-color: var(--white); background: rgba(255,255,255,.1); }
+.button--light { color: var(--navy); background: var(--white); }
+.button--light:hover { background: var(--gold); }
+.button--outline { color: var(--navy); border-color: var(--navy); background: transparent; }
+.button--outline:hover { color: var(--white); background: var(--navy); }
+.button--compact { min-height: 46px; padding: 12px 19px; font-size: .9rem; }
+.button--wide { width: 100%; }
+.text-link { display: inline-flex; align-items: center; gap: 10px; color: var(--gold); font-family: var(--font-display); font-weight: 800; letter-spacing: .045em; line-height: 1.2; text-transform: uppercase; }
+.text-link svg { transition: transform .2s var(--ease); }
+.text-link:hover svg { transform: translateX(5px); }
+.text-link--dark { color: var(--navy); }
+
+.utility-bar { position: relative; z-index: 110; color: #d7e1ea; background: #0a2417; font-size: .78rem; letter-spacing: .02em; }
+.utility-bar__inner { min-height: 38px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.utility-bar p { margin: 0; }
+.status-dot { width: 7px; height: 7px; display: inline-block; margin-right: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 5px rgba(108,174,47,.14); }
+.utility-bar__links { display: flex; align-items: center; gap: 24px; }
+.utility-bar__links a { display: inline-flex; align-items: center; gap: 7px; color: var(--white); font-weight: 700; }
+.utility-bar__links svg { width: 15px; height: 15px; color: var(--gold); }
+
+.site-header { position: sticky; z-index: 100; top: 0; color: var(--navy); background: rgba(255,255,255,.97); border-bottom: 1px solid rgba(15,58,38,.1); transition: box-shadow .25s ease, background-color .25s ease; }
+.site-header.is-scrolled { box-shadow: 0 10px 35px rgba(15,58,38,.12); background: rgba(255,255,255,.985); }
+.site-header__inner { min-height: 86px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 35px; }
+.brand { display: inline-flex; flex-direction: column; align-items: center; gap: 8px; min-width: 200px; text-align: center; }
+.brand__mark { width: 60px; color: var(--navy); }
+.brand__mark svg { width: 100%; }
+.brand__text { display: flex; flex-direction: column; align-items: center; line-height: 1; }
+.brand__text strong { font-family: var(--font-display); font-size: 1.8rem; font-weight: 900; letter-spacing: -.02em; }
+.brand__text small { margin-top: 5px; color: var(--slate); font-size: .6rem; font-weight: 800; letter-spacing: .18em; }
+.primary-nav { justify-self: center; }
+.primary-nav ul { display: flex; align-items: center; gap: clamp(18px, 2vw, 32px); padding: 0; margin: 0; list-style: none; }
+.primary-nav a { position: relative; display: block; padding: 30px 0; font-family: var(--font-display); font-size: .9rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.primary-nav a::after { position: absolute; right: 0; bottom: 20px; left: 0; height: 3px; background: var(--gold); transform: scaleX(0); transform-origin: right; transition: transform .22s var(--ease); content: ""; }
+.primary-nav a:hover::after, .primary-nav a:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+.header-actions { display: flex; align-items: center; gap: 20px; }
+.header-phone { display: flex; flex-direction: column; align-items: flex-end; line-height: 1.15; }
+.header-phone span { color: var(--slate); font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.header-phone strong { margin-top: 4px; font-family: var(--font-display); font-size: 1.1rem; letter-spacing: .03em; }
+.nav-toggle { width: 48px; height: 48px; display: none; align-items: center; justify-content: center; flex-direction: column; gap: 5px; padding: 0; border: 0; background: transparent; }
+.nav-toggle span:not(.sr-only) { width: 26px; height: 2px; background: var(--navy); transition: transform .2s ease, opacity .2s ease; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.hero { position: relative; min-height: 770px; display: flex; align-items: stretch; overflow: clip; color: var(--white); background: var(--navy); }
+.hero__media { position: absolute; inset: 0; background-image: linear-gradient(90deg, rgba(8,28,18,.95) 0%, rgba(12,38,24,.82) 42%, rgba(12,38,24,.42) 70%, rgba(12,38,24,.54) 100%), linear-gradient(0deg, rgba(12,38,24,.58), transparent 48%), url("https://demo.solidbookedpro.com/assets/lawn2/hero.jpg"); background-position: center center; background-size: cover; transform: scale(1.015); }
+.hero__grid-lines { position: absolute; inset: 0; opacity: .06; background-image: linear-gradient(rgba(255,255,255,.9) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.9) 1px, transparent 1px); background-size: 86px 86px; mask-image: linear-gradient(90deg, #000 0, transparent 78%); }
+.hero__inner { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(350px, .72fr); align-items: center; gap: clamp(55px, 7vw, 95px); padding-top: 82px; padding-bottom: 110px; }
+.hero__copy { max-width: 810px; }
+.hero h1 { max-width: 800px; margin-bottom: 25px; color: var(--white); text-wrap: balance; }
+.hero__lead { max-width: 690px; margin-bottom: 35px; color: #d7e2ea; font-size: clamp(1.08rem, 1.6vw, 1.32rem); line-height: 1.65; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.hero__checks { display: flex; flex-wrap: wrap; gap: 20px 28px; padding: 28px 0 0; margin: 0; color: #eef4f7; font-size: .88rem; font-weight: 700; list-style: none; }
+.hero__checks li { display: flex; align-items: center; gap: 8px; }
+.hero__checks svg { width: 18px; height: 18px; color: var(--gold); }
+.hero__edge { position: absolute; z-index: 3; right: -2%; bottom: -60px; left: -2%; height: 90px; background: var(--white); transform: rotate(-1.1deg); transform-origin: left bottom; }
+
+.estimate-card { position: relative; padding: 34px; color: var(--ink); background: rgba(255,255,255,.98); border-top: 6px solid var(--gold); box-shadow: var(--shadow-lg); }
+.estimate-card::before { position: absolute; top: -6px; right: -14px; width: 14px; height: 66px; background: var(--gold-deep); clip-path: polygon(0 0,100% 14%,100% 100%,0 100%); content: ""; }
+.estimate-card__kicker { margin-bottom: 8px; color: var(--gold-deep); font-family: var(--font-display); font-size: .76rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+.estimate-card h2 { margin-bottom: 10px; font-size: 2.4rem; }
+.estimate-card > p:not(.estimate-card__kicker) { margin-bottom: 23px; color: var(--slate); font-size: .9rem; line-height: 1.55; }
+.estimate-form { display: grid; gap: 14px; }
+.estimate-form label { display: grid; gap: 6px; }
+.estimate-form label > span { color: var(--navy); font-size: .69rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.estimate-form input, .estimate-form select { width: 100%; height: 48px; padding: 0 13px; color: var(--ink); background: #f7f7f5; border: 1px solid #cdd3d7; border-radius: 0; outline: 0; }
+.estimate-form input:focus, .estimate-form select:focus { border-color: var(--gold-deep); box-shadow: 0 0 0 3px rgba(108,174,47,.16); }
+.estimate-form small { display: block; color: #78828a; font-size: .68rem; line-height: 1.4; }
+.form-status { min-height: 0; margin: -3px 0 0; font-size: .78rem; font-weight: 700; }
+.form-status.is-success { color: var(--success); }
+.form-status.is-error { color: var(--danger); }
+
+.proof-strip { position: relative; z-index: 4; padding: 42px 0 34px; background: var(--white); }
+.proof-strip__grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+.proof-item { min-height: 76px; display: flex; align-items: center; gap: 15px; padding: 0 26px; border-right: 1px solid var(--line); }
+.proof-item:first-child { padding-left: 0; }
+.proof-item:last-child { padding-right: 0; border-right: 0; }
+.proof-item__icon { width: 43px; height: 43px; display: grid; flex: 0 0 43px; place-items: center; color: var(--navy); background: var(--gold); }
+.proof-item__icon svg { width: 23px; height: 23px; }
+.proof-item div { display: flex; flex-direction: column; }
+.proof-item strong { color: var(--navy); font-family: var(--font-display); font-size: 1.18rem; line-height: 1.1; text-transform: uppercase; }
+.proof-item small { margin-top: 5px; color: var(--slate); font-size: .74rem; line-height: 1.3; }
+
+.section--intro { padding-top: 90px; background: linear-gradient(180deg, #fff 0%, #f7f6f3 100%); }
+.section-heading { max-width: 780px; margin-bottom: 52px; }
+.section-heading--center { margin-right: auto; margin-left: auto; text-align: center; }
+.section-heading--center .eyebrow { justify-content: center; }
+.section-heading--center p:last-child { max-width: 710px; margin-right: auto; margin-left: auto; color: var(--slate); font-size: 1.05rem; }
+.section-heading--split { max-width: none; display: grid; grid-template-columns: 1.15fr .75fr; align-items: end; gap: 80px; }
+.section-heading--split p:last-child { color: var(--slate); }
+.section-heading--light h2 { color: var(--white); }
+.section-heading--light p:last-child { max-width: 720px; color: #bdcad4; }
+.service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.service-card { position: relative; min-width: 0; background: var(--white); box-shadow: var(--shadow-sm); transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+.service-card:hover { transform: translateY(-9px); box-shadow: var(--shadow-lg); }
+.service-card__image { position: relative; height: 270px; overflow: hidden; background: var(--navy); }
+.service-card__image::after { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(9,30,19,.5)); content: ""; }
+.service-card__image img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease); }
+.service-card:hover .service-card__image img { transform: scale(1.045); }
+.service-card__body { position: relative; min-height: 310px; padding: 42px 32px 34px; }
+.service-card__number { position: absolute; top: 20px; right: 24px; color: #e5e8ea; font-family: var(--font-display); font-size: 3.6rem; font-weight: 900; line-height: 1; }
+.service-card__icon { position: absolute; top: -31px; left: 30px; width: 62px; height: 62px; display: grid; place-items: center; color: var(--navy); background: var(--gold); box-shadow: 0 8px 20px rgba(15,58,38,.18); }
+.service-card__icon svg { width: 30px; height: 30px; }
+.service-card h3 { position: relative; z-index: 1; margin-bottom: 15px; text-transform: uppercase; }
+.service-card p { min-height: 80px; color: var(--slate); font-size: .94rem; }
+.service-card .text-link { font-size: .78rem; }
+
+.finance-band { color: var(--navy); background: var(--gold); overflow: hidden; }
+.finance-band__inner { position: relative; min-height: 205px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 42px; }
+.finance-band__inner::after { position: absolute; right: 24%; width: 320px; height: 320px; border: 45px solid rgba(255,255,255,.1); border-radius: 50%; content: ""; transform: translateY(45%); }
+.finance-band__badge { position: relative; z-index: 1; width: 126px; height: 126px; display: flex; align-items: center; justify-content: center; flex-direction: column; color: var(--white); background: var(--navy); border-radius: 50%; transform: rotate(-7deg); box-shadow: 0 15px 30px rgba(15,58,38,.2); }
+.finance-band__badge span { font-family: var(--font-display); font-size: .78rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.finance-band__badge strong { font-family: var(--font-display); font-size: 1.35rem; line-height: 1; }
+.finance-band h2 { max-width: 720px; margin-bottom: 0; font-size: clamp(2.2rem, 3.6vw, 3.8rem); }
+.finance-band .eyebrow { margin-bottom: 10px; }
+.finance-band .button { position: relative; z-index: 1; }
+
+.section--split { padding: 0; background: var(--navy); }
+.feature-panels { width: 100%; max-width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
+.feature-panel { position: relative; min-height: 590px; display: flex; align-items: flex-end; overflow: hidden; }
+.feature-panel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.feature-panel:hover img { transform: scale(1.035); }
+.feature-panel__overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,32,21,.08) 20%, rgba(10,32,21,.86) 85%, rgba(10,32,21,.98)); }
+.feature-panel:first-child::after { position: absolute; top: 0; right: 0; width: 1px; height: 100%; background: rgba(255,255,255,.25); content: ""; }
+.feature-panel__content { position: relative; z-index: 2; max-width: 650px; padding: 65px clamp(30px, 5vw, 85px); color: var(--white); }
+.feature-panel h2 { margin-bottom: 16px; color: var(--white); font-size: clamp(2.7rem, 4.4vw, 4.8rem); }
+.feature-panel p:not(.eyebrow) { max-width: 590px; margin-bottom: 27px; color: #d5e0e7; }
+
+.standards { padding: 35px 0; color: var(--white); background: #0a2216; }
+.standards__grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+.standard { display: grid; grid-template-columns: auto 1fr; column-gap: 14px; padding: 12px 28px; border-right: 1px solid rgba(255,255,255,.13); }
+.standard:first-child { padding-left: 0; }
+.standard:last-child { padding-right: 0; border-right: 0; }
+.standard span { grid-row: 1 / 3; color: var(--gold); font-family: var(--font-display); font-size: 1.3rem; font-weight: 900; }
+.standard strong { font-family: var(--font-display); font-size: 1rem; letter-spacing: .05em; line-height: 1.25; text-transform: uppercase; }
+.standard small { color: #98a9b6; font-size: .7rem; line-height: 1.3; }
+
+.roof-selector { background: var(--paper); }
+.roof-selector__grid { display: grid; grid-template-columns: .78fr 1.22fr; align-items: center; gap: clamp(50px, 8vw, 110px); }
+.roof-selector__copy > p:not(.eyebrow):not(.selected-color) { color: var(--slate); }
+.swatch-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 28px 0 20px; }
+.roof-swatch { display: flex; align-items: center; gap: 11px; padding: 11px; color: var(--navy); background: var(--white); border: 1px solid #d2d5d6; font-family: var(--font-display); font-size: .84rem; font-weight: 800; letter-spacing: .035em; text-align: left; text-transform: uppercase; transition: border-color .2s ease, box-shadow .2s ease, transform .2s var(--ease); }
+.roof-swatch:hover { transform: translateY(-2px); border-color: var(--navy); }
+.roof-swatch.is-active { border-color: var(--gold-deep); box-shadow: inset 0 0 0 2px var(--gold); }
+.roof-swatch span { width: 34px; height: 34px; flex: 0 0 34px; background-color: var(--swatch); background-image: linear-gradient(135deg, rgba(255,255,255,.16) 25%, transparent 25% 50%, rgba(0,0,0,.12) 50% 75%, transparent 75%); background-size: 14px 14px; }
+.selected-color { margin-bottom: 24px; color: var(--slate); font-size: .84rem; }
+.selected-color strong { color: var(--navy); }
+.roof-visualizer { position: relative; padding: 18px; background: var(--white); border: 1px solid #d5d9db; box-shadow: var(--shadow-lg); }
+.roof-visualizer::before { position: absolute; z-index: 2; top: -11px; left: 38px; width: 92px; height: 11px; background: var(--gold); content: ""; }
+.roof-visualizer__label { position: absolute; z-index: 3; top: 35px; left: 35px; display: flex; flex-direction: column; padding: 12px 15px; color: var(--white); background: rgba(15,58,38,.9); backdrop-filter: blur(6px); }
+.roof-visualizer__label span { color: var(--gold); font-family: var(--font-display); font-size: .57rem; font-weight: 800; letter-spacing: .16em; }
+.roof-visualizer__label strong { font-family: var(--font-display); font-size: 1.1rem; text-transform: uppercase; }
+.roof-visualizer svg { width: 100%; }
+
+.section--dark { color: var(--white); background: var(--navy); }
+.expertise { position: relative; overflow: hidden; }
+.expertise::before { position: absolute; top: -280px; right: -220px; width: 680px; height: 680px; border: 95px solid rgba(108,174,47,.07); border-radius: 50%; content: ""; }
+.expertise::after { position: absolute; bottom: -220px; left: -180px; width: 520px; height: 520px; background: repeating-linear-gradient(45deg, transparent 0 18px, rgba(255,255,255,.03) 18px 20px); border-radius: 50%; content: ""; }
+.expertise .container { position: relative; z-index: 1; }
+.expertise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.14); }
+.expertise-card { position: relative; min-height: 430px; padding: 43px 38px; background: #14402a; transition: background-color .25s ease; }
+.expertise-card:hover { background: #1c5236; }
+.expertise-card__number { position: absolute; top: 24px; right: 29px; color: rgba(255,255,255,.09); font-family: var(--font-display); font-size: 5rem; font-weight: 900; line-height: 1; }
+.expertise-card h3 { position: relative; max-width: 300px; margin-bottom: 22px; color: var(--white); font-size: 2.1rem; text-transform: uppercase; }
+.expertise-card p { position: relative; color: #bdcad3; font-size: .93rem; }
+.expertise-card ul { position: relative; padding: 20px 0 0; margin: 25px 0 0; border-top: 1px solid rgba(255,255,255,.12); list-style: none; }
+.expertise-card li { position: relative; padding: 5px 0 5px 19px; color: #eef3f6; font-family: var(--font-display); font-size: .85rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.expertise-card li::before { position: absolute; top: 13px; left: 0; width: 7px; height: 7px; background: var(--gold); content: ""; transform: rotate(45deg); }
+
+.projects { background: var(--white); }
+.project-grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 285px; gap: 18px; }
+.project-card { position: relative; grid-column: span 4; overflow: hidden; background: var(--navy); }
+.project-card--wide { grid-column: span 8; }
+.project-card:nth-child(4), .project-card:nth-child(5) { grid-row: span 1; }
+.project-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .75s var(--ease), filter .3s ease; }
+.project-card::after { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(8,28,18,.88)); content: ""; transition: background .3s ease; }
+.project-card:hover img { transform: scale(1.045); filter: saturate(1.05); }
+.project-card:hover::after { background: linear-gradient(180deg, rgba(8,28,18,.06) 28%, rgba(8,28,18,.94)); }
+.project-card__meta { position: absolute; z-index: 2; right: 0; bottom: 0; left: 0; padding: 28px; color: var(--white); }
+.project-card__meta span { color: var(--gold); font-family: var(--font-display); font-size: .68rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.project-card__meta h3 { margin: 5px 0 0; color: var(--white); font-size: 1.55rem; text-transform: uppercase; }
+
+.process { color: var(--white); background: var(--gold); }
+.process__grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(60px, 9vw, 130px); }
+.process__intro { align-self: center; }
+.process__intro .eyebrow { color: var(--navy); }
+.process__intro h2 { max-width: 530px; }
+.process__intro p:not(.eyebrow) { max-width: 500px; color: #493b26; }
+.process-list { padding: 0; margin: 0; border-top: 1px solid rgba(15,58,38,.28); list-style: none; }
+.process-list li { display: grid; grid-template-columns: 76px 1fr; gap: 20px; padding: 30px 0; border-bottom: 1px solid rgba(15,58,38,.28); }
+.process-list > li > span { color: rgba(15,58,38,.44); font-family: var(--font-display); font-size: 2.7rem; font-weight: 900; line-height: 1; }
+.process-list h3 { margin-bottom: 8px; font-size: 1.8rem; text-transform: uppercase; }
+.process-list p { margin: 0; color: #493b26; font-size: .93rem; }
+
+.reviews { position: relative; padding: 110px 0; overflow: hidden; color: var(--white); background: #0a2417; }
+.reviews__texture { position: absolute; inset: 0; opacity: .09; background-image: linear-gradient(135deg, transparent 0 47%, #fff 47% 50%, transparent 50% 100%); background-size: 74px 44px; transform: skewY(-5deg) scale(1.2); }
+.reviews::after { position: absolute; top: -150px; right: 8%; width: 360px; height: 360px; border: 70px solid rgba(108,174,47,.12); border-radius: 50%; content: ""; }
+.reviews__inner { position: relative; z-index: 2; display: grid; grid-template-columns: .68fr 1.32fr; align-items: center; gap: clamp(60px, 9vw, 130px); }
+.reviews__heading h2 { color: var(--white); }
+.rating { display: flex; align-items: center; gap: 18px; margin-top: 30px; }
+.rating > span { font-family: var(--font-display); font-size: 3.6rem; font-weight: 900; line-height: 1; }
+.rating div { display: flex; gap: 3px; }
+.rating svg, .testimonial__stars svg { width: 20px; height: 20px; color: var(--gold); }
+.reviews__note { max-width: 390px; margin-top: 17px; color: #94a6b4; font-size: .76rem; }
+.testimonial-slider { min-width: 0; }
+.testimonial-track { position: relative; min-height: 345px; }
+.testimonial { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 48px; margin: 0; color: var(--ink); background: var(--white); opacity: 0; visibility: hidden; transform: translateX(28px); transition: opacity .35s ease, transform .35s var(--ease), visibility .35s; box-shadow: var(--shadow-lg); }
+.testimonial::before { position: absolute; top: -20px; left: 40px; color: var(--gold); font-family: Georgia, serif; font-size: 7.5rem; line-height: 1; content: "“"; }
+.testimonial.is-active { position: relative; opacity: 1; visibility: visible; transform: translateX(0); }
+.testimonial__stars { display: flex; gap: 3px; margin-bottom: 18px; }
+.testimonial p { position: relative; z-index: 1; margin-bottom: 28px; color: var(--navy); font-family: var(--font-display); font-size: clamp(1.7rem, 2.7vw, 2.45rem); font-weight: 600; line-height: 1.16; }
+.testimonial footer { display: flex; flex-direction: column; padding-top: 20px; border-top: 1px solid var(--line); }
+.testimonial footer strong { font-family: var(--font-display); font-size: 1.1rem; text-transform: uppercase; }
+.testimonial footer span { color: var(--slate); font-size: .78rem; }
+.slider-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 22px; }
+.slider-controls > button { width: 46px; height: 46px; color: var(--white); background: transparent; border: 1px solid rgba(255,255,255,.4); transition: color .2s ease, background .2s ease; }
+.slider-controls > button:hover { color: var(--navy); background: var(--gold); border-color: var(--gold); }
+.slider-dots { display: flex; gap: 8px; }
+.slider-dots button { width: 9px; height: 9px; padding: 0; background: rgba(255,255,255,.34); border: 0; border-radius: 50%; }
+.slider-dots button.is-active { width: 28px; background: var(--gold); border-radius: 10px; }
+
+.quality-strip { overflow: hidden; padding: 24px 0; color: var(--navy); background: var(--paper-2); border-top: 1px solid #d7d2c9; border-bottom: 1px solid #d7d2c9; }
+.quality-strip__inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; white-space: nowrap; }
+.quality-strip span { font-family: var(--font-display); font-size: 1rem; font-weight: 900; letter-spacing: .08em; }
+.quality-strip i { width: 8px; height: 8px; flex: 0 0 8px; background: var(--gold); transform: rotate(45deg); }
+
+.resources { background: #f7f6f3; }
+.article-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.article-card { background: var(--white); box-shadow: 0 12px 30px rgba(15,58,38,.08); transition: transform .3s var(--ease), box-shadow .3s ease; }
+.article-card:hover { transform: translateY(-7px); box-shadow: var(--shadow-lg); }
+.article-card__visual { position: relative; height: 220px; display: flex; align-items: flex-end; padding: 20px; overflow: hidden; background: var(--navy); }
+.article-card__visual::before, .article-card__visual::after { position: absolute; content: ""; }
+.article-card__visual span { position: relative; z-index: 2; padding: 7px 10px; color: var(--navy); background: var(--gold); font-family: var(--font-display); font-size: .68rem; font-weight: 900; letter-spacing: .12em; }
+.article-card__visual--inspection { background-image: linear-gradient(135deg, #0e263d, #41627e); }
+.article-card__visual--inspection::before { width: 330px; height: 165px; top: 58px; left: 38px; background: #253c50; clip-path: polygon(50% 0,100% 52%,87% 52%,87% 100%,13% 100%,13% 52%,0 52%); }
+.article-card__visual--inspection::after { width: 295px; height: 18px; top: 118px; left: 56px; background: var(--gold); transform: rotate(-26deg); }
+.article-card__visual--storm { background: linear-gradient(155deg, #7c8993, #24394b); }
+.article-card__visual--storm::before { inset: 0; opacity: .32; background: repeating-linear-gradient(105deg, transparent 0 17px, #d5e7f1 18px 20px, transparent 21px 36px); transform: translateX(40px); }
+.article-card__visual--storm::after { right: -75px; bottom: -145px; width: 300px; height: 300px; border: 45px solid var(--gold); border-radius: 50%; opacity: .75; }
+.article-card__visual--commercial { background: linear-gradient(145deg, #1b354a, #0a2216); }
+.article-card__visual--commercial::before { right: -30px; bottom: -25px; width: 380px; height: 210px; background: #87929a; clip-path: polygon(0 35%, 62% 0,100% 29%,100% 100%,0 100%); }
+.article-card__visual--commercial::after { right: 32px; bottom: 38px; width: 260px; height: 88px; opacity: .55; background: repeating-linear-gradient(90deg, transparent 0 39px, #263642 40px 44px); transform: skewY(-10deg); }
+.article-card__body { padding: 28px 28px 32px; }
+.article-card__meta { margin-bottom: 11px; color: var(--gold-deep); font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.article-card h3 { margin-bottom: 14px; font-size: 1.8rem; text-transform: uppercase; }
+.article-card__body > p:not(.article-card__meta) { color: var(--slate); font-size: .9rem; }
+.article-card .text-link { font-size: .75rem; }
+
+.faq { background: var(--white); }
+.faq__grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(60px, 9vw, 120px); }
+.faq__intro p:last-child { color: var(--slate); }
+.accordion { border-top: 1px solid var(--line); }
+.accordion-item { border-bottom: 1px solid var(--line); }
+.accordion-item h3 { margin: 0; font-family: var(--font-body); }
+.accordion-item h3 button { width: 100%; display: grid; grid-template-columns: 1fr 30px; align-items: center; gap: 20px; padding: 24px 0; color: var(--navy); background: transparent; border: 0; font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; letter-spacing: .02em; text-align: left; text-transform: uppercase; }
+.accordion-item h3 i { position: relative; width: 28px; height: 28px; border: 1px solid var(--navy); }
+.accordion-item h3 i::before, .accordion-item h3 i::after { position: absolute; top: 50%; left: 50%; width: 12px; height: 2px; background: var(--navy); content: ""; transform: translate(-50%,-50%); }
+.accordion-item h3 i::after { transform: translate(-50%,-50%) rotate(90deg); transition: transform .2s ease; }
+.accordion-item h3 button[aria-expanded="true"] i { background: var(--gold); border-color: var(--gold); }
+.accordion-item h3 button[aria-expanded="true"] i::after { transform: translate(-50%,-50%) rotate(0); }
+.accordion-panel { padding: 0 55px 24px 0; }
+.accordion-panel p { margin: 0; color: var(--slate); font-size: .94rem; }
+
+.final-cta { position: relative; min-height: 570px; display: flex; align-items: center; overflow: hidden; color: var(--white); background: var(--navy); }
+.final-cta__image { position: absolute; inset: 0; background-image: linear-gradient(90deg, rgba(8,28,18,.96) 0%, rgba(8,28,18,.84) 45%, rgba(8,28,18,.45) 77%, rgba(8,28,18,.52) 100%), url("https://demo.solidbookedpro.com/assets/lawn2/cta.jpg"); background-position: center 43%; background-size: cover; transform: scale(1.02); }
+.final-cta::after { position: absolute; top: -1px; right: -4%; left: -4%; height: 50px; background: var(--white); content: ""; transform: rotate(1deg) translateY(-50%); }
+.final-cta__inner { position: relative; z-index: 2; padding-top: 80px; padding-bottom: 70px; }
+.final-cta h2 { max-width: 760px; color: var(--white); }
+.final-cta__inner > p:not(.eyebrow) { max-width: 620px; color: #d3dfe7; font-size: 1.08rem; }
+.final-cta__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 30px; margin-top: 32px; }
+.final-cta__phone { display: inline-flex; align-items: center; gap: 12px; }
+.final-cta__phone > svg { width: 42px; height: 42px; padding: 9px; color: var(--navy); background: var(--gold); }
+.final-cta__phone span { display: flex; flex-direction: column; color: #b8c7d1; font-size: .68rem; letter-spacing: .09em; text-transform: uppercase; }
+.final-cta__phone strong { margin-top: 4px; color: var(--white); font-family: var(--font-display); font-size: 1.4rem; letter-spacing: .04em; }
+
+.site-footer { color: #c5d1d9; background: #071c12; }
+.site-footer__grid { display: grid; grid-template-columns: 1.65fr .75fr .65fr .85fr; gap: 58px; padding-top: 80px; padding-bottom: 62px; }
+.brand--footer { color: var(--white); }
+.brand--footer .brand__mark { color: var(--white); }
+.brand--footer .brand__text small { color: #93a6b4; }
+.footer-brand > p { max-width: 460px; margin-top: 27px; color: #93a6b4; font-size: .85rem; }
+.footer-contact { display: flex; align-items: flex-start; flex-direction: column; gap: 8px; margin-top: 20px; font-size: .83rem; }
+.footer-contact a:first-child { color: var(--gold); font-family: var(--font-display); font-size: 1.45rem; font-weight: 800; }
+.footer-column h2 { margin-bottom: 22px; color: var(--white); font-size: 1.15rem; letter-spacing: .06em; text-transform: uppercase; }
+.footer-column ul { display: grid; gap: 11px; padding: 0; margin: 0; color: #9fb0bc; font-size: .82rem; list-style: none; }
+.footer-column a:hover { color: var(--gold); }
+.footer-column dl { margin: 0 0 24px; color: #9fb0bc; font-size: .79rem; }
+.footer-column dl div { display: flex; justify-content: space-between; gap: 20px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.1); }
+.footer-column dd { margin: 0; color: var(--white); }
+.site-footer__bottom { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 30px; color: #758896; border-top: 1px solid rgba(255,255,255,.1); font-size: .72rem; }
+.site-footer__bottom p { display: flex; gap: 22px; margin: 0; }
+
+.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 1180px) {
+  .site-header__inner { gap: 24px; }
+  .header-phone { display: none; }
+  .primary-nav ul { gap: 19px; }
+  .primary-nav a { font-size: .82rem; }
+  .proof-item { padding-inline: 16px; }
+  .proof-item strong { font-size: 1.03rem; }
+  .site-footer__grid { grid-template-columns: 1.45fr .7fr .7fr; }
+  .footer-column--hours { grid-column: 2 / 4; display: grid; grid-template-columns: 1fr auto; align-items: end; column-gap: 40px; }
+  .footer-column--hours h2 { grid-column: 1 / -1; }
+}
+
+@media (max-width: 980px) {
+  html { scroll-padding-top: 84px; }
+  .utility-bar__inner > p { display: none; }
+  .utility-bar__inner { justify-content: flex-end; }
+  .site-header__inner { min-height: 76px; grid-template-columns: auto 1fr auto; }
+  .brand { min-width: 0; }
+  .brand__text strong { font-size: 1.55rem; }
+  .nav-toggle { display: flex; grid-column: 3; }
+  .header-actions { display: none; }
+  .primary-nav { position: fixed; z-index: 98; top: 114px; right: 0; bottom: 0; left: 0; display: block; padding: 28px 22px 50px; background: var(--navy); visibility: hidden; opacity: 0; transform: translateY(-12px); transition: opacity .22s ease, transform .22s var(--ease), visibility .22s; }
+  .primary-nav.is-open { visibility: visible; opacity: 1; transform: translateY(0); }
+  .primary-nav ul { display: grid; gap: 0; }
+  .primary-nav li { border-bottom: 1px solid rgba(255,255,255,.12); }
+  .primary-nav a { padding: 18px 4px; color: var(--white); font-size: 1.25rem; }
+  .primary-nav a::after { display: none; }
+  .hero__inner { grid-template-columns: 1fr; gap: 52px; padding-top: 82px; }
+  .hero__copy { max-width: 760px; }
+  .estimate-card { max-width: 720px; }
+  .proof-strip__grid { grid-template-columns: 1fr 1fr; row-gap: 25px; }
+  .proof-item:nth-child(2) { border-right: 0; }
+  .proof-item:nth-child(3) { padding-left: 0; }
+  .service-grid { grid-template-columns: 1fr 1fr; }
+  .service-card:last-child { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; }
+  .service-card:last-child .service-card__image { height: 100%; min-height: 330px; }
+  .finance-band__inner { grid-template-columns: auto 1fr; padding-block: 35px; }
+  .finance-band .button { grid-column: 2; justify-self: start; }
+  .feature-panels { grid-template-columns: 1fr; }
+  .feature-panel:first-child::after { top: auto; right: 0; bottom: 0; width: 100%; height: 1px; }
+  .feature-panel { min-height: 520px; }
+  .standards__grid { grid-template-columns: 1fr 1fr; row-gap: 22px; }
+  .standard:nth-child(2) { border-right: 0; }
+  .standard:nth-child(3) { padding-left: 0; }
+  .roof-selector__grid { grid-template-columns: 1fr; }
+  .roof-selector__copy { max-width: 720px; }
+  .expertise-grid { grid-template-columns: 1fr; }
+  .expertise-card { min-height: 0; }
+  .section-heading--split { grid-template-columns: 1fr; gap: 12px; }
+  .project-card, .project-card--wide { grid-column: span 6; }
+  .project-card:last-child { grid-column: 1 / -1; }
+  .process__grid { grid-template-columns: 1fr; }
+  .process__intro { max-width: 720px; }
+  .reviews__inner { grid-template-columns: 1fr; }
+  .reviews__heading { max-width: 700px; }
+  .testimonial-slider { max-width: 820px; }
+  .quality-strip__inner { justify-content: flex-start; overflow-x: auto; }
+  .article-grid { grid-template-columns: 1fr 1fr; }
+  .article-card:last-child { grid-column: 1 / -1; display: grid; grid-template-columns: .8fr 1.2fr; }
+  .article-card:last-child .article-card__visual { height: 100%; min-height: 260px; }
+  .faq__grid { grid-template-columns: 1fr; }
+  .site-footer__grid { grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
+}
+
+@media (max-width: 700px) {
+  .container { width: min(calc(100% - 30px), var(--container)); }
+  .section { padding: 82px 0; }
+  h1 { font-size: clamp(3.4rem, 16vw, 5.3rem); }
+  h2 { font-size: clamp(2.5rem, 12vw, 4rem); }
+  .utility-bar { display: none; }
+  .site-header__inner { min-height: 72px; }
+  .primary-nav { top: 72px; }
+  .brand__mark { width: 40px; }
+  .brand__text strong { font-size: 1.35rem; }
+  .brand__text small { font-size: .5rem; }
+  .hero { min-height: auto; }
+  .hero__media { background-image: linear-gradient(90deg, rgba(8,28,18,.95), rgba(12,38,24,.75)), url("https://demo.solidbookedpro.com/assets/lawn2/hero.jpg"); background-position: 53% center; }
+  .hero__inner { padding-top: 70px; padding-bottom: 95px; }
+  .hero__actions { align-items: stretch; flex-direction: column; }
+  .hero__actions .button { width: 100%; }
+  .hero__checks { align-items: flex-start; flex-direction: column; gap: 11px; }
+  .estimate-card { padding: 28px 21px; }
+  .form-row { grid-template-columns: 1fr; }
+  .proof-strip__grid { grid-template-columns: 1fr; gap: 0; }
+  .proof-item { padding: 19px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .proof-item:last-child { border-bottom: 0; }
+  .section-heading { margin-bottom: 38px; }
+  .service-grid { grid-template-columns: 1fr; }
+  .service-card:last-child { grid-column: auto; display: block; }
+  .service-card:last-child .service-card__image { min-height: 0; height: 270px; }
+  .service-card__body { min-height: 0; }
+  .service-card p { min-height: 0; }
+  .finance-band__inner { grid-template-columns: 1fr; gap: 22px; padding-block: 48px; }
+  .finance-band__badge { width: 100px; height: 100px; }
+  .finance-band .button { grid-column: auto; }
+  .feature-panel { min-height: 500px; }
+  .feature-panel__content { padding: 48px 25px; }
+  .standards__grid { grid-template-columns: 1fr; gap: 0; }
+  .standard { padding: 18px 0; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.13); }
+  .standard:last-child { border-bottom: 0; }
+  .swatch-group { grid-template-columns: 1fr; }
+  .roof-visualizer { padding: 8px; }
+  .roof-visualizer__label { top: 20px; left: 20px; }
+  .expertise-card { padding: 35px 25px; }
+  .project-grid { grid-template-columns: 1fr; grid-auto-rows: 300px; }
+  .project-card, .project-card--wide, .project-card:last-child { grid-column: 1; }
+  .process-list li { grid-template-columns: 58px 1fr; gap: 10px; }
+  .reviews { padding: 82px 0; }
+  .testimonial-track { min-height: 430px; }
+  .testimonial { padding: 42px 25px 34px; }
+  .testimonial p { font-size: 1.7rem; }
+  .article-grid { grid-template-columns: 1fr; }
+  .article-card:last-child { grid-column: auto; display: block; }
+  .article-card:last-child .article-card__visual { height: 220px; min-height: 0; }
+  .accordion-item h3 button { font-size: 1.06rem; }
+  .final-cta { min-height: 620px; }
+  .final-cta__actions { align-items: flex-start; flex-direction: column; }
+  .site-footer__grid { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+  .footer-column--hours { grid-column: 1 / -1; display: block; }
+  .site-footer__bottom { align-items: flex-start; flex-direction: column; padding: 24px 0; }
+  .site-footer__bottom p:last-child { flex-wrap: wrap; }
+}
+
+@media (max-width: 430px) {
+  .brand__text small { letter-spacing: .11em; }
+  .service-card__image { height: 235px; }
+  .project-grid { grid-auto-rows: 270px; }
+  .site-footer__grid { grid-template-columns: 1fr; }
+  .footer-brand, .footer-column--hours { grid-column: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .001ms !important; animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
+  .js .reveal { opacity: 1; transform: none; }
+}
+
+  
+
+/* --- BreezeScape Lawn Improvements & Landscape updates --- */
+.finish-studio { background: #ededeb; }
+.finish-studio__grid { display:grid; grid-template-columns: minmax(280px,.78fr) minmax(340px,1.22fr); align-items:center; gap: clamp(42px, 7vw, 92px); }
+.finish-studio__copy > p:not(.eyebrow):not(.selected-color) { max-width: 540px; color: var(--slate); font-size: 1.05rem; }
+.finish-swatch-picker { display:grid; grid-template-columns: repeat(4, 58px); gap: 12px; margin: 30px 0 18px; }
+.finish-swatch { position:relative; width:58px; height:48px; padding:0; border:1px solid #bfc3c7; background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(0,0,0,.1)), repeating-linear-gradient(0deg, rgba(255,255,255,.08) 0 2px, rgba(0,0,0,.09) 2px 10px), var(--swatch); box-shadow: inset 0 0 0 3px rgba(255,255,255,.12); transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.finish-swatch:hover { transform: translateY(-2px); border-color: var(--navy); }
+.finish-swatch.is-selected { border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold), inset 0 0 0 3px rgba(255,255,255,.14); }
+.finish-swatch.is-selected::after { content:'✓'; position:absolute; right:4px; bottom:4px; width:16px; height:16px; border-radius:50%; display:grid; place-items:center; color:#111; background:var(--gold); font-family: var(--font-display); font-size:.65rem; font-weight:900; }
+.finish-preview { position:relative; padding:18px; background:#f7f7f6; box-shadow: 0 18px 46px rgba(0,0,0,.12); }
+.finish-preview img { display:block; width:100%; height:auto; min-height:420px; object-fit:cover; }
+.finish-preview::after { content:''; position:absolute; inset:18px; background: linear-gradient(135deg, var(--roof-tint), transparent 58%); mix-blend-mode:multiply; opacity:.55; pointer-events:none; }
+.finish-preview__label { position:absolute; right:42px; bottom:40px; z-index:2; padding: 11px 16px; color:#111; background: var(--gold); font-family: var(--font-display); font-size:.72rem; font-weight:900; letter-spacing:.1em; text-transform:uppercase; }
+.article-card__visual--photo { position:relative; height:220px; padding:20px; display:flex; align-items:flex-end; overflow:hidden; background:#15293b; }
+.article-card__visual--photo::before { display:none; }
+.article-card__visual--photo::after { content:''; position:absolute; inset:0; background: linear-gradient(180deg, rgba(8,28,18,.06) 30%, rgba(8,28,18,.82) 100%); }
+.article-card__visual--photo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.article-card__visual--photo span { position:relative; z-index:2; }
+@media (max-width: 1024px) {
+  .finish-studio__grid { grid-template-columns: 1fr; }
+  .finish-preview { max-width: 760px; }
+}
+@media (max-width: 640px) {
+  .finish-swatch-picker { grid-template-columns: repeat(4, 52px); gap: 10px; }
+  .finish-swatch { width:52px; height:42px; }
+  .finish-preview { padding:12px; }
+  .finish-preview::after { inset:12px; }
+  .finish-preview__label { right:24px; bottom:24px; font-size:.66rem; padding:10px 12px; }
+}
+.cta-sticky{position:fixed;z-index:120;left:0;right:0;bottom:0;top:auto!important;height:auto!important;display:none;grid-template-columns:1fr 1fr;grid-template-rows:auto!important;gap:0;padding:0;box-shadow:0 -10px 28px rgba(13,34,56,.2);transform:translateY(130%);transition:transform .32s cubic-bezier(.2,.75,.2,1);will-change:transform}.cta-sticky .button{width:100%;min-height:58px;border-radius:0;border:0;box-shadow:none;padding:14px 8px calc(14px + env(safe-area-inset-bottom,0px));gap:7px;font-size:.82rem;letter-spacing:.02em;white-space:nowrap;text-transform:uppercase}.cta-sticky .button:hover{transform:none}.cta-sticky .button svg{width:18px;height:18px}.cta-sticky .button--dark svg{color:var(--gold)}.cta-sticky.is-visible{transform:translateY(0)}@media (max-width:980px){.cta-sticky{display:grid}body{padding-bottom:calc(60px + env(safe-area-inset-bottom,0px))}}body.nav-open .cta-sticky{transform:translateY(130%)}@media (max-width:360px){.cta-sticky .button{font-size:.74rem;padding-left:6px;padding-right:6px}}@media (prefers-reduced-motion:reduce){.cta-sticky{transition:none}}</style>
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+</head>
+<body><style>.launchbar,.devbar,#preview-bar,.demo-bar{display:none!important}#sos-launch{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;background:#26114F;color:#fff;padding:9px 14px;font:700 13px/1.4 system-ui,-apple-system,sans-serif;text-align:center;position:relative;z-index:2147483646}#sos-launch .sost{background:#FCD34D;color:#26114F;border-radius:6px;padding:3px 8px;font:800 10px/1 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}#sos-launch a{color:#fff;text-decoration:underline;font-weight:900}#sos-launch .sosf{color:#FCD34D;font-weight:900}</style><div id="sos-launch"><span class="sost">Demo</span><span>Call Your 24/7 Receptionist at <a href="tel:14709180516">(470) 918-0516</a></span><span class="sosf">Demo Code: 5264</span></div><script>(function(){function init(){var bar=document.getElementById("sos-launch");if(!bar)return;var ph=["Launch this site","launch this on your site","Business owner? Want this demo","I can launch the site","launch the site for you"];document.querySelectorAll("div,header,section,aside,p").forEach(function(el){if(el===bar)return;var tx=el.textContent||"";if(tx.length<220&&ph.some(function(p){return tx.indexOf(p)>-1}))el.style.display="none";});var fx=[];document.querySelectorAll("header,nav,div").forEach(function(el){if(el===bar||el.id==="sos-cta")return;var s=getComputedStyle(el);if(s.position==="fixed"&&(parseInt(s.top)||0)<5&&el.getBoundingClientRect().top<70&&el.offsetHeight<170)fx.push(el);});function adj(){var b=bar.getBoundingClientRect().bottom;if(b<0)b=0;for(var i=0;i<fx.length;i++)fx[i].style.top=b+"px";var H=document.querySelector("header");if(H&&getComputedStyle(H).position==="absolute"){H.style.top=(window.innerWidth<=920)?(bar.offsetHeight+10)+"px":"";}}adj();window.addEventListener("scroll",adj,{passive:true});window.addEventListener("resize",adj);}if(document.readyState!=="loading")init();else document.addEventListener("DOMContentLoaded",init);})();</script>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<svg aria-hidden="true" class="svg-sprite">
+<symbol id="icon-check" viewbox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 6.9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.3"></path></symbol>
+<symbol id="icon-phone" viewbox="0 0 24 24"><path d="M8.5 3.5 11 8l-2.3 2.1a15.2 15.2 0 0 0 5.2 5.2L16 13l4.5 2.5-.8 4a2 2 0 0 1-2 1.5C9.6 20.4 3.6 14.4 3 6.3a2 2 0 0 1 1.5-2Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></symbol>
+<symbol id="icon-arrow" viewbox="0 0 24 24"><path d="M5 12h13M13 7l5 5-5 5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></symbol>
+<symbol id="icon-shield" viewbox="0 0 24 24"><path d="M12 3 20 6v5c0 5.1-3.2 8.3-8 10-4.8-1.7-8-4.9-8-10V6Z" fill="none" stroke="currentColor" stroke-width="1.8"></path><path d="m8.4 12.1 2.2 2.2 4.8-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></symbol>
+<symbol id="icon-clock" viewbox="0 0 24 24"><circle cx="12" cy="12" fill="none" r="8.5" stroke="currentColor" stroke-width="1.8"></circle><path d="M12 7.5V12l3.2 2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></symbol>
+<symbol id="icon-home" viewbox="0 0 24 24"><path d="m3 11 9-7 9 7M5.5 10.3V21h13V10.3M9.5 21v-6h5v6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></symbol>
+<symbol id="icon-tool" viewbox="0 0 24 24"><path d="M14.2 5.2a5 5 0 0 0-6.3 6.4L3.5 16a2.5 2.5 0 1 0 3.5 3.5l4.4-4.4a5 5 0 0 0 6.4-6.3l-3 3-2.7-.7-.7-2.7Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></symbol>
+<symbol id="icon-building" viewbox="0 0 24 24"><path d="M4 21V5h10v16M14 9h6v12M7 8h3M7 12h3M7 16h3M17 12h1M17 16h1M2 21h20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></symbol>
+<symbol id="icon-drop" viewbox="0 0 24 24"><path d="M12 3s6 6.1 6 11a6 6 0 1 1-12 0c0-4.9 6-11 6-11Z" fill="none" stroke="currentColor" stroke-width="1.8"></path><path d="M9.4 15.2a3 3 0 0 0 2.7 1.8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></symbol>
+<symbol id="icon-star" viewbox="0 0 24 24"><path d="m12 3 2.6 5.3 5.9.9-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.1 5.9-.9Z" fill="currentColor"></path></symbol>
+<symbol id="icon-calendar" viewbox="0 0 24 24"><path d="M5 5h14a2 2 0 0 1 2 2v12H3V7a2 2 0 0 1 2-2ZM7 3v4M17 3v4M3 10h18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path><path d="M7 14h3M14 14h3" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></symbol>
+</svg>
+<div class="utility-bar">
+<div class="container utility-bar__inner">
+<p><span aria-hidden="true" class="status-dot"></span> BOOK A SERVICE: <a href="tel:+14709180516">(470) 918-0516</a></p>
+<div class="utility-bar__links">
+<span>Mon–Sat 8:00–6:00</span>
+<a href="tel:+14709180516"><svg aria-hidden="true"><use href="#icon-phone"></use></svg> (470) 918-0516</a>
+</div>
+</div>
+</div>
+<header class="site-header" data-header="">
+<div class="container site-header__inner">
+<a aria-label="BreezeScape Lawn Improvements home" class="brand" href="#home">
+<span aria-hidden="true" class="brand__mark">
+<svg viewbox="12 30 276 126"><path d="M18,150 C78,150 120,64 150,36 C180,64 222,150 282,150 C224,150 182,104 150,86 C118,104 76,150 18,150 Z" fill="currentColor"></path><path d="M208,122 C214,84 238,58 270,50 C252,82 238,108 208,122 Z" fill="#6cae2f"></path><path d="M208,122 C236,104 256,80 270,50 C258,84 240,106 214,120 Z" fill="#a9d873"></path></svg>
+</span>
+<span class="brand__text"><strong>BreezeScape Lawn Improvements</strong><small>Lawn &amp; Landscaping</small></span>
+</a>
+<button aria-controls="primary-navigation" aria-expanded="false" class="nav-toggle" data-nav-toggle="" type="button">
+<span></span><span></span><span></span><span class="sr-only">Toggle navigation</span>
+</button>
+<nav aria-label="Primary navigation" class="primary-nav" data-nav="" id="primary-navigation">
+<ul>
+<li><a href="#services">Services</a></li>
+<li><a href="#systems">Lawn Care</a></li>
+<li><a href="#projects">Gallery</a></li>
+<li><a href="#process">How It Works</a></li>
+<li><a href="#reviews">Reviews</a></li>
+<li><a href="#resources">Lawn Tips</a></li>
+</ul>
+</nav>
+<div class="header-actions">
+<a class="header-phone" href="tel:+14709180516"><span>Talk to our team</span><strong>(470) 918-0516</strong></a>
+<a class="button button--primary button--compact" href="#estimate">Book a Service</a>
+</div>
+</div>
+</header>
+<main id="main-content">
+<section class="hero" id="home">
+<div aria-hidden="true" class="hero__media"></div>
+<div aria-hidden="true" class="hero__grid-lines"></div>
+<div class="container hero__inner">
+<div class="hero__copy reveal">
+<p class="eyebrow eyebrow--light">Lawn Care · Landscaping · Yard Cleanup</p>
+<h1>A yard you’ll love coming home to.</h1>
+<p class="hero__lead">At BreezeScape Lawn Improvements we deliver reliable crews, dependable mowing, edging, cleanup and seasonal lawn care services to build beautiful, well-maintained properties.</p>
+<div class="hero__actions">
+<a class="button button--primary" href="#estimate">Book a Service <svg aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+<a class="button button--ghost" href="#projects">See recent work</a>
+</div>
+<ul aria-label="Service assurances" class="hero__checks">
+<li><svg aria-hidden="true"><use href="#icon-check"></use></svg> Licensed &amp; insured crew</li>
+<li><svg aria-hidden="true"><use href="#icon-check"></use></svg> Free estimates</li>
+<li><svg aria-hidden="true"><use href="#icon-check"></use></svg> Same or next-day service</li>
+</ul>
+</div>
+<aside aria-labelledby="estimate-title" class="estimate-card reveal" id="estimate">
+<p class="estimate-card__kicker">No-pressure booking</p>
+<h2 id="estimate-title">Book a service</h2>
+<p>Tell us about your yard. A member of our team will follow up to confirm the details and your first visit.</p>
+<form class="estimate-form" data-estimate-form="">
+<div class="form-row">
+<label><span>Name</span><input autocomplete="name" name="name" placeholder="Your name" required="" type="text"/></label>
+<label><span>Phone</span><input autocomplete="tel" name="phone" placeholder="(555) 555-5555" required="" type="tel"/></label>
+</div>
+<label><span>Email</span><input autocomplete="email" name="email" placeholder="you@example.com" required="" type="email"/></label>
+<div class="form-row">
+<label><span>Service</span>
+<select name="service" required="">
+<option value="">Select one</option>
+<option>Lawn mowing &amp; maintenance</option>
+<option>Edging &amp; trimming</option>
+<option>Yard cleanup &amp; debris removal</option>
+<option>Tree &amp; shrub care</option>
+<option>Mulch &amp; sod</option>
+<option>Commercial lawn care</option>
+</select>
+</label>
+<label><span>ZIP code</span><input autocomplete="postal-code" inputmode="numeric" name="zip" pattern="[0-9]{5}(-[0-9]{4})?" placeholder="00000" required="" type="text"/></label>
+</div>
+<button class="button button--primary button--wide" type="submit">Book my service <svg aria-hidden="true"><use href="#icon-arrow"></use></svg></button>
+<p aria-live="polite" class="form-status" data-form-status="" role="status"></p>
+<small>Demo form—connect this to your CRM or form endpoint before launch.</small>
+</form>
+</aside>
+</div>
+<div aria-hidden="true" class="hero__edge"></div>
+</section>
+<section aria-label="Service standards" class="proof-strip">
+<div class="container proof-strip__grid">
+<div class="proof-item reveal"><span class="proof-item__icon"><svg aria-hidden="true"><use href="#icon-shield"></use></svg></span><div><strong>Fully insured</strong><small>Licensed and insured crew</small></div></div>
+<div class="proof-item reveal"><span class="proof-item__icon"><svg aria-hidden="true"><use href="#icon-clock"></use></svg></span><div><strong>On-time service</strong><small>Clear arrival windows every visit</small></div></div>
+<div class="proof-item reveal"><span class="proof-item__icon"><svg aria-hidden="true"><use href="#icon-calendar"></use></svg></span><div><strong>Easy scheduling</strong><small>Same or next-day availability</small></div></div>
+<div class="proof-item reveal"><span class="proof-item__icon"><svg aria-hidden="true"><use href="#icon-check"></use></svg></span><div><strong>Always clean work</strong><small>Spotless cleanup after every job</small></div></div>
+</div>
+</section>
+<section class="section section--intro" id="services">
+<div class="container">
+<div class="section-heading section-heading--center reveal">
+<p class="eyebrow">Lawn care for homes and businesses alike</p>
+<h2>One reliable crew. Every part of your yard.</h2>
+<p>From weekly mowing to a full seasonal cleanup, we match the right service to your yard — without vague quotes or surprise add-ons.</p>
+</div>
+<div class="service-grid">
+<article class="service-card reveal">
+<div class="service-card__image"><img alt="Lawn care crew mowing a residential lawn" height="900" loading="lazy" src="https://demo.solidbookedpro.com/assets/lawn2/mowing.jpg" width="1200"/></div>
+<div class="service-card__body">
+<span class="service-card__number">01</span>
+<span class="service-card__icon"><svg aria-hidden="true"><use href="#icon-home"></use></svg></span>
+<h3>Lawn mowing &amp; maintenance</h3>
+<p>Mowing, edging, trimming and blow-down handled on a schedule that keeps your yard sharp.</p>
+<a class="text-link" href="#systems">See maintenance plans <svg aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+</div>
+</article>
+<article class="service-card reveal">
+<div class="service-card__image"><img alt="Lawn crew raking and clearing leaves from a yard" height="857" loading="lazy" src="https://demo.solidbookedpro.com/assets/lawn2/cleanup.jpg" width="1280"/></div>
+<div class="service-card__body">
+<span class="service-card__number">02</span>
+<span class="service-card__icon"><svg aria-hidden="true"><use href="#icon-tool"></use></svg></span>
+<h3>Yard cleanup &amp; debris removal</h3>
+<p>Leaf removal, storm debris, overgrowth and seasonal cleanups hauled away and left spotless.</p>
+<a class="text-link" href="#process">See how it works <svg aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+</div>
+</article>
+<article class="service-card reveal">
+<div class="service-card__image"><img alt="Worker on a riding mower maintaining commercial grounds" height="1000" loading="lazy" src="https://demo.solidbookedpro.com/assets/lawn2/commercial.jpg" width="1600"/></div>
+<div class="service-card__body">
+<span class="service-card__number">03</span>
+<span class="service-card__icon"><svg aria-hidden="true"><use href="#icon-building"></use></svg></span>
+<h3>Commercial lawn care</h3>
+<p>Dependable grounds maintenance for offices, rentals and multi-unit properties, scheduled around your operations.</p>
+<a class="text-link" href="#systems">View commercial care <svg aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+</div>
+</article>
+</div>
+</div>
+</section>
+<div data-mms-end aria-hidden="true"></div>
+
+<section class="finance-band">
+<div class="container finance-band__inner reveal">
+<div class="finance-band__badge"><span>Flexible</span><strong>PLANS</strong></div>
+<div>
+<p class="eyebrow eyebrow--dark">Do not let an overgrown yard get away from you</p>
+<h2>Keep it maintained all season. Choose a plan that fits your schedule.</h2>
+</div>
+<a class="button button--dark" href="#estimate">Review plans <svg aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+</div>
+</section>
+<section class="section section--split" id="systems">
+<div class="container feature-panels">
+<article class="feature-panel reveal">
+<img alt="Lawn mower cutting a green residential lawn" height="1000" loading="lazy" src="https://demo.solidbookedpro.com/assets/lawn2/edging.jpg" width="1600"/>
+<div class="feature-panel__overlay"></div>
+<div class="feature-panel__content">
+<p class="eyebrow eyebrow--light">Signature service</p>
+<h2>Precision mowing &amp; edging</h2>
+<p>Crisp, even cuts with sharp edges along every walkway, bed and driveway — the detail that makes a yard look cared for.</p>
+<a class="button button--light" href="#estimate">Book lawn service</a>
+</div>
+</article>
+<article class="feature-panel reveal">
+<img alt="Freshly planted and mulched garden beds" height="1000" loading="lazy" src="https://demo.solidbookedpro.com/assets/lawn2/beds.jpg" width="1600"/>
+<div class="feature-panel__overlay"></div>
+<div class="feature-panel__content">
+<p class="eyebrow eyebrow--light">Curb appeal</p>
+<h2>Mulch, sod &amp; bed refresh</h2>
+<p>Fresh mulch, healthy sod and clean-lined beds that lift the whole look of your property.</p>
+<a class="button button--light" href="#estimate">Plan a bed refresh</a>
+</div>
+</article>
+</div>
+</section>
+<section aria-label="Service standards" class="standards">
+<div class="container standards__grid">
+<div class="standard reveal"><span>01</span><strong>Walk the property</strong><small>We review the whole yard first</small></div>
+<div class="standard reveal"><span>02</span><strong>Sharp, even cuts</strong><small>Blades kept sharp for a clean finish</small></div>
+<div class="standard reveal"><span>03</span><strong>Detailed edging</strong><small>Crisp lines along every border</small></div>
+<div class="standard reveal"><span>04</span><strong>Spotless cleanup</strong><small>Clippings and debris hauled off</small></div>
+</div>
+</section>
+
+<section class="section finish-studio">
+<div class="container finish-studio__grid">
+<div class="finish-studio__copy reveal">
+<p class="eyebrow">Visualize the finish</p>
+<h2>Choose a mulch tone for your beds</h2>
+<p>Explore a few popular mulch colors below. Final color should always be confirmed with a physical sample.</p>
+<div aria-label="Preview mulch color" class="finish-swatch-picker" role="group">
+<button aria-pressed="false" class="finish-swatch" data-color="#2b2823" data-color-name="Black Forest" style="--swatch:#2b2823" type="button"><span class="sr-only">Black Forest</span></button>
+<button aria-pressed="false" class="finish-swatch" data-color="#5a4632" data-color-name="Cedar Brown" style="--swatch:#5a4632" type="button"><span class="sr-only">Cedar Brown</span></button>
+<button aria-pressed="false" class="finish-swatch" data-color="#4b2f1e" data-color-name="Chocolate" style="--swatch:#4b2f1e" type="button"><span class="sr-only">Chocolate</span></button>
+<button aria-pressed="false" class="finish-swatch" data-color="#7a3320" data-color-name="Red Cedar" style="--swatch:#7a3320" type="button"><span class="sr-only">Red Cedar</span></button>
+<button aria-pressed="true" class="finish-swatch is-selected" data-color="#6b4a2a" data-color-name="Golden Pine" style="--swatch:#6b4a2a" type="button"><span class="sr-only">Golden Pine</span></button>
+<button aria-pressed="false" class="finish-swatch" data-color="#8a6a3e" data-color-name="Harvest Gold" style="--swatch:#8a6a3e" type="button"><span class="sr-only">Harvest Gold</span></button>
+<button aria-pressed="false" class="finish-swatch" data-color="#3a281c" data-color-name="Espresso" style="--swatch:#3a281c" type="button"><span class="sr-only">Espresso</span></button>
+<button aria-pressed="false" class="finish-swatch" data-color="#6b5a3a" data-color-name="Cypress Blend" style="--swatch:#6b5a3a" type="button"><span class="sr-only">Cypress Blend</span></button>
+</div>
+<p class="selected-color">Selected: <strong data-color-label="">Golden Pine</strong></p>
+<a class="button button--outline" href="#estimate">Request samples</a>
+</div>
+<div class="finish-preview reveal" data-roof-preview="" style="--roof-tint:#6b4a2a">
+<img alt="Fresh wood mulch spread in a landscaped garden bed" height="1000" loading="lazy" src="https://demo.solidbookedpro.com/assets/lawn2/mulch.jpg" width="1500"/>
+<span class="finish-preview__label">Interactive color preview</span>
+</div>
+</div>
+</section>
+
+<section class="section section--dark expertise">
+<div class="container">
+<div class="section-heading section-heading--light reveal">
+<p class="eyebrow eyebrow--light">More than a mow</p>
+<h2>A great yard is about more than cutting grass.</h2>
+<p>A sharp property depends on edging, feeding, cleanup and seasonal care working together. We handle the details that keep it looking its best all season.</p>
+</div>
+<div class="expertise-grid">
+<article class="expertise-card reveal">
+<span class="expertise-card__number">01</span>
+<h3>Lawn &amp; turf care</h3>
+<p>Mowing, edging, trimming and blow-down performed as one clean, consistent visit that keeps turf healthy.</p>
+<ul><li>Weekly / bi-weekly mowing</li><li>Precision edging</li><li>Trimming &amp; blow-down</li></ul>
+</article>
+<article class="expertise-card reveal">
+<span class="expertise-card__number">02</span>
+<h3>Tree &amp; shrub care</h3>
+<p>Pruning, shaping and shrub maintenance that keep beds, borders and hedges healthy and tidy.</p>
+<ul><li>Shrub &amp; hedge trimming</li><li>Shaping &amp; pruning</li><li>Seasonal maintenance</li></ul>
+</article>
+<article class="expertise-card reveal">
+<span class="expertise-card__number">03</span>
+<h3>Seasonal cleanup</h3>
+<p>Leaf removal, debris hauling and full seasonal resets that keep your property clean and tidy year-round.</p>
+<ul><li>Leaf &amp; debris removal</li><li>Storm cleanup</li><li>Mulch &amp; bed refresh</li></ul>
+</article>
+</div>
+</div>
+</section>
+<section class="section projects" id="projects">
+<div class="container">
+<div class="section-heading section-heading--split reveal">
+<div><p class="eyebrow">Recent work</p><h2>Cut clean. Finished sharp.</h2></div>
+<p>A look at recent lawns and landscapes across  — sharp cuts, clean beds and full-property care.</p>
+</div>
+<div class="project-grid">
+<article class="project-card project-card--wide reveal"><img alt="Freshly maintained residential lawn and garden" height="1000" loading="lazy" src="https://demo.solidbookedpro.com/assets/lawn2/gallery1.jpg" width="1600"/><div class="project-card__meta"><span>Residential</span><h3>Full lawn &amp; edge maintenance</h3></div></article>
+<article class="project-card reveal"><img alt="Crew clearing leaves during an autumn yard cleanup" height="900" loading="lazy" src="https://demo.solidbookedpro.com/assets/lawn2/gallery2.jpg" width="1200"/><div class="project-card__meta"><span>In progress</span><h3>Seasonal yard cleanup</h3></div></article>
+<article class="project-card reveal"><img alt="Fresh mulch and watering in a garden bed" height="1000" loading="lazy" src="https://demo.solidbookedpro.com/assets/lawn2/gallery3.jpg" width="1600"/><div class="project-card__meta"><span>Mulch</span><h3>Fresh mulch bed refresh</h3></div></article>
+<article class="project-card reveal"><img alt="Sculpted topiary and shaped shrubs" height="800" loading="lazy" src="https://demo.solidbookedpro.com/assets/lawn2/gallery4.jpg" width="1000"/><div class="project-card__meta"><span>Trees &amp; shrubs</span><h3>Shrub shaping &amp; trimming</h3></div></article>
+<article class="project-card project-card--wide reveal"><img alt="Mowing and maintaining large commercial grounds" height="1000" loading="lazy" src="https://demo.solidbookedpro.com/assets/lawn2/gallery5.jpg" width="1600"/><div class="project-card__meta"><span>Commercial</span><h3>Commercial grounds maintenance</h3></div></article>
+</div>
+<div class="center-action reveal"><a class="button button--outline" href="#estimate">Start your project <svg aria-hidden="true"><use href="#icon-arrow"></use></svg></a></div>
+</div>
+</section>
+<section class="section process" id="process">
+<div class="container process__grid">
+<div class="process__intro reveal">
+<p class="eyebrow">A process you can follow</p>
+<h2>No guessing between the first call and the last blade cut.</h2>
+<p>Every yard gets a named coordinator, a clear quote, scheduled visits and a spotless finish.</p>
+<a class="button button--dark" href="#estimate">Book step one</a>
+</div>
+<ol class="process-list">
+<li class="reveal"><span>01</span><div><h3>Walk-through</h3><p>We review your yard, beds, borders and any problem areas up close.</p></div></li>
+<li class="reveal"><span>02</span><div><h3>Quote</h3><p>You get a clear quote that separates one-time work, recurring plans and add-ons.</p></div></li>
+<li class="reveal"><span>03</span><div><h3>Service</h3><p>The crew arrives on schedule, works clean and keeps you updated throughout.</p></div></li>
+<li class="reveal"><span>04</span><div><h3>Clean finish</h3><p>We do a final blow-down, haul off every clipping and leave the yard spotless.</p></div></li>
+</ol>
+</div>
+</section>
+<section class="reviews" id="reviews">
+<div aria-hidden="true" class="reviews__texture"></div>
+<div class="container reviews__inner">
+<div class="reviews__heading reveal">
+<p class="eyebrow eyebrow--light">Client experience</p>
+<h2>Great work. Even better communication.</h2>
+<div aria-label="5 out of 5 stars" class="rating"><span>5.0</span><div><svg><use href="#icon-star"></use></svg><svg><use href="#icon-star"></use></svg><svg><use href="#icon-star"></use></svg><svg><use href="#icon-star"></use></svg><svg><use href="#icon-star"></use></svg></div></div>
+<p class="reviews__note">Sample review content—replace with verified client testimonials before launch.</p>
+</div>
+<div class="testimonial-slider reveal" data-slider="">
+<div class="testimonial-track" data-slider-track="">
+<blockquote class="testimonial is-active">
+<div aria-hidden="true" class="testimonial__stars"><svg><use href="#icon-star"></use></svg><svg><use href="#icon-star"></use></svg><svg><use href="#icon-star"></use></svg><svg><use href="#icon-star"></use></svg><svg><use href="#icon-star"></use></svg></div>
+<p>“They picked up the mess and made everything look professional. Our yard hasn’t looked this clean in years.”</p>
+<footer><strong>Jordan M.</strong><span>Full yard cleanup</span></footer>
+</blockquote>
+<blockquote class="testimonial">
+<div aria-hidden="true" class="testimonial__stars"><svg><use href="#icon-star"></use></svg><svg><use href="#icon-star"></use></svg><svg><use href="#icon-star"></use></svg><svg><use href="#icon-star"></use></svg><svg><use href="#icon-star"></use></svg></div>
+<p>“Reliable, fast and respectful. They showed up right when they said they would, and the lawn looks perfect.”</p>
+<footer><strong>Casey R.</strong><span>Weekly lawn service</span></footer>
+</blockquote>
+<blockquote class="testimonial">
+<div aria-hidden="true" class="testimonial__stars"><svg><use href="#icon-star"></use></svg><svg><use href="#icon-star"></use></svg><svg><use href="#icon-star"></use></svg><svg><use href="#icon-star"></use></svg><svg><use href="#icon-star"></use></svg></div>
+<p>“The edges were sharp and the cleanup was excellent. You can tell they actually care about the details.”</p>
+<footer><strong>Alex T.</strong><span>Mowing &amp; edging</span></footer>
+</blockquote>
+</div>
+<div class="slider-controls">
+<button aria-label="Previous testimonial" data-slider-prev="" type="button">←</button>
+<div aria-label="Choose testimonial" class="slider-dots" data-slider-dots=""></div>
+<button aria-label="Next testimonial" data-slider-next="" type="button">→</button>
+</div>
+</div>
+</div>
+</section>
+<section aria-label="Lawn care quality considerations" class="quality-strip">
+<div class="container quality-strip__inner reveal">
+<span>PRECISION MOWING</span><i aria-hidden="true"></i><span>SHARP EDGING</span><i aria-hidden="true"></i><span>SEASONAL CLEANUP</span><i aria-hidden="true"></i><span>MULCH &amp; SOD</span>
+</div>
+</section>
+<section class="section resources" id="resources">
+<div class="container">
+<div class="section-heading section-heading--split reveal">
+<div><p class="eyebrow">Lawn care tips</p><h2>Know what your yard needs before you book.</h2></div>
+<a class="text-link text-link--dark" href="#resources">View all guides <svg aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+</div>
+<div class="article-grid">
+<article class="article-card reveal">
+<div class="article-card__visual article-card__visual--photo">
+<img alt="A green lawn being mowed in even stripes" height="800" loading="lazy" src="https://demo.solidbookedpro.com/assets/lawn2/tip1.jpg" width="1200"/>
+<span>LAWN CARE</span>
+</div>
+<div class="article-card__body">
+<p class="article-card__meta">Lawn care · 6 min read</p>
+<h3>How often should you really mow your lawn?</h3>
+<p>A simple guide to mowing frequency by season and grass type.</p>
+<a class="text-link text-link--dark" href="#estimate">Read guide <svg aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+</div>
+</article>
+
+<article class="article-card reveal">
+<div class="article-card__visual article-card__visual--photo">
+<img alt="Gloved hands tending a freshly planted garden bed" height="800" loading="lazy" src="https://demo.solidbookedpro.com/assets/lawn2/tip2.jpg" width="1200"/>
+<span>PLANNING</span>
+</div>
+<div class="article-card__body">
+<p class="article-card__meta">Planning · 5 min read</p>
+<h3>What a complete lawn quote should include</h3>
+<p>A practical checklist for comparing scope, schedule, add-ons and cleanup.</p>
+<a class="text-link text-link--dark" href="#estimate">Read guide <svg aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+</div>
+</article>
+
+<article class="article-card reveal">
+<div class="article-card__visual article-card__visual--photo">
+<img alt="A person raking leaves during a yard cleanup" height="800" loading="lazy" src="https://demo.solidbookedpro.com/assets/lawn2/tip3.jpg" width="1200"/>
+<span>SEASONAL</span>
+</div>
+<div class="article-card__body">
+<p class="article-card__meta">Seasonal · 7 min read</p>
+<h3>Is it time for a full yard cleanup?</h3>
+<p>Signs your yard needs more than a mow — and what a full reset involves.</p>
+<a class="text-link text-link--dark" href="#estimate">Read guide <svg aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section class="section faq">
+<div class="container faq__grid">
+<div class="faq__intro reveal"><p class="eyebrow">Frequently asked questions</p><h2>Answers before you book.</h2><p>Answers to the questions we hear most. Reach out any time and we’ll walk you through your yard in detail.</p></div>
+<div class="accordion" data-accordion="">
+<article class="accordion-item reveal">
+<h3><button aria-expanded="true" type="button"><span>Do I need a one-time cleanup or a recurring plan?</span><i aria-hidden="true"></i></button></h3>
+<div class="accordion-panel"><p>It depends on how overgrown things are and how you want to keep it. A quick walk-through shows what your yard needs now and what keeps it looking that way.</p></div>
+</article>
+<article class="accordion-item reveal">
+<h3><button aria-expanded="false" type="button"><span>Do you provide a clear quote before any work begins?</span><i aria-hidden="true"></i></button></h3>
+<div class="accordion-panel" hidden=""><p>Yes. Your quote identifies the services, visit frequency, any add-ons, cleanup and pricing so there are no surprises.</p></div>
+</article>
+<article class="accordion-item reveal">
+<h3><button aria-expanded="false" type="button"><span>Can you keep our commercial property maintained on a schedule?</span><i aria-hidden="true"></i></button></h3>
+<div class="accordion-panel" hidden=""><p>Absolutely. Commercial grounds can be scheduled around your hours and foot traffic, with the plan agreed on before we start.</p></div>
+</article>
+<article class="accordion-item reveal">
+<h3><button aria-expanded="false" type="button"><span>What happens to the clippings and debris?</span><i aria-hidden="true"></i></button></h3>
+<div class="accordion-panel" hidden=""><p>Cleanup is part of every visit. We blow down hard surfaces, bag or haul off clippings and leaves, and leave the property spotless.</p></div>
+</article>
+</div>
+</div>
+</section>
+<section class="final-cta">
+<div aria-hidden="true" class="final-cta__image"></div>
+<div class="container final-cta__inner reveal">
+<p class="eyebrow eyebrow--light">Book a service in minutes</p>
+<h2>Get a yard plan you can understand and count on.</h2>
+<p>Tell us what your yard needs. We’ll help you decide the right next step.</p>
+<div class="final-cta__actions"><a class="button button--primary" href="#estimate">Book a Service</a><a class="final-cta__phone" href="tel:+14709180516"><svg aria-hidden="true"><use href="#icon-phone"></use></svg><span>Call now<strong>(470) 918-0516</strong></span></a></div>
+</div>
+</section>
+</main>
+<div class="cta-sticky" aria-label="Quick actions"><a class="button button--dark" href="tel:+14709180516"><svg aria-hidden="true"><use href="#icon-phone"></use></svg> Call Us (470) 918-0516</a><a class="button button--primary" href="#estimate"><svg aria-hidden="true"><use href="#icon-calendar"></use></svg> Book a Service</a></div>
+<footer class="site-footer">
+<div class="container site-footer__grid">
+<div class="footer-brand">
+<a class="brand brand--footer" href="#home">
+<span aria-hidden="true" class="brand__mark"><svg viewbox="12 30 276 126"><path d="M18,150 C78,150 120,64 150,36 C180,64 222,150 282,150 C224,150 182,104 150,86 C118,104 76,150 18,150 Z" fill="currentColor"></path><path d="M208,122 C214,84 238,58 270,50 C252,82 238,108 208,122 Z" fill="#6cae2f"></path><path d="M208,122 C236,104 256,80 270,50 C258,84 240,106 214,120 Z" fill="#a9d873"></path></svg></span>
+<span class="brand__text"><strong>BreezeScape Lawn Improvements</strong><small>Lawn &amp; Landscaping</small></span>
+</a>
+<p>Lawn care and landscaping done clean, sharp and on schedule across  and the surrounding areas.</p>
+<div class="footer-contact"><a href="tel:+14709180516">(470) 918-0516</a><a href="mailto:info@breezescapelawnimprovementsllc.com">info@breezescapelawnimprovementsllc.com</a><span>Serving  &amp; surrounding areas</span></div>
+</div>
+<div class="footer-column"><h2>Services</h2><ul><li><a href="#services">Lawn mowing</a></li><li><a href="#services">Edging &amp; trimming</a></li><li><a href="#services">Yard cleanup</a></li><li><a href="#systems">Tree &amp; shrub care</a></li><li><a href="#systems">Mulch &amp; sod</a></li><li><a href="#services">Commercial lawn care</a></li></ul></div>
+<div class="footer-column"><h2>Company</h2><ul><li><a href="#process">How it works</a></li><li><a href="#projects">Gallery</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#resources">Lawn tips</a></li><li><a href="#estimate">Book a service</a></li></ul></div>
+<div class="footer-column footer-column--hours"><h2>Hours</h2><dl><div><dt>Monday–Friday</dt><dd>8:00–6:00</dd></div><div><dt>Saturday</dt><dd>8:00–6:00</dd></div><div><dt>Sunday</dt><dd>Closed</dd></div></dl><a class="button button--primary button--compact" href="#estimate">Book a Service</a></div>
+</div>
+<div class="container site-footer__bottom"><p>© <span data-year=""></span> BreezeScape Lawn Improvements. .</p><p><a href="#">Privacy</a><a href="#">Terms</a><a href="#home">Back to top ↑</a></p></div>
+</footer>
+<script>
+(() => {
+  'use strict';
+
+  const $ = (selector, scope = document) => scope.querySelector(selector);
+  const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
+
+  // Current year
+  $$('[data-year]').forEach((node) => {
+    node.textContent = String(new Date().getFullYear());
+  });
+
+  // Sticky header state
+  const header = $('[data-header]');
+  const setHeaderState = () => {
+    if (header) header.classList.toggle('is-scrolled', window.scrollY > 16);
+  };
+  setHeaderState();
+  window.addEventListener('scroll', setHeaderState, { passive: true });
+
+  // Mobile navigation
+  const navToggle = $('[data-nav-toggle]');
+  const nav = $('[data-nav]');
+  const closeNav = () => {
+    if (!navToggle || !nav) return;
+    navToggle.setAttribute('aria-expanded', 'false');
+    nav.classList.remove('is-open');
+    document.body.classList.remove('nav-open');
+  };
+  const openNav = () => {
+    if (!navToggle || !nav) return;
+    navToggle.setAttribute('aria-expanded', 'true');
+    nav.classList.add('is-open');
+    document.body.classList.add('nav-open');
+  };
+  if (navToggle && nav) {
+    navToggle.addEventListener('click', () => {
+      navToggle.getAttribute('aria-expanded') === 'true' ? closeNav() : openNav();
+    });
+    $$('a', nav).forEach((link) => link.addEventListener('click', closeNav));
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeNav();
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 980) closeNav();
+    });
+  }
+
+  // Reveal-on-scroll animation
+  const revealItems = $$('.reveal');
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    revealItems.forEach((item) => revealObserver.observe(item));
+  } else {
+    revealItems.forEach((item) => item.classList.add('is-visible'));
+  }
+
+  // Roof color visualizer
+  const visualizer = $('[data-roof-visualizer]');
+  const selectedColor = $('[data-selected-color]');
+  const visualizerLabel = $('[data-visualizer-label]');
+  $$('.roof-swatch').forEach((button) => {
+    button.addEventListener('click', () => {
+      const color = button.dataset.roofColor;
+      const name = button.dataset.roofName;
+      if (!color || !name || !visualizer) return;
+
+      visualizer.style.setProperty('--roof-color', color);
+      if (selectedColor) selectedColor.textContent = name;
+      if (visualizerLabel) visualizerLabel.textContent = name;
+
+      $$('.roof-swatch').forEach((swatch) => {
+        const active = swatch === button;
+        swatch.classList.toggle('is-active', active);
+        swatch.setAttribute('aria-pressed', String(active));
+      });
+    });
+  });
+
+  // Demo estimate form
+  const estimateForm = $('[data-estimate-form]');
+  if (estimateForm) {
+    const status = $('[data-form-status]', estimateForm);
+    estimateForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!estimateForm.checkValidity()) {
+        estimateForm.reportValidity();
+        if (status) {
+          status.textContent = 'Please complete the required fields.';
+          status.className = 'form-status is-error';
+        }
+        return;
+      }
+
+      const name = new FormData(estimateForm).get('name');
+      if (status) {
+        status.textContent = `Thanks${name ? `, ${String(name).trim()}` : ''}. The demo form is working; connect it to your CRM before launch.`;
+        status.className = 'form-status is-success';
+      }
+      estimateForm.reset();
+    });
+  }
+
+  // Testimonial slider
+  const slider = $('[data-slider]');
+  if (slider) {
+    const slides = $$('.testimonial', slider);
+    const previous = $('[data-slider-prev]', slider);
+    const next = $('[data-slider-next]', slider);
+    const dotsHost = $('[data-slider-dots]', slider);
+    let current = Math.max(0, slides.findIndex((slide) => slide.classList.contains('is-active')));
+    let autoplayId = null;
+
+    const dots = slides.map((_, index) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Show testimonial ${index + 1}`);
+      dot.addEventListener('click', () => showSlide(index));
+      dotsHost?.appendChild(dot);
+      return dot;
+    });
+
+    const showSlide = (index) => {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, slideIndex) => {
+        const active = slideIndex === current;
+        slide.classList.toggle('is-active', active);
+        slide.setAttribute('aria-hidden', String(!active));
+      });
+      dots.forEach((dot, dotIndex) => {
+        const active = dotIndex === current;
+        dot.classList.toggle('is-active', active);
+        dot.setAttribute('aria-current', active ? 'true' : 'false');
+      });
+    };
+
+    const startAutoplay = () => {
+      stopAutoplay();
+      autoplayId = window.setInterval(() => showSlide(current + 1), 7500);
+    };
+    const stopAutoplay = () => {
+      if (autoplayId !== null) window.clearInterval(autoplayId);
+      autoplayId = null;
+    };
+
+    previous?.addEventListener('click', () => {
+      showSlide(current - 1);
+      startAutoplay();
+    });
+    next?.addEventListener('click', () => {
+      showSlide(current + 1);
+      startAutoplay();
+    });
+    slider.addEventListener('mouseenter', stopAutoplay);
+    slider.addEventListener('mouseleave', startAutoplay);
+    slider.addEventListener('focusin', stopAutoplay);
+    slider.addEventListener('focusout', startAutoplay);
+
+    showSlide(current);
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) startAutoplay();
+  }
+
+  // Accessible accordion; keeps one panel open at a time
+  const accordion = $('[data-accordion]');
+  if (accordion) {
+    const buttons = $$('h3 button', accordion);
+    buttons.forEach((button, index) => {
+      const panel = button.closest('.accordion-item')?.querySelector('.accordion-panel');
+      if (!panel) return;
+      const panelId = `faq-panel-${index + 1}`;
+      const buttonId = `faq-button-${index + 1}`;
+      panel.id = panelId;
+      button.id = buttonId;
+      panel.setAttribute('role', 'region');
+      panel.setAttribute('aria-labelledby', buttonId);
+      button.setAttribute('aria-controls', panelId);
+
+      button.addEventListener('click', () => {
+        const willOpen = button.getAttribute('aria-expanded') !== 'true';
+        buttons.forEach((otherButton) => {
+          const otherPanel = otherButton.closest('.accordion-item')?.querySelector('.accordion-panel');
+          otherButton.setAttribute('aria-expanded', 'false');
+          if (otherPanel) otherPanel.hidden = true;
+        });
+        button.setAttribute('aria-expanded', String(willOpen));
+        panel.hidden = !willOpen;
+      });
+    });
+  }
+
+  // Keep placeholder links from jumping to the top in the demo.
+  $$('a[href="#"]').forEach((link) => {
+    link.addEventListener('click', (event) => event.preventDefault());
+  });
+})();
+
+  </script>
+<script>
+(() => {
+  const preview = document.querySelector('[data-roof-preview]');
+  const label = document.querySelector('[data-color-label]');
+  const swatches = Array.from(document.querySelectorAll('.finish-swatch'));
+  if (!swatches.length) return;
+  swatches.forEach(btn => {
+    btn.addEventListener('click', () => {
+      swatches.forEach(s => { s.classList.remove('is-selected'); s.setAttribute('aria-pressed', 'false'); });
+      btn.classList.add('is-selected');
+      btn.setAttribute('aria-pressed', 'true');
+      if (preview) preview.style.setProperty('--roof-tint', btn.dataset.color || '#414c45');
+      if (label) label.textContent = btn.dataset.colorName || 'Selected color';
+    });
+  });
+})();
+</script><script>(function(){var bar=document.querySelector(".cta-sticky"),hero=document.getElementById("home");if(!bar)return;if(hero&&"IntersectionObserver" in window){new IntersectionObserver(function(es){es.forEach(function(e){bar.classList.toggle("is-visible",!e.isIntersecting);});},{rootMargin:"0px 0px -10% 0px",threshold:0}).observe(hero);}else{bar.classList.add("is-visible");}})();</script>
+</body>
+</html>
