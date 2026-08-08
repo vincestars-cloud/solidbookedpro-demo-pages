@@ -1,6 +1,7 @@
 {
   "_comment": "Slugs the EOD cleanup must never delete. Add client demos and reference pages here. Matched exactly against the directory name.",
   "protected": [
+    "bena-home-care-agency-llc",
     "biz-msaoi2ji",
     "concurrent-conflict-test",
     "hc-gihon-verify",
