@@ -1514,56 +1514,32 @@ svg.leaflet-image-layer.leaflet-interactive path {
   margin-top:0; margin-bottom:0;
 }
 </style>
+<style id="hero-variant">
+/* Hero photo variant: hero-neutral.jpg (see hero-truck-template.py)
+   TWO defects in the original are corrected here. Both are real — measured against the live
+   site — but both look like bugs, so the rebrand variants fix them. index.html is left alone
+   so the 1:1 reference stays 1:1.
 
-<style id="zs-herovid-css">
-/* full-bleed looped hero video (see make-video-hero.mjs) */
-/* FIRST PAINT MUST BE A VIDEO FRAME.
-   Leaving the hero's own truck photo as the background meant the page painted the truck, then
-   visibly swapped to the montage when the video finally played — a jarring flash on every
-   load. Pointing the background at the video's OWN first frame means the fade-in has nothing
-   to reveal: the still and the first video frame are the same image. */
+   1. LETTERBOXING. Below 1440px the original switches the hero to background-size:contain,
+      which puts black bars down the left and right.
+   2. THE BIG TOP/BOTTOM BANDS. The hero element (88ebe78) is a fixed ~814px tall inside a
+      100vh parent (1f91cb0) that CENTRES it. At 1307x1250 that measured y359 / 814 tall inside
+      a 1250-tall parent — i.e. 218px of black above AND below, and it grows with window height.
+      Fixing background-size alone does nothing for this, because the element itself is short.
+      So the photo moves to the FULL-HEIGHT OUTER container and the inner's own background is
+      cleared (otherwise the inner paints its colour over the photo). */
 .elementor-122 .elementor-element.elementor-element-1f91cb0:not(.elementor-motion-effects-element-type-background),
 .elementor-122 .elementor-element.elementor-element-1f91cb0 > .elementor-motion-effects-container > .elementor-motion-effects-layer{
-  background-image:url("https://demo.solidbookedpro.com/assets/landscaping-c/video/hero-poster.jpg") !important;
-  background-position:center center;background-size:cover;
+  background-image:url("https://demo.solidbookedpro.com/assets/landscaping-c/images/hero-neutral.jpg") !important;
+  background-size:cover !important;
+  background-position:center center !important;
+  background-repeat:no-repeat !important;
 }
-/* clear the inner container's own photo/colour or it paints OVER the video layer behind it */
 .elementor-122 .elementor-element.elementor-element-88ebe78:not(.elementor-motion-effects-element-type-background),
 .elementor-122 .elementor-element.elementor-element-88ebe78 > .elementor-motion-effects-container > .elementor-motion-effects-layer{
-  background-image:none !important;background-color:transparent !important;
+  background-image:none !important;
+  background-color:transparent !important;
 }
-.elementor-122 .elementor-element.elementor-element-1f91cb0{overflow:hidden;}
-.zs-herovid{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
-.zs-herovid__v{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:100%;height:100%;min-width:100%;min-height:100%;
-  object-fit:cover;object-position:center center;
-  opacity:0;transition:opacity .45s ease;
-  -webkit-backface-visibility:hidden;backface-visibility:hidden;
-}
-.zs-herovid.is-playing .zs-herovid__v{opacity:1;}
-/* Scrim is ON from first paint. It used to be gated on .is-playing to protect the original
-   photo fallback, but the fallback is now the video's own poster (a bright open lawn), so the
-   white H1 would be unreadable for the first beat without it. */
-/* Much lighter than the first pass. rgba(7,7,7,.90) over the text column, on top of a grade
-   that had already darkened 20-39 luma, is what made the footage read as "very dark". The
-   ramp now falls away fast so the RIGHT side — where the mower and the action are — stays
-   bright daylight, and only the copy column is held down. Legibility of the white H1 is picked
-   up by a text-shadow instead of by drowning the whole frame. */
-.zs-herovid__scrim{
-  position:absolute;inset:0;opacity:1;
-  background:
-    linear-gradient(90deg, rgba(7,7,7,.74) 0%, rgba(7,7,7,.50) 30%, rgba(7,7,7,.18) 62%, rgba(7,7,7,.06) 100%),
-    linear-gradient(0deg, rgba(7,7,7,.62) 0%, rgba(7,7,7,0) 34%);
-}
-/* carry the H1/subhead legibility that the heavy scrim used to provide */
-.elementor-122 .elementor-element.elementor-element-1f91cb0 h1,
-.elementor-122 .elementor-element.elementor-element-1f91cb0 h1 *{text-shadow:0 2px 18px rgba(0,0,0,.55), 0 1px 3px rgba(0,0,0,.45);}
-.elementor-122 .elementor-element.elementor-element-1f91cb0 p{text-shadow:0 1px 10px rgba(0,0,0,.6);}
-
-/* hero content must sit above the video layer */
-.elementor-122 .elementor-element.elementor-element-1f91cb0 > .e-con-inner{position:relative;z-index:2;}
-@media (prefers-reduced-motion: reduce){ .zs-herovid__v{display:none;} }
 </style>
 <style id="lc-wordmark">
 .brand-wordmark{display:inline-block;font-family:Poppins,sans-serif;font-weight:900;
@@ -1588,7 +1564,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 .zsb-stars{color:#28e02a;font-size:clamp(14px,1.4vw,20px);letter-spacing:.06em;line-height:1;}
 </style>
 </head>
-<body class="home wp-singular page-template-default page page-id-122 page-parent wp-custom-logo wp-theme-hello-elementor angie-default manage-default elementor-default elementor-kit-26 elementor-page elementor-page-122 e--ua-blink e--ua-mac e--ua-webkit" data-elementor-device-mode="desktop"><style>.launchbar,.devbar,#preview-bar,.demo-bar{display:none!important}#sos-launch{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;background:#26114F;color:#fff;padding:9px 14px;font:700 13px/1.4 system-ui,-apple-system,sans-serif;text-align:center;position:relative;z-index:2147483646}#sos-launch .sost{background:#FCD34D;color:#26114F;border-radius:6px;padding:3px 8px;font:800 10px/1 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}#sos-launch a{color:#fff;text-decoration:underline;font-weight:900}#sos-launch .sosf{color:#FCD34D;font-weight:900}</style><div id="sos-launch"><span class="sost">Demo</span><span>Call Your 24/7 Receptionist at <a href="tel:114782782892">(147) 827-8289</a></span><span class="sosf">Demo Code: 1443</span></div><script>(function(){function init(){var bar=document.getElementById("sos-launch");if(!bar)return;var ph=["Launch this site","launch this on your site","Business owner? Want this demo","I can launch the site","launch the site for you"];document.querySelectorAll("div,header,section,aside,p").forEach(function(el){if(el===bar)return;var tx=el.textContent||"";if(tx.length<220&&ph.some(function(p){return tx.indexOf(p)>-1}))el.style.display="none";});var fx=[];document.querySelectorAll("header,nav,div").forEach(function(el){if(el===bar||el.id==="sos-cta")return;var s=getComputedStyle(el);if(s.position==="fixed"&&(parseInt(s.top)||0)<5&&el.getBoundingClientRect().top<70&&el.offsetHeight<170)fx.push(el);});function adj(){var b=bar.getBoundingClientRect().bottom;if(b<0)b=0;for(var i=0;i<fx.length;i++)fx[i].style.top=b+"px";var H=document.querySelector("header");if(H&&getComputedStyle(H).position==="absolute"){H.style.top=(window.innerWidth<=920)?(bar.offsetHeight+10)+"px":"";}}adj();window.addEventListener("scroll",adj,{passive:true});window.addEventListener("resize",adj);}if(document.readyState!=="loading")init();else document.addEventListener("DOMContentLoaded",init);})();</script>
+<body class="home wp-singular page-template-default page page-id-122 page-parent wp-custom-logo wp-theme-hello-elementor angie-default manage-default elementor-default elementor-kit-26 elementor-page elementor-page-122 e--ua-blink e--ua-mac e--ua-webkit" data-elementor-device-mode="desktop"><style>.launchbar,.devbar,#preview-bar,.demo-bar{display:none!important}#sos-launch{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;background:#26114F;color:#fff;padding:9px 14px;font:700 13px/1.4 system-ui,-apple-system,sans-serif;text-align:center;position:relative;z-index:2147483646}#sos-launch .sost{background:#FCD34D;color:#26114F;border-radius:6px;padding:3px 8px;font:800 10px/1 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}#sos-launch a{color:#fff;text-decoration:underline;font-weight:900}#sos-launch .sosf{color:#FCD34D;font-weight:900}</style><div id="sos-launch"><span class="sost">Demo</span><span>Call Your 24/7 Receptionist at <a href="tel:114782782892">(147) 827-8289</a></span><span class="sosf">Demo Code: 2023</span></div><script>(function(){function init(){var bar=document.getElementById("sos-launch");if(!bar)return;var ph=["Launch this site","launch this on your site","Business owner? Want this demo","I can launch the site","launch the site for you"];document.querySelectorAll("div,header,section,aside,p").forEach(function(el){if(el===bar)return;var tx=el.textContent||"";if(tx.length<220&&ph.some(function(p){return tx.indexOf(p)>-1}))el.style.display="none";});var fx=[];document.querySelectorAll("header,nav,div").forEach(function(el){if(el===bar||el.id==="sos-cta")return;var s=getComputedStyle(el);if(s.position==="fixed"&&(parseInt(s.top)||0)<5&&el.getBoundingClientRect().top<70&&el.offsetHeight<170)fx.push(el);});function adj(){var b=bar.getBoundingClientRect().bottom;if(b<0)b=0;for(var i=0;i<fx.length;i++)fx[i].style.top=b+"px";var H=document.querySelector("header");if(H&&getComputedStyle(H).position==="absolute"){H.style.top=(window.innerWidth<=920)?(bar.offsetHeight+10)+"px":"";}}adj();window.addEventListener("scroll",adj,{passive:true});window.addEventListener("resize",adj);}if(document.readyState!=="loading")init();else document.addEventListener("DOMContentLoaded",init);})();</script>
 
 		<!-- dropped: analytics/config -->
 		<!-- dropped: ea11y skip nav -->
@@ -3910,10 +3886,6 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	<div class="page-content">
 				<div data-elementor-type="wp-page" data-elementor-id="122" class="elementor elementor-122" data-elementor-post-type="page">
 				<div class="elementor-element elementor-element-1f91cb0 e-flex e-con-boxed e-con e-parent e-lazyloaded" data-id="1f91cb0" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-<div class="zs-herovid" aria-hidden="true">
-  <video class="zs-herovid__v" muted loop playsinline preload="none" poster="https://demo.solidbookedpro.com/assets/landscaping-c/video/hero-poster.jpg" tabindex="-1"></video>
-  <div class="zs-herovid__scrim"></div>
-</div>
 					<div class="e-con-inner">
 		<div class="elementor-element elementor-element-88ebe78 e-flex e-con-boxed e-con e-child" data-id="88ebe78" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
 					<div class="e-con-inner">
@@ -8548,41 +8520,6 @@ angieCanvasTemplateData = {"templateSlug":"angie-canvas"};
     });
   }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
   els.forEach(function (el) { io.observe(el); });
-})();
-
-</script>
-<script>
-
-/* Gated hero-video loader. Attaches sources only when it is worth the bytes, so the first
-   screen stays light and mobile/metered/reduced-motion users keep the static photo. */
-(function () {
-  var wrap = document.querySelector('.zs-herovid');
-  if (!wrap) return;
-  var v = wrap.querySelector('video');
-  if (!v || !v.canPlayType) return;
-
-  try { if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; } catch (e) {}
-  if (window.innerWidth < 900) return;
-  var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection || {};
-  if (c.saveData) return;
-  if (/(^|-)2g$/.test(c.effectiveType || '')) return;
-
-  function start() {
-    // WebM first (6.0MB VP9); Safari, which cannot decode it, falls through to MP4 (8.4MB)
-    [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(function (t) {
-      var s = document.createElement('source');
-      s.src = 'https://demo.solidbookedpro.com/assets/landscaping-c/video/hero-loop.' + t[0];
-      s.type = t[1];
-      v.appendChild(s);
-    });
-    v.load();
-    v.addEventListener('playing', function () { wrap.classList.add('is-playing'); }, { once: true });
-    var p = v.play();
-    if (p && p.catch) p.catch(function () { /* autoplay refused -> photo stays */ });
-  }
-
-  if ('requestIdleCallback' in window) window.requestIdleCallback(start, { timeout: 2500 });
-  else setTimeout(start, 900);
 })();
 
 </script>
