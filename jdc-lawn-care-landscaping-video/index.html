@@ -24,7 +24,7 @@
 	<!-- / Yoast SEO plugin. -->
 
 
-<link rel="dns-prefetch" href="//cdn.elementor.com">
+<link rel="dns-prefetch" href="#">
 <link rel="alternate" type="application/rss+xml" title="JDC Lawn Care &amp; Landscaping | Pressure Washing | Dublin, GA, USA » Feed" href="https://jdclawncarelandscapingvideo.com/feed/">
 <link rel="alternate" type="application/rss+xml" title="JDC Lawn Care &amp; Landscaping | Pressure Washing | Dublin, GA, USA » Comments Feed" href="https://jdclawncarelandscapingvideo.com/comments/feed/">
 <link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://jdclawncarelandscapingvideo.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fjdclawncarelandscapingvideo.com%2F">
@@ -1565,30 +1565,107 @@ svg.leaflet-image-layer.leaflet-interactive path {
 .elementor-122 .elementor-element.elementor-element-1f91cb0 > .e-con-inner{position:relative;z-index:2;}
 @media (prefers-reduced-motion: reduce){ .zs-herovid__v{display:none;} }
 </style>
-<style id="lc-wordmark">
-.brand-wordmark{display:inline-block;font-family:Poppins,sans-serif;font-weight:900;
-  font-style:italic;letter-spacing:-.02em;line-height:1;color:#fff;text-transform:uppercase;
-  font-size:clamp(20px,2.2vw,30px);white-space:nowrap;}
-.zsft-brand-logo .brand-wordmark{font-size:26px;}
-.zssh-logo .brand-wordmark{font-size:22px;}
-.zsmh-logo .brand-wordmark{font-size:20px;}
+<style id="lc-brandmark">
+@font-face{font-family:'Anton';font-style:normal;font-weight:400;font-display:swap;
+  src:url('https://demo.solidbookedpro.com/assets/landscaping-c/fonts/anton-v25-latin.woff2') format('woff2');}
+.bmk{display:block;width:auto;height:44px;overflow:visible;}
+.zshdr-logo,.zsmh-logo,.zssh-logo,.zsft-brand-logo{display:flex;align-items:center;}
 </style>
 <style id="lc-badges">
 .zsb{display:flex;font-family:Poppins,sans-serif;font-weight:900;font-style:normal;
   line-height:.92;color:#fff;text-transform:uppercase;letter-spacing:-.02em;
-  transform:skewX(-9deg);transform-origin:left bottom;}
+  max-width:100%;transform:skewX(-9deg);transform-origin:center center;}
 .zsb--stack,.zsb--radius{flex-direction:column;align-items:center;}
-.zsb--rating{align-items:center;gap:.06em;}
+.zsb--rating{align-items:center;gap:.04em;justify-content:center;}
 .zsb-col{display:flex;flex-direction:column;align-items:flex-end;}
-.zsb-num{color:#28e02a;font-size:clamp(52px,5.6vw,78px);line-height:.8;}
-.zsb-l1{font-size:clamp(24px,2.5vw,35px);white-space:nowrap;}
-.zsb-l2{font-size:clamp(17px,1.75vw,25px);white-space:nowrap;}
-.zsb-l3{font-size:clamp(11px,1.05vw,15px);letter-spacing:.01em;white-space:nowrap;}
+.zsb-num{color:#28e02a;font-size:clamp(46px,4.9vw,68px);line-height:.8;}
+.zsb-l1{font-size:clamp(21px,2.18vw,30px);white-space:nowrap;}
+.zsb-l2{font-size:clamp(15px,1.55vw,22px);white-space:nowrap;}
+.zsb-l3{font-size:clamp(10px,.94vw,13.5px);letter-spacing:.01em;white-space:nowrap;}
 .zsb-grn,.zsb-l1 em{color:#28e02a;font-style:normal;}
-.zsb-stars{color:#28e02a;font-size:clamp(14px,1.4vw,20px);letter-spacing:.06em;line-height:1;}
+.zsb-stars{color:#28e02a;font-size:clamp(12px,1.25vw,18px);letter-spacing:.05em;line-height:1;}
+</style>
+<style id="lc-estimate">
+.lcest{background:#0d1b2e;padding:clamp(56px,7vw,96px) 20px;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 64px),calc(100% - 64px) 100%,0 100%);}
+.lcest-inner{max-width:1180px;margin:0 auto;display:grid;gap:clamp(32px,4vw,64px);
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;}
+.lcest-copy{color:#fff;font-family:Poppins,sans-serif;}
+.lcest-kicker{color:#0bdb05;font-size:13px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;margin:0 0 14px;}
+html body .lcest h2{color:#fff;font-family:Poppins,sans-serif;font-weight:800;
+  font-size:clamp(30px,3.6vw,50px);line-height:1.05;margin:0 0 18px;}
+.lcest-lead{color:rgba(255,255,255,.78);font-size:16.5px;line-height:1.62;margin:0 0 26px;max-width:52ch;}
+.lcest-checks{list-style:none;margin:0 0 26px;padding:0;display:grid;gap:11px;}
+.lcest-checks li{position:relative;padding-left:30px;color:rgba(255,255,255,.9);font-size:15.5px;}
+.lcest-checks li::before{content:"";position:absolute;left:0;top:.42em;width:16px;height:9px;
+  border-left:3px solid #0bdb05;border-bottom:3px solid #0bdb05;transform:rotate(-45deg);}
+html body .lcest .lcest-call{display:inline-flex;align-items:center;gap:10px;color:#fff !important;
+  font-weight:700;font-size:16px;text-decoration:none;}
+html body .lcest .lcest-call:hover{color:#0bdb05 !important;}
+.lcest-call svg{width:19px;height:19px;stroke:#0bdb05;}
+.lcest-form{background:#fff;padding:clamp(24px,2.6vw,34px);border-radius:4px;
+  display:grid;gap:15px;font-family:Poppins,sans-serif;
+  clip-path:polygon(0 26px,26px 0,100% 0,100% calc(100% - 26px),calc(100% - 26px) 100%,0 100%);}
+.lcest-row{display:grid;gap:15px;grid-template-columns:1fr 1fr;}
+.lcest-form label{display:grid;gap:7px;min-width:0;}
+.lcest-form label span{font-size:12.5px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:#17365a;}
+.lcest-form input,.lcest-form select{width:100%;min-width:0;box-sizing:border-box;
+  font-family:Poppins,sans-serif;font-size:15.5px;color:#111;background:#f4f6f8;
+  border:1.5px solid #dfe5ea;border-radius:3px;padding:12px 13px;appearance:none;}
+.lcest-form input:focus,.lcest-form select:focus{outline:none;border-color:#0bdb05;
+  background:#fff;box-shadow:0 0 0 3px rgba(11,219,5,.16);}
+.lcest-form input::placeholder{color:#9aa6b1;}
+html body .lcest .lcest-submit{margin-top:4px;width:100%;cursor:pointer;border:none;
+  background:#0bdb05;color:#062d05;font-family:Poppins,sans-serif;font-size:16px;font-weight:800;
+  letter-spacing:.04em;text-transform:uppercase;padding:16px 20px;border-radius:3px;
+  transition:background .18s ease,transform .12s ease;}
+html body .lcest .lcest-submit:hover{background:#0ef007;transform:translateY(-1px);}
+.lcest-status{margin:0;font-size:14.5px;font-weight:600;color:#0a7a06;min-height:1.2em;}
+.lcest-note{color:#8b96a1;font-size:12px;line-height:1.5;}
+@media (max-width:900px){
+  .lcest-inner{grid-template-columns:1fr;}
+  .lcest{clip-path:polygon(0 0,100% 0,100% calc(100% - 40px),calc(100% - 40px) 100%,0 100%);}
+}
+@media (max-width:520px){ .lcest-row{grid-template-columns:1fr;} }
+</style>
+<style id="lc-cta">
+.lccta{position:fixed;left:0;right:0;bottom:0;z-index:9998;display:none;
+  transform:translateY(105%);transition:transform .28s cubic-bezier(.2,.7,.3,1);
+  background:#0d1b2e;box-shadow:0 -6px 22px rgba(0,0,0,.34);
+  padding-bottom:env(safe-area-inset-bottom);}
+.lccta.is-up{transform:none;}
+/* The theme colours every <a> with the accent green at a specificity this cannot outrank
+   normally, which rendered "Book a Service" as green-on-green — an invisible button on the
+   primary mobile CTA. Same reason the template already uses the html-body-prefixed
+   !important form on .zssh .zssh-link. Measured, not guessed: computed colour was
+   rgb(11,219,5) on background rgb(11,219,5).
+   NB: no backticks in this comment — it lives inside a JS template literal, and a stray one
+   here ends the literal and produces a baffling "missing ) after argument list". */
+html body .lccta .lccta-btn{flex:1 1 0;min-width:0;display:flex;align-items:center;
+  justify-content:center;gap:9px;padding:15px 10px;font-family:Poppins,sans-serif;
+  font-size:14px;font-weight:700;line-height:1.15;text-decoration:none;text-align:center;
+  -webkit-tap-highlight-color:transparent;}
+html body .lccta .lccta-btn svg{width:19px;height:19px;flex:0 0 auto;}
+html body .lccta .lccta-btn span{display:block;min-width:0;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap;}
+html body .lccta .lccta-btn b{font-weight:800;}
+html body .lccta .lccta-lbl{font-style:normal;}
+html body .lccta .lccta-call{color:#fff !important;border-right:1px solid rgba(255,255,255,.14);}
+html body .lccta .lccta-book{background:#0bdb05;color:#062d05 !important;}
+html body .lccta .lccta-book:hover,html body .lccta .lccta-book:focus{background:#0ef007;color:#062d05 !important;}
+@media (max-width:991px){ .lccta{display:flex;} body.lccta-on{padding-bottom:60px;} }
+/* "Call Us (301) 555-0188" needs 160px and only gets 147 at 390px wide, so it ellipsised the
+   last digits — the one thing on that button that has to be readable. Drop the label, keep
+   the number; the handset icon already says what the button does. */
+@media (max-width:430px){ html body .lccta .lccta-lbl{display:none;} }
+@media (max-width:360px){ html body .lccta .lccta-btn{font-size:12.5px;gap:6px;padding:14px 6px;} }
 </style>
 </head>
-<body class="home wp-singular page-template-default page page-id-122 page-parent wp-custom-logo wp-theme-hello-elementor angie-default manage-default elementor-default elementor-kit-26 elementor-page elementor-page-122 e--ua-blink e--ua-mac e--ua-webkit" data-elementor-device-mode="desktop"><style>.launchbar,.devbar,#preview-bar,.demo-bar{display:none!important}#sos-launch{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;background:#26114F;color:#fff;padding:9px 14px;font:700 13px/1.4 system-ui,-apple-system,sans-serif;text-align:center;position:relative;z-index:2147483646}#sos-launch .sost{background:#FCD34D;color:#26114F;border-radius:6px;padding:3px 8px;font:800 10px/1 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}#sos-launch a{color:#fff;text-decoration:underline;font-weight:900}#sos-launch .sosf{color:#FCD34D;font-weight:900}</style><div id="sos-launch"><span class="sost">Demo</span><span>Call Your 24/7 Receptionist at <a href="tel:14782782892">(478) 278-2892</a></span><span class="sosf">Demo Code: 5554</span></div><script>(function(){function init(){var bar=document.getElementById("sos-launch");if(!bar)return;var ph=["Launch this site","launch this on your site","Business owner? Want this demo","I can launch the site","launch the site for you"];document.querySelectorAll("div,header,section,aside,p").forEach(function(el){if(el===bar)return;var tx=el.textContent||"";if(tx.length<220&&ph.some(function(p){return tx.indexOf(p)>-1}))el.style.display="none";});var fx=[];document.querySelectorAll("header,nav,div").forEach(function(el){if(el===bar||el.id==="sos-cta")return;var s=getComputedStyle(el);if(s.position==="fixed"&&(parseInt(s.top)||0)<5&&el.getBoundingClientRect().top<70&&el.offsetHeight<170)fx.push(el);});function adj(){var b=bar.getBoundingClientRect().bottom;if(b<0)b=0;for(var i=0;i<fx.length;i++)fx[i].style.top=b+"px";var H=document.querySelector("header");if(H&&getComputedStyle(H).position==="absolute"){H.style.top=(window.innerWidth<=920)?(bar.offsetHeight+10)+"px":"";}}adj();window.addEventListener("scroll",adj,{passive:true});window.addEventListener("resize",adj);}if(document.readyState!=="loading")init();else document.addEventListener("DOMContentLoaded",init);})();</script>
+<body class="home wp-singular page-template-default page page-id-122 page-parent wp-custom-logo wp-theme-hello-elementor angie-default manage-default elementor-default elementor-kit-26 elementor-page elementor-page-122 e--ua-blink e--ua-mac e--ua-webkit" data-elementor-device-mode="desktop"><style>.launchbar,.devbar,#preview-bar,.demo-bar{display:none!important}#sos-launch{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;background:#26114F;color:#fff;padding:9px 14px;font:700 13px/1.4 system-ui,-apple-system,sans-serif;text-align:center;position:relative;z-index:2147483646}#sos-launch .sost{background:#FCD34D;color:#26114F;border-radius:6px;padding:3px 8px;font:800 10px/1 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}#sos-launch a{color:#fff;text-decoration:underline;font-weight:900}#sos-launch .sosf{color:#FCD34D;font-weight:900}</style><div id="sos-launch"><span class="sost">Demo</span><span>Call Your 24/7 Receptionist at <a href="tel:14782782892">(478) 278-2892</a></span><span class="sosf">Demo Code: 4183</span></div><script>(function(){function init(){var bar=document.getElementById("sos-launch");if(!bar)return;var ph=["Launch this site","launch this on your site","Business owner? Want this demo","I can launch the site","launch the site for you"];document.querySelectorAll("div,header,section,aside,p").forEach(function(el){if(el===bar)return;var tx=el.textContent||"";if(tx.length<220&&ph.some(function(p){return tx.indexOf(p)>-1}))el.style.display="none";});var fx=[];document.querySelectorAll("header,nav,div").forEach(function(el){if(el===bar||el.id==="sos-cta")return;var s=getComputedStyle(el);if(s.position==="fixed"&&(parseInt(s.top)||0)<5&&el.getBoundingClientRect().top<70&&el.offsetHeight<170)fx.push(el);});function adj(){var b=bar.getBoundingClientRect().bottom;if(b<0)b=0;for(var i=0;i<fx.length;i++)fx[i].style.top=b+"px";var H=document.querySelector("header");if(H&&getComputedStyle(H).position==="absolute"){H.style.top=(window.innerWidth<=920)?(bar.offsetHeight+10)+"px":"";}}adj();window.addEventListener("scroll",adj,{passive:true});window.addEventListener("resize",adj);}if(document.readyState!=="loading")init();else document.addEventListener("DOMContentLoaded",init);})();</script>
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden"><defs><g id="lcBrandmark"><g transform="translate(9 9)"><path d="M69.88 10 L246 10 L193.64000000000001 57.4 L243.62 57.4 L174.6 168 L8 168 L65.12 120.6 L12.76 120.6 Z" fill="#000"/></g><path d="M69.88 10 L246 10 L193.64000000000001 57.4 L243.62 57.4 L174.6 168 L8 168 L65.12 120.6 L12.76 120.6 Z" fill="#000" stroke="#000" stroke-width="14" stroke-linejoin="round"/><path d="M69.88 10 L246 10 L193.64000000000001 57.4 L243.62 57.4 L174.6 168 L8 168 L65.12 120.6 L12.76 120.6 Z" fill="#17365a"/><g transform="translate(0 126.92) skewX(-12) translate(0 -126.92)"><text x="103.20" y="126.92" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="150.00" text-anchor="middle" fill="#fff" stroke="#fff" stroke-width="11.20" stroke-linejoin="round">J</text><text x="103.20" y="126.92" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="150.00" text-anchor="middle" fill="#0bdb05">J</text></g><g transform="translate(0 70) skewX(-12) translate(0 -70)"><g transform="translate(9.00 9.00)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><g transform="translate(8.10 8.10)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><g transform="translate(7.20 7.20)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><g transform="translate(6.30 6.30)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><g transform="translate(5.40 5.40)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><g transform="translate(4.50 4.50)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><g transform="translate(3.60 3.60)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><g transform="translate(2.70 2.70)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><g transform="translate(1.80 1.80)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><g transform="translate(0.90 0.90)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#0bdb05">JDC LAWN CARE</text></g><g transform="translate(0 128) skewX(-12) translate(0 -128)"><g transform="translate(9.00 9.00)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><g transform="translate(8.10 8.10)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><g transform="translate(7.20 7.20)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><g transform="translate(6.30 6.30)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><g transform="translate(5.40 5.40)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><g transform="translate(4.50 4.50)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><g transform="translate(3.60 3.60)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><g transform="translate(2.70 2.70)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><g transform="translate(1.80 1.80)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><g transform="translate(0.90 0.90)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#0bdb05">&amp; LANDSCAPING</text></g><g transform="translate(0 124.4) skewX(-12) translate(0 -124.4)"><text x="616.94" y="124.40" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="18.00" fill="#000" stroke="#000" stroke-width="3.85" stroke-linejoin="round">LLC</text><text x="616.94" y="124.40" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="18.00" fill="#fff">LLC</text></g><g transform="translate(0 166) skewX(-12) translate(0 -166)"><text x="266.00" y="166.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="25.00" fill="#000" stroke="#000" stroke-width="4.90" stroke-linejoin="round">LANDSCAPING AND LAWN CARE</text><text x="266.00" y="166.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="25.00" fill="#fff">LANDSCAPING AND LAWN CARE</text></g></g></defs></svg>
+
 
 		<!-- dropped: analytics/config -->
 		<!-- dropped: ea11y skip nav -->
@@ -1829,7 +1906,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     transform: scale(1.03);
   }
 
-  .zshdr-logo img {
+  .zshdr-logo img, .zshdr-logo .bmk {
     height: 56px;
     width: auto;
     display: block;
@@ -2082,14 +2159,14 @@ svg.leaflet-image-layer.leaflet-interactive path {
   @media (max-width: 1300px) {
     html body .zshdr .zshdr-nav-link { padding: 10px 11px !important; font-size: 13px !important; }
     html body .zshdr .zshdr-nav-cta { padding: 10px 15px !important; font-size: 12px !important; }
-    .zshdr-logo img { height: 52px; }
+    .zshdr-logo img, .zshdr-logo .bmk { height: 52px; }
   }
 
   @media (max-width: 1150px) {
     .zshdr-main-inner { gap: 16px; }
     html body .zshdr .zshdr-nav-link { padding: 9px 9px !important; font-size: 12.5px !important; }
     html body .zshdr .zshdr-nav-cta { padding: 9px 13px !important; font-size: 11.5px !important; letter-spacing: 0.4px; }
-    .zshdr-logo img { height: 48px; }
+    .zshdr-logo img, .zshdr-logo .bmk { height: 48px; }
   }
 
   @media (max-width: 1024px) {
@@ -2108,7 +2185,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     .zshdr-divider { display: none; }
     .zshdr-top-right { display: none; }
     .zshdr-main-inner { padding: 0 16px; }
-    .zshdr-logo img { height: 44px; }
+    .zshdr-logo img, .zshdr-logo .bmk { height: 44px; }
   }
 </style>
 
@@ -2126,14 +2203,14 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="zshdr-divider"></div>
         <span class="zshdr-info">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-          Mon-Fri: 8:00 AM - 6:00 PM | Sat: 7:00 AM - 3:00 PM
+          Mon-Fri: 8:00 AM - 6:00 PM
         </span>
       </div>
 
       <div class="zshdr-top-right">
-        <a href="/gallery" class="zshdr-top-link">Gallery</a>
+        <a href="#" class="zshdr-top-link">Gallery</a>
         <a href="#" target="_blank" rel="noopener" class="zshdr-top-link">Write a Review</a>
-        <a href="/contact" class="zshdr-top-cta">
+        <a href="#estimate" class="zshdr-top-cta">
           Contact
         </a>
       </div>
@@ -2145,40 +2222,40 @@ svg.leaflet-image-layer.leaflet-interactive path {
   <div class="zshdr-main">
     <div class="zshdr-main-inner">
 
-      <a href="/" class="zshdr-logo" aria-label="JDC Lawn Care &amp; Landscaping Home">
-        <span class="brand-wordmark">JDC</span>
+      <a href="#" class="zshdr-logo" aria-label="JDC Lawn Care &amp; Landscaping Home">
+        <svg class="bmk" viewBox="0 0 800 178" role="img" aria-label="JDC Lawn Care &amp; Landscaping"><use href="#lcBrandmark" xlink:href="#lcBrandmark"/></svg>
       </a>
 
       <ul class="zshdr-nav">
-        <li class="zshdr-nav-item"><a href="/" class="zshdr-nav-link zshdr-active">Home</a></li>
+        <li class="zshdr-nav-item"><a href="#" class="zshdr-nav-link zshdr-active">Home</a></li>
 
         <li class="zshdr-nav-item">
-          <a href="/services" class="zshdr-nav-link">
+          <a href="#services" class="zshdr-nav-link">
             Services
             <svg class="zshdr-caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
           </a>
           <ul class="zshdr-dropdown zshdr-dropdown-wide">
-            <li><a href="/plant-installation-services" class="zshdr-dropdown-link">Plant Installs</a></li>
-            <li><a href="/mulching" class="zshdr-dropdown-link">Mulching</a></li>
-            <li><a href="/yard-cleanup" class="zshdr-dropdown-link">Yard Cleanup</a></li>
-            <li><a href="/aeration-and-overseeding" class="zshdr-dropdown-link">Aeration &amp; Overseeding</a></li>
-            <li><a href="/hardscaping" class="zshdr-dropdown-link">Hardscaping</a></li>
-            <li><a href="/landscape-drainage" class="zshdr-dropdown-link">Drainage</a></li>
-            <li><a href="/leaf-removal" class="zshdr-dropdown-link">Leaf Removal</a></li>
-            <li><a href="/christmas-lights" class="zshdr-dropdown-link">Permanent LED Installs</a></li>
-            <li><a href="/power-washing" class="zshdr-dropdown-link">Power Washing</a></li>
-            <li><a href="/snow-removal" class="zshdr-dropdown-link">Snow Removal</a></li>
+            <li><a href="#services" class="zshdr-dropdown-link">Plant Installs</a></li>
+            <li><a href="#services" class="zshdr-dropdown-link">Mulching</a></li>
+            <li><a href="#services" class="zshdr-dropdown-link">Yard Cleanup</a></li>
+            <li><a href="#services" class="zshdr-dropdown-link">Aeration &amp; Overseeding</a></li>
+            <li><a href="#services" class="zshdr-dropdown-link">Hardscaping</a></li>
+            <li><a href="#services" class="zshdr-dropdown-link">Drainage</a></li>
+            <li><a href="#services" class="zshdr-dropdown-link">Leaf Removal</a></li>
+            <li><a href="#services" class="zshdr-dropdown-link">Permanent LED Installs</a></li>
+            <li><a href="#services" class="zshdr-dropdown-link">Power Washing</a></li>
+            <li><a href="#services" class="zshdr-dropdown-link">Snow Removal</a></li>
           </ul>
         </li>
 
-        <li class="zshdr-nav-item"><a href="/about" class="zshdr-nav-link">About</a></li>
+        <li class="zshdr-nav-item"><a href="#" class="zshdr-nav-link">About</a></li>
 
-        <li class="zshdr-nav-item"><a href="/home/#servicearea" class="zshdr-nav-link">Service Area</a></li>
+        <li class="zshdr-nav-item"><a href="#servicelocations" class="zshdr-nav-link">Service Area</a></li>
 
-        <li class="zshdr-nav-item"><a href="/testimonials" class="zshdr-nav-link">Testimonials</a></li>
+        <li class="zshdr-nav-item"><a href="#" class="zshdr-nav-link">Testimonials</a></li>
 
         <li class="zshdr-nav-item">
-          <a href="/contact" class="zshdr-nav-cta">
+          <a href="#estimate" class="zshdr-nav-cta">
             Free Quote
             <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
           </a>
@@ -2274,7 +2351,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     transform: scale(1.03);
   }
 
-  .zsmh-logo img {
+  .zsmh-logo img, .zsmh-logo .bmk {
     height: 48px;
     width: auto;
     display: block;
@@ -2704,7 +2781,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
   @media (max-width: 400px) {
     .zsmh-bar-inner { padding: 0 16px; }
-    .zsmh-logo img { height: 42px; }
+    .zsmh-logo img, .zsmh-logo .bmk { height: 42px; }
   }
 </style>
 
@@ -2714,8 +2791,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
   <div class="zsmh-bar">
     <div class="zsmh-bar-inner">
 
-      <a href="/" class="zsmh-logo" aria-label="JDC Lawn Care &amp; Landscaping Home">
-        <span class="brand-wordmark">JDC</span>
+      <a href="#" class="zsmh-logo" aria-label="JDC Lawn Care &amp; Landscaping Home">
+        <svg class="bmk" viewBox="0 0 800 178" role="img" aria-label="JDC Lawn Care &amp; Landscaping"><use href="#lcBrandmark" xlink:href="#lcBrandmark"/></svg>
       </a>
 
       <button type="button" class="zsmh-burger" aria-label="Open menu" aria-expanded="false">
@@ -2741,7 +2818,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
       <ul class="zsmh-list">
         <li class="zsmh-item">
-          <a href="/" class="zsmh-link">Home</a>
+          <a href="#" class="zsmh-link">Home</a>
         </li>
 
         <li class="zsmh-item zsmh-has-sub">
@@ -2750,37 +2827,37 @@ svg.leaflet-image-layer.leaflet-interactive path {
             <svg class="zsmh-caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
           </a>
           <ul class="zsmh-sublist">
-            <li><a href="/plant-installation-services" class="zsmh-sublink">Plant Installs</a></li>
-            <li><a href="/mulching" class="zsmh-sublink">Mulching</a></li>
-            <li><a href="/yard-cleanup" class="zsmh-sublink">Yard Cleanup</a></li>
-            <li><a href="/aeration-and-overseeding" class="zsmh-sublink">Aeration &amp; Overseeding</a></li>
-            <li><a href="/hardscaping" class="zsmh-sublink">Hardscaping</a></li>
-            <li><a href="/landscape-drainage" class="zsmh-sublink">Drainage</a></li>
-            <li><a href="/leaf-removal" class="zsmh-sublink">Leaf Removal</a></li>
-            <li><a href="/christmas-lights" class="zsmh-sublink">Permanent LED Installs</a></li>
-            <li><a href="/power-washing" class="zsmh-sublink">Power Washing</a></li>
-            <li><a href="/snow-removal" class="zsmh-sublink">Snow Removal</a></li>
+            <li><a href="#services" class="zsmh-sublink">Plant Installs</a></li>
+            <li><a href="#services" class="zsmh-sublink">Mulching</a></li>
+            <li><a href="#services" class="zsmh-sublink">Yard Cleanup</a></li>
+            <li><a href="#services" class="zsmh-sublink">Aeration &amp; Overseeding</a></li>
+            <li><a href="#services" class="zsmh-sublink">Hardscaping</a></li>
+            <li><a href="#services" class="zsmh-sublink">Drainage</a></li>
+            <li><a href="#services" class="zsmh-sublink">Leaf Removal</a></li>
+            <li><a href="#services" class="zsmh-sublink">Permanent LED Installs</a></li>
+            <li><a href="#services" class="zsmh-sublink">Power Washing</a></li>
+            <li><a href="#services" class="zsmh-sublink">Snow Removal</a></li>
           </ul>
         </li>
 
         <li class="zsmh-item">
-          <a href="/about" class="zsmh-link">About</a>
+          <a href="#" class="zsmh-link">About</a>
         </li>
 
         <li class="zsmh-item">
-          <a href="/home/#servicearea" class="zsmh-link">Service Area</a>
+          <a href="#servicelocations" class="zsmh-link">Service Area</a>
         </li>
 
         <li class="zsmh-item">
-          <a href="/testimonials" class="zsmh-link">Testimonials</a>
+          <a href="#" class="zsmh-link">Testimonials</a>
         </li>
 
         <li class="zsmh-item">
-          <a href="/gallery" class="zsmh-link">Gallery</a>
+          <a href="#" class="zsmh-link">Gallery</a>
         </li>
 
         <li class="zsmh-item">
-          <a href="/contact" class="zsmh-link">Contact</a>
+          <a href="#estimate" class="zsmh-link">Contact</a>
         </li>
 
         <li class="zsmh-item">
@@ -2789,7 +2866,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       </ul>
 
       <div class="zsmh-cta-wrap">
-        <a href="/contact" class="zsmh-cta">
+        <a href="#estimate" class="zsmh-cta">
           Get a Free Quote
           <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
         </a>
@@ -2801,7 +2878,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
           </span>
           <span class="zsmh-info">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-            Mon-Fri: 8:00 AM - 6:00 PM | Sat: 7:00 AM - 3:00 PM
+            Mon-Fri: 8:00 AM - 6:00 PM
           </span>
         </div>
       </div>
@@ -2970,7 +3047,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     transform: scale(1.03);
   }
 
-  .zsmh-logo img {
+  .zsmh-logo img, .zsmh-logo .bmk {
     height: 48px;
     width: auto;
     display: block;
@@ -3400,7 +3477,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
   @media (max-width: 400px) {
     .zsmh-bar-inner { padding: 0 16px; }
-    .zsmh-logo img { height: 42px; }
+    .zsmh-logo img, .zsmh-logo .bmk { height: 42px; }
   }
 </style>
 
@@ -3410,8 +3487,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
   <div class="zsmh-bar">
     <div class="zsmh-bar-inner">
 
-      <a href="/" class="zsmh-logo" aria-label="JDC Lawn Care &amp; Landscaping Home">
-        <span class="brand-wordmark">JDC</span>
+      <a href="#" class="zsmh-logo" aria-label="JDC Lawn Care &amp; Landscaping Home">
+        <svg class="bmk" viewBox="0 0 800 178" role="img" aria-label="JDC Lawn Care &amp; Landscaping"><use href="#lcBrandmark" xlink:href="#lcBrandmark"/></svg>
       </a>
 
       <button type="button" class="zsmh-burger" aria-label="Open menu" aria-expanded="false">
@@ -3437,7 +3514,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
       <ul class="zsmh-list">
         <li class="zsmh-item">
-          <a href="/" class="zsmh-link">Home</a>
+          <a href="#" class="zsmh-link">Home</a>
         </li>
 
         <li class="zsmh-item zsmh-has-sub">
@@ -3446,37 +3523,37 @@ svg.leaflet-image-layer.leaflet-interactive path {
             <svg class="zsmh-caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
           </a>
           <ul class="zsmh-sublist">
-            <li><a href="/plant-installation-services" class="zsmh-sublink">Plant Installs</a></li>
-            <li><a href="/mulching" class="zsmh-sublink">Mulching</a></li>
-            <li><a href="/yard-cleanup" class="zsmh-sublink">Yard Cleanup</a></li>
-            <li><a href="/aeration-and-overseeding" class="zsmh-sublink">Aeration &amp; Overseeding</a></li>
-            <li><a href="/hardscaping" class="zsmh-sublink">Hardscaping</a></li>
-            <li><a href="/landscape-drainage" class="zsmh-sublink">Drainage</a></li>
-            <li><a href="/leaf-removal" class="zsmh-sublink">Leaf Removal</a></li>
-            <li><a href="/christmas-lights" class="zsmh-sublink">Permanent LED Installs</a></li>
-            <li><a href="/power-washing" class="zsmh-sublink">Power Washing</a></li>
-            <li><a href="/snow-removal" class="zsmh-sublink">Snow Removal</a></li>
+            <li><a href="#services" class="zsmh-sublink">Plant Installs</a></li>
+            <li><a href="#services" class="zsmh-sublink">Mulching</a></li>
+            <li><a href="#services" class="zsmh-sublink">Yard Cleanup</a></li>
+            <li><a href="#services" class="zsmh-sublink">Aeration &amp; Overseeding</a></li>
+            <li><a href="#services" class="zsmh-sublink">Hardscaping</a></li>
+            <li><a href="#services" class="zsmh-sublink">Drainage</a></li>
+            <li><a href="#services" class="zsmh-sublink">Leaf Removal</a></li>
+            <li><a href="#services" class="zsmh-sublink">Permanent LED Installs</a></li>
+            <li><a href="#services" class="zsmh-sublink">Power Washing</a></li>
+            <li><a href="#services" class="zsmh-sublink">Snow Removal</a></li>
           </ul>
         </li>
 
         <li class="zsmh-item">
-          <a href="/about" class="zsmh-link">About</a>
+          <a href="#" class="zsmh-link">About</a>
         </li>
 
         <li class="zsmh-item">
-          <a href="/home/#servicearea" class="zsmh-link">Service Area</a>
+          <a href="#servicelocations" class="zsmh-link">Service Area</a>
         </li>
 
         <li class="zsmh-item">
-          <a href="/testimonials" class="zsmh-link">Testimonials</a>
+          <a href="#" class="zsmh-link">Testimonials</a>
         </li>
 
         <li class="zsmh-item">
-          <a href="/gallery" class="zsmh-link">Gallery</a>
+          <a href="#" class="zsmh-link">Gallery</a>
         </li>
 
         <li class="zsmh-item">
-          <a href="/contact" class="zsmh-link">Contact</a>
+          <a href="#estimate" class="zsmh-link">Contact</a>
         </li>
 
         <li class="zsmh-item">
@@ -3485,7 +3562,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       </ul>
 
       <div class="zsmh-cta-wrap">
-        <a href="/contact" class="zsmh-cta">
+        <a href="#estimate" class="zsmh-cta">
           Get a Free Quote
           <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
         </a>
@@ -3497,7 +3574,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
           </span>
           <span class="zsmh-info">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-            Mon-Fri: 8:00 AM - 6:00 PM | Sat: 7:00 AM - 3:00 PM
+            Mon-Fri: 8:00 AM - 6:00 PM
           </span>
         </div>
       </div>
@@ -3583,7 +3660,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     transform: scale(1.03);
   }
 
-  .zssh-logo img {
+  .zssh-logo img, .zssh-logo .bmk {
     height: 44px;
     width: auto;
     display: block;
@@ -3803,14 +3880,14 @@ svg.leaflet-image-layer.leaflet-interactive path {
     .zssh { width: calc(100% - 32px); }
     html body .zssh .zssh-link { padding: 9px 13px !important; font-size: 13px !important; }
     html body .zssh .zssh-cta { padding: 11px 20px !important; font-size: 12px !important; }
-    .zssh-logo img { height: 40px; }
+    .zssh-logo img, .zssh-logo .bmk { height: 40px; }
     .zssh-inner { padding: 14px 18px 14px 28px; gap: 20px; }
   }
 
   @media (max-width: 1150px) {
     html body .zssh .zssh-link { padding: 8px 10px !important; font-size: 12.5px !important; }
     html body .zssh .zssh-cta { padding: 10px 16px !important; font-size: 11.5px !important; letter-spacing: 0.4px; }
-    .zssh-logo img { height: 38px; }
+    .zssh-logo img, .zssh-logo .bmk { height: 38px; }
     .zssh-inner { gap: 14px; padding: 12px 14px 12px 22px; border-radius: 14px; }
   }
 </style>
@@ -3818,39 +3895,39 @@ svg.leaflet-image-layer.leaflet-interactive path {
 <header class="zssh" id="zssh-sticky">
   <div class="zssh-inner">
 
-    <a href="/" class="zssh-logo" aria-label="JDC Lawn Care &amp; Landscaping Home">
-      <span class="brand-wordmark">JDC</span>
+    <a href="#" class="zssh-logo" aria-label="JDC Lawn Care &amp; Landscaping Home">
+      <svg class="bmk" viewBox="0 0 800 178" role="img" aria-label="JDC Lawn Care &amp; Landscaping"><use href="#lcBrandmark" xlink:href="#lcBrandmark"/></svg>
     </a>
 
     <ul class="zssh-nav">
-      <li class="zssh-nav-item"><a href="/" class="zssh-link">Home</a></li>
+      <li class="zssh-nav-item"><a href="#" class="zssh-link">Home</a></li>
 
       <li class="zssh-nav-item">
-        <a href="/services" class="zssh-link">
+        <a href="#services" class="zssh-link">
           Services
           <svg class="zssh-caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
         </a>
         <ul class="zssh-dropdown zssh-dropdown-wide">
-          <li><a href="/plant-installation-services" class="zssh-dropdown-link">Plant Installs</a></li>
-          <li><a href="/mulching" class="zssh-dropdown-link">Mulching</a></li>
-          <li><a href="/yard-cleanup" class="zssh-dropdown-link">Yard Cleanup</a></li>
-          <li><a href="/hardscaping" class="zssh-dropdown-link">Hardscaping</a></li>
-          <li><a href="/landscape-drainage" class="zssh-dropdown-link">Drainage</a></li>
-          <li><a href="/leaf-removal" class="zssh-dropdown-link">Leaf Removal</a></li>
-          <li><a href="/christmas-lights" class="zssh-dropdown-link">Permanent LED Installs</a></li>
-          <li><a href="/power-washing" class="zssh-dropdown-link">Power Washing</a></li>
-          <li><a href="/snow-removal" class="zssh-dropdown-link">Snow Removal</a></li>
+          <li><a href="#services" class="zssh-dropdown-link">Plant Installs</a></li>
+          <li><a href="#services" class="zssh-dropdown-link">Mulching</a></li>
+          <li><a href="#services" class="zssh-dropdown-link">Yard Cleanup</a></li>
+          <li><a href="#services" class="zssh-dropdown-link">Hardscaping</a></li>
+          <li><a href="#services" class="zssh-dropdown-link">Drainage</a></li>
+          <li><a href="#services" class="zssh-dropdown-link">Leaf Removal</a></li>
+          <li><a href="#services" class="zssh-dropdown-link">Permanent LED Installs</a></li>
+          <li><a href="#services" class="zssh-dropdown-link">Power Washing</a></li>
+          <li><a href="#services" class="zssh-dropdown-link">Snow Removal</a></li>
         </ul>
       </li>
 
-      <li class="zssh-nav-item"><a href="/about" class="zssh-link">About</a></li>
+      <li class="zssh-nav-item"><a href="#" class="zssh-link">About</a></li>
 
-      <li class="zssh-nav-item"><a href="/home/#servicearea" class="zssh-link">Service Area</a></li>
+      <li class="zssh-nav-item"><a href="#servicelocations" class="zssh-link">Service Area</a></li>
 
-      <li class="zssh-nav-item"><a href="/testimonials" class="zssh-link">Testimonials</a></li>
+      <li class="zssh-nav-item"><a href="#" class="zssh-link">Testimonials</a></li>
     </ul>
 
-    <a href="/contact" class="zssh-cta">
+    <a href="#estimate" class="zssh-cta">
       Free Quote
       <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
     </a>
@@ -3957,7 +4034,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 		<div class="elementor-element elementor-element-2d3c8f8 e-con-full e-flex e-con e-child" data-id="2d3c8f8" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
 				<div class="elementor-element elementor-element-1c6f823 elementor-widget__width-inherit elementor-widget elementor-widget-image" data-id="1c6f823" data-element_type="widget" data-e-type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">
-															<span class="zsb zsb--rating"><span class="zsb-num">5</span><span class="zsb-col"><span class="zsb-l1">STARS</span><span class="zsb-l2">ON GOOGLE</span><span class="zsb-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></span></span>															</div>
+															<span class="zsb zsb--rating"><span class="zsb-num">5.0</span><span class="zsb-col"><span class="zsb-l1">STARS</span><span class="zsb-l2">ON GOOGLE</span><span class="zsb-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></span></span>															</div>
 				</div>
 				<div class="elementor-element elementor-element-262da02 elementor-widget elementor-widget-heading" data-id="262da02" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
@@ -4120,7 +4197,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   }
 </style>
 
-<a href="/contact" class="zs-quote-btn">Get a Free Quote</a>				</div>
+<a href="#estimate" class="zs-quote-btn">Get a Free Quote</a>				</div>
 				</div>
 				<div class="elementor-element elementor-element-95d9ae7 elementor-widget elementor-widget-html" data-id="95d9ae7" data-element_type="widget" data-e-type="widget" data-widget_type="html.default">
 				<div class="elementor-widget-container">
@@ -4192,7 +4269,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 		<div class="elementor-element elementor-element-863d8a3 e-con-full e-flex e-con e-child" data-id="863d8a3" data-element_type="container" data-e-type="container">
 				<div class="elementor-element elementor-element-f00946a elementor-widget elementor-widget-image" data-id="f00946a" data-element_type="widget" data-e-type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">
-															<img loading="eager" decoding="async" width="927" height="1036" src="https://demo.solidbookedpro.com/assets/lawn/lawn-1.jpg" class="attachment-full size-full wp-image-3225" alt="Landscaping company man trimming bushes." srcset="https://demo.solidbookedpro.com/assets/lawn/lawn-1.jpg 927w, https://demo.solidbookedpro.com/assets/lawn/lawn-5.jpg 268w, https://demo.solidbookedpro.com/assets/lawn/lawn-5.jpg 916w, https://demo.solidbookedpro.com/assets/lawn/lawn-1.jpg 768w" sizes="(max-width: 927px) 100vw, 927px">															</div>
+															<img loading="eager" decoding="async" width="927" height="1036" src="https://demo.solidbookedpro.com/assets/landscaping-c/images/framed-photo-927.webp" class="attachment-full size-full wp-image-3225" alt="Landscaping company man trimming bushes." srcset="https://demo.solidbookedpro.com/assets/landscaping-c/images/framed-photo-927.webp 927w, https://demo.solidbookedpro.com/assets/landscaping-c/images/framed-photo-268.webp 268w, https://demo.solidbookedpro.com/assets/landscaping-c/images/framed-photo-916.webp 916w, https://demo.solidbookedpro.com/assets/landscaping-c/images/framed-photo-768.webp 768w" sizes="(max-width: 927px) 100vw, 927px">															</div>
 				</div>
 				</div>
 				</div>
@@ -4481,7 +4558,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="zs-divider"></div>
         <div class="zs-extra">
           <p class="zs-desc">Let us handle the custom design, plant selection, and plant installation for you! We follow planting best practices to ensure your landscaping thrives for years to come.</p>
-          <a href="/plant-installation-services" class="zs-btn">Learn More</a>
+          <a href="#services" class="zs-btn">Learn More</a>
         </div>
       </div>
     </div>
@@ -4493,7 +4570,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="zs-divider"></div>
         <div class="zs-extra">
           <p class="zs-desc">Suppress weeds, define garden beds, and reduce erosion with mulching services. A fresh layer of mulch can significantly enhance your yard's appearance!</p>
-          <a href="/mulching" class="zs-btn">Learn More</a>
+          <a href="#services" class="zs-btn">Learn More</a>
         </div>
       </div>
     </div>
@@ -4505,7 +4582,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="zs-divider"></div>
         <div class="zs-extra">
           <p class="zs-desc">Yard cleanup services by JDC Lawn Care &amp; Landscaping include removing debris, trimming overgrown areas, and defining edges to improve your outdoor spaces.</p>
-          <a href="/yard-cleanup" class="zs-btn">Learn More</a>
+          <a href="#services" class="zs-btn">Learn More</a>
         </div>
       </div>
     </div>
@@ -4517,7 +4594,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="zs-divider"></div>
         <div class="zs-extra">
           <p class="zs-desc">Our expert team installs retaining walls, patios, steps, and more. Whatever hardscaping you need to make your outdoor space feel complete!</p>
-          <a href="/hardscaping" class="zs-btn">Learn More</a>
+          <a href="#services" class="zs-btn">Learn More</a>
         </div>
       </div>
     </div>
@@ -4529,7 +4606,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="zs-divider"></div>
         <div class="zs-extra">
           <p class="zs-desc">Avoid problematic pooling of water on your property with our professional drainage services. We'll handle grading and drain installation to keep water moving on your property.</p>
-          <a href="/landscape-drainage" class="zs-btn">Learn More</a>
+          <a href="#services" class="zs-btn">Learn More</a>
         </div>
       </div>
     </div>
@@ -4541,7 +4618,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="zs-divider"></div>
         <div class="zs-extra">
           <p class="zs-desc">Keep your yard free of leaves during the fall season with our professional leaf removal services. Protect your grass and improve your curb appeal.</p>
-          <a href="/leaf-removal" class="zs-btn">Learn More</a>
+          <a href="#services" class="zs-btn">Learn More</a>
         </div>
       </div>
     </div>
@@ -4553,7 +4630,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="zs-divider"></div>
         <div class="zs-extra">
           <p class="zs-desc">Exterior looking grimy? Our power washing services remove algae and mildew through soft washing, roof washing, surface cleaning, and more.</p>
-          <a href="/power-washing" class="zs-btn">Learn More</a>
+          <a href="#services" class="zs-btn">Learn More</a>
         </div>
       </div>
     </div>
@@ -4565,7 +4642,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="zs-divider"></div>
         <div class="zs-extra">
           <p class="zs-desc">Spread cheer this holiday season and beyond with permanent LED installation. We'll handle the design and setup for a stress-free season for years to come.</p>
-          <a href="/christmas-lights" class="zs-btn">Learn More</a>
+          <a href="#services" class="zs-btn">Learn More</a>
         </div>
       </div>
     </div>
@@ -4577,7 +4654,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="zs-divider"></div>
         <div class="zs-extra">
           <p class="zs-desc">Prevent buildup and keep your property accessible this winter with our reliable snow removal services. We'll clear driveways, walkways, parking lots, and more.</p>
-          <a href="/snow-removal" class="zs-btn">Learn More</a>
+          <a href="#services" class="zs-btn">Learn More</a>
         </div>
       </div>
     </div>
@@ -4823,7 +4900,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <h3 class="zs-cta-headline">Schedule Your <span class="zs-accent">Free</span><br>On-Site Consultation</h3>
     <div class="zs-cta-divider"></div>
     <p class="zs-cta-text">Let's talk about your goals and create a plan that transforms your outdoor space.</p>
-    <a href="/contact" class="zs-cta-btn">Get a Free Quote</a>
+    <a href="#estimate" class="zs-cta-btn">Get a Free Quote</a>
   </div>
 </div>				</div>
 				</div>
@@ -5966,7 +6043,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
       </svg>
       <div class="zs-trust-rating">
-        <div class="zs-trust-num">5</div>
+        <div class="zs-trust-num">5.0</div>
         <div class="zs-trust-stars">
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
@@ -5999,8 +6076,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
   <!-- CAROUSEL -->
   <div class="zs-carousel-wrap">
-    <div class="zs-track" id="zsTrack"><div class="zs-card"><div class="zs-card-quote">“</div><p class="zs-card-text">We’ve been using JDC Lawncare and Landscaping for our lawncare needs, and I’m very impressed. Their team is professional, friendly, and knowledgeable. My lawn looks amazing—green, healthy, and free of weeds. They’re always on time, and they take great care of my property. I highly recommend JDC Lawncare and Landscaping</p><div class="zs-card-footer"><div class="zs-avatar">SH</div><div class="zs-card-author-info"><div class="zs-card-name">Synetria Harper Pauldo</div></div></div></div><div class="zs-card"><div class="zs-card-quote">“</div><p class="zs-card-text">This is an excellent all around lawn care company. Jeff is very accessible and answers call promptly. He and the staff are beyond friendly and very hardworking. Besides the regular lawn care they did a perfect job with other things like landscaping and removing a storm damaged tree. They take care of two houses for me </p><div class="zs-card-footer"><div class="zs-avatar">FB</div><div class="zs-card-author-info"><div class="zs-card-name">Fry Butler</div></div></div></div><div class="zs-card"><div class="zs-card-quote">“</div><p class="zs-card-text">Jeff &amp; the crew have &amp; continue to do an awesome job with the landscaping for 3 of our family properties. The team is always courteous &amp; professional, yielding great results each time. I'm happy we're regular customers &amp; highly recommend their services to anyone seeking a landscaping team to maintain a manicured yard.</p><div class="zs-card-footer"><div class="zs-avatar">F</div><div class="zs-card-author-info"><div class="zs-card-name">Franieda</div></div></div></div><div class="zs-card"><div class="zs-card-quote">“</div><p class="zs-card-text">Jeff and his crew does an amazing job on our lawn. He is very professional, responsive, and the value of the service fits the price. I highly recommend this company for your landscape needs.</p><div class="zs-card-footer"><div class="zs-avatar">SR</div><div class="zs-card-author-info"><div class="zs-card-name">Simone Reese</div></div></div></div><div class="zs-card"><div class="zs-card-quote">“</div><p class="zs-card-text">These guys (business) is Top Notch.
-They went above and beyond to service my grandmother’s yard. I thought I was going to have to seek another service provider to remove a tree that fell in her yard. Due to a recent storm that came through at the end of 2024. The company of JDC removed this tree and restored my grandmo</p><div class="zs-card-footer"><div class="zs-avatar">JB</div><div class="zs-card-author-info"><div class="zs-card-name">Jarvis Burnett</div></div></div></div><div class="zs-card"><div class="zs-card-quote">“</div><p class="zs-card-text">The best! Professional, timely and wonderful lawn care professionals! Thanks again, Jeffery!</p><div class="zs-card-footer"><div class="zs-avatar">BD</div><div class="zs-card-author-info"><div class="zs-card-name">Bethany Deeds</div></div></div></div><div class="zs-card"><div class="zs-card-quote">“</div><p class="zs-card-text">My lawn mower is on the fritz, and JDC was cutting my neighbor's house as they often do every other Saturday. I called one of the guys over and asked if they had time to take care of my front yard while they were there. Jeffrey gave me a quote, I agreed, and he called the rest of his crew over to help finish both yards</p><div class="zs-card-footer"><div class="zs-avatar">JS</div><div class="zs-card-author-info"><div class="zs-card-name">Jason Smith-Neese</div></div></div></div><div class="zs-card"><div class="zs-card-quote">“</div><p class="zs-card-text">I am very pleased with the work that he and his employees performed here in my home. Everything was perfect. I recommend him highly.</p><div class="zs-card-footer"><div class="zs-avatar">AW</div><div class="zs-card-author-info"><div class="zs-card-name">Anna Watkins</div></div></div></div></div>
+    <div class="zs-track" id="zsTrack"><div class="zs-card"><div class="zs-card-quote">“</div><p class="zs-card-text">&quot;We’ve been using JDC Lawncare and Landscaping for our lawncare needs, and I’m very impressed. Their team is professional, friendly, and knowledgeable. My lawn looks amazing—green, healthy, and free of weeds. They’re always on time, and they take great care of my property. I highly recommend JDC Lawncare and Landscapin</p><div class="zs-card-footer"><div class="zs-avatar">SH</div><div class="zs-card-author-info"><div class="zs-card-name">Synetria Harper Pauldo</div></div></div></div><div class="zs-card"><div class="zs-card-quote">“</div><p class="zs-card-text">&quot;This is an excellent all around lawn care company. Jeff is very accessible and answers call promptly. He and the staff are beyond friendly and very hardworking. Besides the regular lawn care they did a perfect job with other things like landscaping and removing a storm damaged tree. They take care of two houses for me</p><div class="zs-card-footer"><div class="zs-avatar">FB</div><div class="zs-card-author-info"><div class="zs-card-name">Fry Butler</div></div></div></div><div class="zs-card"><div class="zs-card-quote">“</div><p class="zs-card-text">&quot;Jeff &amp; the crew have &amp; continue to do an awesome job with the landscaping for 3 of our family properties. The team is always courteous &amp; professional, yielding great results each time. I'm happy we're regular customers &amp; highly recommend their services to anyone seeking a landscaping team to maintain a manicured yard.</p><div class="zs-card-footer"><div class="zs-avatar">F</div><div class="zs-card-author-info"><div class="zs-card-name">Franieda</div></div></div></div><div class="zs-card"><div class="zs-card-quote">“</div><p class="zs-card-text">&quot;Jeff and his crew does an amazing job on our lawn. He is very professional, responsive, and the value of the service fits the price. I highly recommend this company for your landscape needs.&quot;</p><div class="zs-card-footer"><div class="zs-avatar">SR</div><div class="zs-card-author-info"><div class="zs-card-name">Simone Reese</div></div></div></div><div class="zs-card"><div class="zs-card-quote">“</div><p class="zs-card-text">&quot;These guys (business) is Top Notch.
+They went above and beyond to service my grandmother’s yard. I thought I was going to have to seek another service provider to remove a tree that fell in her yard. Due to a recent storm that came through at the end of 2024. The company of JDC removed this tree and restored my grandm</p><div class="zs-card-footer"><div class="zs-avatar">JB</div><div class="zs-card-author-info"><div class="zs-card-name">Jarvis Burnett</div></div></div></div><div class="zs-card"><div class="zs-card-quote">“</div><p class="zs-card-text">&quot;The best! Professional, timely and wonderful lawn care professionals! Thanks again, Jeffery!&quot;</p><div class="zs-card-footer"><div class="zs-avatar">BD</div><div class="zs-card-author-info"><div class="zs-card-name">Bethany Deeds</div></div></div></div><div class="zs-card"><div class="zs-card-quote">“</div><p class="zs-card-text">&quot;My lawn mower is on the fritz, and JDC was cutting my neighbor's house as they often do every other Saturday. I called one of the guys over and asked if they had time to take care of my front yard while they were there. Jeffrey gave me a quote, I agreed, and he called the rest of his crew over to help finish both yard</p><div class="zs-card-footer"><div class="zs-avatar">JS</div><div class="zs-card-author-info"><div class="zs-card-name">Jason Smith-Neese</div></div></div></div><div class="zs-card"><div class="zs-card-quote">“</div><p class="zs-card-text">&quot;I am very pleased with the work that he and his employees performed here in my home. Everything was perfect. I recommend him highly.&quot;</p><div class="zs-card-footer"><div class="zs-avatar">AW</div><div class="zs-card-author-info"><div class="zs-card-name">Anna Watkins</div></div></div></div></div>
   </div>
 
   <!-- CONTROLS -->
@@ -6205,7 +6282,7 @@ They went above and beyond to service my grandmother’s yard. I thought I was g
   }
 </style>
 
-<a href="/contact" class="zs-quote-btn">Get a Free Quote</a>				</div>
+<a href="#estimate" class="zs-quote-btn">Get a Free Quote</a>				</div>
 				</div>
 				<div class="elementor-element elementor-element-f4c3d9f elementor-widget elementor-widget-html" data-id="f4c3d9f" data-element_type="widget" data-e-type="widget" data-widget_type="html.default">
 				<div class="elementor-widget-container">
@@ -6321,7 +6398,7 @@ They went above and beyond to service my grandmother’s yard. I thought I was g
   }
 </style>
 
-<a href="/contact" class="zs-quote-btn">Get a Free Quote</a>				</div>
+<a href="#estimate" class="zs-quote-btn">Get a Free Quote</a>				</div>
 				</div>
 				</div>
 		<div class="elementor-element elementor-element-2fb5af4 e-con-full e-flex e-con e-child" data-id="2fb5af4" data-element_type="container" data-e-type="container">
@@ -6527,7 +6604,7 @@ They went above and beyond to service my grandmother’s yard. I thought I was g
 					<div class="e-con-inner">
 		<div class="elementor-element elementor-element-0a47d4a e-grid e-con-full e-con e-child" data-id="0a47d4a" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
 		<div class="elementor-element elementor-element-3b6f575 e-con-full e-flex e-con e-child" data-id="3b6f575" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" style="align-self: stretch;">
-				<div class="elementor-element elementor-element-25e25d0 elementor-widget elementor-widget-html zsa-map-host" data-id="25e25d0" data-element_type="widget" data-e-type="widget" data-widget_type="html.default">
+				<div id="servicelocations" class="elementor-element elementor-element-25e25d0 elementor-widget elementor-widget-html zsa-map-host" data-id="25e25d0" data-element_type="widget" data-e-type="widget" data-widget_type="html.default">
 				<div class="elementor-widget-container">
 					<!-- ZS Exteriors Service Area - RIGHT SIDE (interactive map) -->
 <style>
@@ -7688,7 +7765,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 <div class="zscitylist">
   <ul class="zscl-list">
     <li>
-      <a href="/" class="zscl-item">
+      <a href="#" class="zscl-item">
         <span class="zscl-pin">
           <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"></path></svg>
         </span>
@@ -8129,7 +8206,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     margin-bottom: 18px;
   }
 
-  .zsft-brand-logo img {
+  .zsft-brand-logo img, .zsft-brand-logo .bmk {
     height: 56px;
     width: auto;
     display: block;
@@ -8345,7 +8422,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     .zsft-brand-col {
       grid-column: auto;
     }
-    .zsft-brand-logo img { height: 48px; }
+    .zsft-brand-logo img, .zsft-brand-logo .bmk { height: 48px; }
     .zsft-bottom-inner {
       padding: 0 24px;
       flex-direction: column;
@@ -8356,6 +8433,47 @@ svg.leaflet-image-layer.leaflet-interactive path {
   }
 </style>
 
+
+<section class="lcest" id="estimate">
+  <div class="lcest-inner">
+
+    <div class="lcest-copy">
+      <p class="lcest-kicker">No-pressure walkthrough</p>
+      <h2 id="estimate-title">Request your free estimate</h2>
+      <p class="lcest-lead">Tell us about your property and what you would like done. JDC Lawn Care &amp; Landscaping will follow up to book a visit — most requests get a call back the same day.</p>
+      <ul class="lcest-checks">
+        <li>Free on-site estimate</li>
+        <li>Clear, upfront pricing</li>
+        <li>Serving Dublin and 25 miles around it</li>
+      </ul>
+      <a class="lcest-call" href="tel:+14782782892">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Prefer to talk? (478) 278-2892
+      </a>
+    </div>
+
+    <form class="lcest-form" data-estimate-form aria-labelledby="estimate-title">
+      <div class="lcest-row">
+        <label><span>Name</span><input type="text" name="name" autocomplete="name" placeholder="Your name" required></label>
+        <label><span>Phone</span><input type="tel" name="phone" autocomplete="tel" placeholder="(555) 555-5555" required></label>
+      </div>
+      <label><span>Email</span><input type="email" name="email" autocomplete="email" placeholder="you@example.com" required></label>
+      <div class="lcest-row">
+        <label><span>Service</span>
+          <select name="service" required>
+            <option value="">Select one</option>
+            <option>Lawn care & maintenance</option><option>Plant installation</option><option>Mulching</option><option>Yard cleanup</option><option>Aeration & overseeding</option><option>Hardscaping</option><option>Landscape drainage</option><option>Leaf removal</option><option>Power washing</option><option>Christmas lights</option><option>Snow removal</option>
+          </select>
+        </label>
+        <label><span>ZIP code</span><input type="text" name="zip" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}(-[0-9]{4})?" placeholder="00000" required></label>
+      </div>
+      <button class="lcest-submit" type="submit">Get my free estimate</button>
+      <p class="lcest-status" data-form-status role="status" aria-live="polite"></p>
+      <small class="lcest-note">Demo form — connect this to your CRM or form endpoint before launch.</small>
+    </form>
+
+  </div>
+</section>
 <footer class="zsft">
 
   <div class="zsft-main">
@@ -8365,8 +8483,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
         <!-- BRAND COLUMN -->
         <div class="zsft-brand-col">
-          <a href="/" class="zsft-brand-logo" aria-label="JDC Lawn Care &amp; Landscaping Home">
-            <span class="brand-wordmark">JDC</span>
+          <a href="#" class="zsft-brand-logo" aria-label="JDC Lawn Care &amp; Landscaping Home">
+            <svg class="bmk" viewBox="0 0 800 178" role="img" aria-label="JDC Lawn Care &amp; Landscaping"><use href="#lcBrandmark" xlink:href="#lcBrandmark"/></svg>
           </a>
           <p class="zsft-brand-text">Landscaping, hardscaping, drainage, and exterior maintenance for GA homeowners. Dublin-based, family-run.</p>
 
@@ -8393,16 +8511,16 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div>
           <h3 class="zsft-col-heading">Services</h3>
           <ul class="zsft-list">
-            <li><a href="/plant-installation-services" class="zsft-link">Plant Installation</a></li>
-            <li><a href="/mulching" class="zsft-link">Mulching</a></li>
-            <li><a href="/yard-cleanup" class="zsft-link">Yard Cleanup</a></li>
-            <li><a href="/aeration-and-overseeding" class="zsft-link">Aeration &amp; Overseeding</a></li>
-            <li><a href="/hardscaping" class="zsft-link">Hardscaping</a></li>
-            <li><a href="/landscape-drainage" class="zsft-link">Drainage</a></li>
-            <li><a href="/leaf-removal" class="zsft-link">Leaf Removal</a></li>
-            <li><a href="/christmas-lights" class="zsft-link">Permanent LED Installs</a></li>
-            <li><a href="/power-washing" class="zsft-link">Power Washing</a></li>
-            <li><a href="/snow-removal" class="zsft-link">Snow Removal</a></li>
+            <li><a href="#services" class="zsft-link">Plant Installation</a></li>
+            <li><a href="#services" class="zsft-link">Mulching</a></li>
+            <li><a href="#services" class="zsft-link">Yard Cleanup</a></li>
+            <li><a href="#services" class="zsft-link">Aeration &amp; Overseeding</a></li>
+            <li><a href="#services" class="zsft-link">Hardscaping</a></li>
+            <li><a href="#services" class="zsft-link">Drainage</a></li>
+            <li><a href="#services" class="zsft-link">Leaf Removal</a></li>
+            <li><a href="#services" class="zsft-link">Permanent LED Installs</a></li>
+            <li><a href="#services" class="zsft-link">Power Washing</a></li>
+            <li><a href="#services" class="zsft-link">Snow Removal</a></li>
           </ul>
         </div>
 
@@ -8410,14 +8528,14 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div>
           <h3 class="zsft-col-heading">Company</h3>
           <ul class="zsft-list">
-            <li><a href="/about" class="zsft-link">About</a></li>
-            <li><a href="/testimonials" class="zsft-link">Testimonials</a></li>
-            <li><a href="/gallery" class="zsft-link">Gallery</a></li>
-            <li><a href="/" class="zsft-link">Dublin, GA</a></li>
+            <li><a href="#" class="zsft-link">About</a></li>
+            <li><a href="#" class="zsft-link">Testimonials</a></li>
+            <li><a href="#" class="zsft-link">Gallery</a></li>
+            <li><a href="#" class="zsft-link">Dublin, GA</a></li>
             <li><a href="#" class="zsft-link">North Dublin, GA</a></li>
             <li><a href="#" class="zsft-link">Greater Dublin, GA</a></li>
             <li><a href="#" class="zsft-link">Dublin Metro, GA</a></li>
-            <li><a href="/contact" class="zsft-link">Contact</a></li>
+            <li><a href="#estimate" class="zsft-link">Contact</a></li>
           </ul>
         </div>
 
@@ -8435,7 +8553,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
               Dublin, GA<br>Serving GA
             </li>
             <li class="zsft-contact-item">
-              Mon-Fri: 8:00 AM - 6:00 PM | Sat: 7:00 AM - 3:00 PM
+              Mon-Fri: 8:00 AM - 6:00 PM
             </li>
           </ul>
         </div>
@@ -8452,9 +8570,9 @@ svg.leaflet-image-layer.leaflet-interactive path {
       <p class="zsft-copyright">© 2026 JDC Lawn Care &amp; Landscaping LLC. All rights reserved.</p>
 
       <ul class="zsft-bottom-links">
-        <li><a href="/privacy-policy" class="zsft-bottom-link">Privacy Policy</a></li>
-        <li><a href="/terms-of-service" class="zsft-bottom-link">Terms of Service</a></li>
-        <li><a href="/sitemap" class="zsft-bottom-link">Sitemap</a></li>
+        <li><a href="#" class="zsft-bottom-link">Privacy Policy</a></li>
+        <li><a href="#" class="zsft-bottom-link">Terms of Service</a></li>
+        <li><a href="#" class="zsft-bottom-link">Sitemap</a></li>
       </ul>
 
       <p class="zsft-credit">Made by <a href="https://hustlesmartermarketing.com" target="_blank" rel="noopener" class="zsft-credit-link">SolidBooked Pro</a></p>
@@ -8586,5 +8704,57 @@ angieCanvasTemplateData = {"templateSlug":"angie-canvas"};
   else setTimeout(start, 900);
 })();
 
+</script>
+<script id="lc-estimate-js">
+(function () {
+  var f = document.querySelector('[data-estimate-form]');
+  if (!f) return;
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!f.reportValidity()) return;
+    var st = f.querySelector('[data-form-status]');
+    var name = (f.querySelector('[name="name"]') || {}).value || '';
+    if (st) st.textContent = 'Thanks' + (name ? ', ' + name.split(' ')[0] : '')
+      + ' — your request is in. We will call you back to book the visit.';
+    f.querySelector('.lcest-submit').disabled = true;
+  });
+})();
+</script>
+
+<div class="lccta" id="lccta">
+  <a class="lccta-btn lccta-call" href="tel:+14782782892">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span><i class="lccta-lbl">Call Us </i><b>(478) 278-2892</b></span>
+  </a>
+  <a class="lccta-btn lccta-book" href="#estimate">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
+    <span>Book a Service</span>
+  </a>
+</div>
+<script id="lc-cta-js">
+(function () {
+  var bar = document.getElementById('lccta');
+  if (!bar) return;
+  var hero = document.querySelector('.elementor-element-1f91cb0');
+  function y() { return window.pageYOffset || document.documentElement.scrollTop || 0; }
+  function threshold() {
+    // past the hero — fall back to a viewport if the hero element ever moves
+    return hero ? Math.max(240, hero.offsetTop + hero.offsetHeight - 90)
+                : Math.max(240, innerHeight * 0.85);
+  }
+  var up = false, raf;
+  function tick() {
+    var want = y() > threshold();
+    if (want !== up) {
+      up = want;
+      bar.classList.toggle('is-up', up);
+      document.body.classList.toggle('lccta-on', up);
+    }
+  }
+  function schedule() { cancelAnimationFrame(raf); raf = requestAnimationFrame(tick); }
+  addEventListener('scroll', schedule, { passive: true });
+  addEventListener('resize', schedule);
+  schedule();
+})();
 </script>
 </body></html>
