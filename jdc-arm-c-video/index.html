@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en-US"><head><meta name="sbp-template" content="landscaping_c_truck">
+<!DOCTYPE html><html lang="en-US"><head><meta name="sbp-template" content="landscaping-c">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
@@ -1514,32 +1514,56 @@ svg.leaflet-image-layer.leaflet-interactive path {
   margin-top:0; margin-bottom:0;
 }
 </style>
-<style id="hero-variant">
-/* Hero photo variant: hero-neutral.jpg (see hero-truck-template.py)
-   TWO defects in the original are corrected here. Both are real — measured against the live
-   site — but both look like bugs, so the rebrand variants fix them. index.html is left alone
-   so the 1:1 reference stays 1:1.
 
-   1. LETTERBOXING. Below 1440px the original switches the hero to background-size:contain,
-      which puts black bars down the left and right.
-   2. THE BIG TOP/BOTTOM BANDS. The hero element (88ebe78) is a fixed ~814px tall inside a
-      100vh parent (1f91cb0) that CENTRES it. At 1307x1250 that measured y359 / 814 tall inside
-      a 1250-tall parent — i.e. 218px of black above AND below, and it grows with window height.
-      Fixing background-size alone does nothing for this, because the element itself is short.
-      So the photo moves to the FULL-HEIGHT OUTER container and the inner's own background is
-      cleared (otherwise the inner paints its colour over the photo). */
+<style id="zs-herovid-css">
+/* full-bleed looped hero video (see make-video-hero.mjs) */
+/* FIRST PAINT MUST BE A VIDEO FRAME.
+   Leaving the hero's own truck photo as the background meant the page painted the truck, then
+   visibly swapped to the montage when the video finally played — a jarring flash on every
+   load. Pointing the background at the video's OWN first frame means the fade-in has nothing
+   to reveal: the still and the first video frame are the same image. */
 .elementor-122 .elementor-element.elementor-element-1f91cb0:not(.elementor-motion-effects-element-type-background),
 .elementor-122 .elementor-element.elementor-element-1f91cb0 > .elementor-motion-effects-container > .elementor-motion-effects-layer{
-  background-image:url("https://demo.solidbookedpro.com/assets/landscaping-c/images/hero-neutral.jpg") !important;
-  background-size:cover !important;
-  background-position:center center !important;
-  background-repeat:no-repeat !important;
+  background-image:url("https://demo.solidbookedpro.com/assets/landscaping-c/video/hero-poster.jpg") !important;
+  background-position:center center;background-size:cover;
 }
+/* clear the inner container's own photo/colour or it paints OVER the video layer behind it */
 .elementor-122 .elementor-element.elementor-element-88ebe78:not(.elementor-motion-effects-element-type-background),
 .elementor-122 .elementor-element.elementor-element-88ebe78 > .elementor-motion-effects-container > .elementor-motion-effects-layer{
-  background-image:none !important;
-  background-color:transparent !important;
+  background-image:none !important;background-color:transparent !important;
 }
+.elementor-122 .elementor-element.elementor-element-1f91cb0{overflow:hidden;}
+.zs-herovid{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
+.zs-herovid__v{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:100%;height:100%;min-width:100%;min-height:100%;
+  object-fit:cover;object-position:center center;
+  opacity:0;transition:opacity .45s ease;
+  -webkit-backface-visibility:hidden;backface-visibility:hidden;
+}
+.zs-herovid.is-playing .zs-herovid__v{opacity:1;}
+/* Scrim is ON from first paint. It used to be gated on .is-playing to protect the original
+   photo fallback, but the fallback is now the video's own poster (a bright open lawn), so the
+   white H1 would be unreadable for the first beat without it. */
+/* Much lighter than the first pass. rgba(7,7,7,.90) over the text column, on top of a grade
+   that had already darkened 20-39 luma, is what made the footage read as "very dark". The
+   ramp now falls away fast so the RIGHT side — where the mower and the action are — stays
+   bright daylight, and only the copy column is held down. Legibility of the white H1 is picked
+   up by a text-shadow instead of by drowning the whole frame. */
+.zs-herovid__scrim{
+  position:absolute;inset:0;opacity:1;
+  background:
+    linear-gradient(90deg, rgba(7,7,7,.74) 0%, rgba(7,7,7,.50) 30%, rgba(7,7,7,.18) 62%, rgba(7,7,7,.06) 100%),
+    linear-gradient(0deg, rgba(7,7,7,.62) 0%, rgba(7,7,7,0) 34%);
+}
+/* carry the H1/subhead legibility that the heavy scrim used to provide */
+.elementor-122 .elementor-element.elementor-element-1f91cb0 h1,
+.elementor-122 .elementor-element.elementor-element-1f91cb0 h1 *{text-shadow:0 2px 18px rgba(0,0,0,.55), 0 1px 3px rgba(0,0,0,.45);}
+.elementor-122 .elementor-element.elementor-element-1f91cb0 p{text-shadow:0 1px 10px rgba(0,0,0,.6);}
+
+/* hero content must sit above the video layer */
+.elementor-122 .elementor-element.elementor-element-1f91cb0 > .e-con-inner{position:relative;z-index:2;}
+@media (prefers-reduced-motion: reduce){ .zs-herovid__v{display:none;} }
 </style>
 <style id="lc-brandmark">
 @font-face{font-family:'Anton';font-style:normal;font-weight:400;font-display:swap;
@@ -1695,17 +1719,8 @@ html body .lccta .lccta-book:hover,html body .lccta .lccta-book:focus{background
   .zs-services .zs-card.is-open .zs-extra{max-height:220px !important;margin-top:9px !important;}
 }
 </style>
-<style id="lc-truck">
-.elementor-element-1f91cb0{position:relative;overflow:hidden;}
-.lctruck{position:absolute;left:0;top:0;width:0;height:0;z-index:2;pointer-events:none;
-  opacity:0;transition:opacity .25s ease;}
-.lctruck.is-on{opacity:1;}
-.lctruck-face{position:absolute;left:0;top:0;transform-origin:0 0;display:flex;
-  align-items:center;justify-content:center;}
-.lctruck-mk{height:auto;width:88%;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35));}
-</style>
 </head>
-<body class="home wp-singular page-template-default page page-id-122 page-parent wp-custom-logo wp-theme-hello-elementor angie-default manage-default elementor-default elementor-kit-26 elementor-page elementor-page-122 e--ua-blink e--ua-mac e--ua-webkit" data-elementor-device-mode="desktop"><style>.launchbar,.devbar,#preview-bar,.demo-bar{display:none!important}#sos-launch{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;background:#26114F;color:#fff;padding:9px 14px;font:700 13px/1.4 system-ui,-apple-system,sans-serif;text-align:center;position:relative;z-index:2147483646}#sos-launch .sost{background:#FCD34D;color:#26114F;border-radius:6px;padding:3px 8px;font:800 10px/1 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}#sos-launch a{color:#fff;text-decoration:underline;font-weight:900}#sos-launch .sosf{color:#FCD34D;font-weight:900}</style><div id="sos-launch"><span class="sost">Demo</span><span>Call Your 24/7 Receptionist at <a href="tel:14782782892">(478) 278-2892</a></span><span class="sosf">Demo Code: 8670</span></div><script>(function(){function init(){var bar=document.getElementById("sos-launch");if(!bar)return;var ph=["Launch this site","launch this on your site","Business owner? Want this demo","I can launch the site","launch the site for you"];document.querySelectorAll("div,header,section,aside,p").forEach(function(el){if(el===bar)return;var tx=el.textContent||"";if(tx.length<220&&ph.some(function(p){return tx.indexOf(p)>-1}))el.style.display="none";});var fx=[];document.querySelectorAll("header,nav,div").forEach(function(el){if(el===bar||el.id==="sos-cta")return;var s=getComputedStyle(el);if(s.position==="fixed"&&(parseInt(s.top)||0)<5&&el.getBoundingClientRect().top<70&&el.offsetHeight<170)fx.push(el);});function adj(){var b=bar.getBoundingClientRect().bottom;if(b<0)b=0;for(var i=0;i<fx.length;i++)fx[i].style.top=b+"px";var H=document.querySelector("header");if(H&&getComputedStyle(H).position==="absolute"){H.style.top=(window.innerWidth<=920)?(bar.offsetHeight+10)+"px":"";}}adj();window.addEventListener("scroll",adj,{passive:true});window.addEventListener("resize",adj);}if(document.readyState!=="loading")init();else document.addEventListener("DOMContentLoaded",init);})();</script>
+<body class="home wp-singular page-template-default page page-id-122 page-parent wp-custom-logo wp-theme-hello-elementor angie-default manage-default elementor-default elementor-kit-26 elementor-page elementor-page-122 e--ua-blink e--ua-mac e--ua-webkit" data-elementor-device-mode="desktop"><style>.launchbar,.devbar,#preview-bar,.demo-bar{display:none!important}#sos-launch{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;background:#26114F;color:#fff;padding:9px 14px;font:700 13px/1.4 system-ui,-apple-system,sans-serif;text-align:center;position:relative;z-index:2147483646}#sos-launch .sost{background:#FCD34D;color:#26114F;border-radius:6px;padding:3px 8px;font:800 10px/1 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}#sos-launch a{color:#fff;text-decoration:underline;font-weight:900}#sos-launch .sosf{color:#FCD34D;font-weight:900}</style><div id="sos-launch"><span class="sost">Demo</span><span>Call Your 24/7 Receptionist at <a href="tel:14782782892">(478) 278-2892</a></span><span class="sosf">Demo Code: 3511</span></div><script>(function(){function init(){var bar=document.getElementById("sos-launch");if(!bar)return;var ph=["Launch this site","launch this on your site","Business owner? Want this demo","I can launch the site","launch the site for you"];document.querySelectorAll("div,header,section,aside,p").forEach(function(el){if(el===bar)return;var tx=el.textContent||"";if(tx.length<220&&ph.some(function(p){return tx.indexOf(p)>-1}))el.style.display="none";});var fx=[];document.querySelectorAll("header,nav,div").forEach(function(el){if(el===bar||el.id==="sos-cta")return;var s=getComputedStyle(el);if(s.position==="fixed"&&(parseInt(s.top)||0)<5&&el.getBoundingClientRect().top<70&&el.offsetHeight<170)fx.push(el);});function adj(){var b=bar.getBoundingClientRect().bottom;if(b<0)b=0;for(var i=0;i<fx.length;i++)fx[i].style.top=b+"px";var H=document.querySelector("header");if(H&&getComputedStyle(H).position==="absolute"){H.style.top=(window.innerWidth<=920)?(bar.offsetHeight+10)+"px":"";}}adj();window.addEventListener("scroll",adj,{passive:true});window.addEventListener("resize",adj);}if(document.readyState!=="loading")init();else document.addEventListener("DOMContentLoaded",init);})();</script>
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden"><defs><g id="lcBrandmark"><g transform="translate(9 9)"><path d="M69.88 10 L246 10 L193.64000000000001 57.4 L243.62 57.4 L174.6 168 L8 168 L65.12 120.6 L12.76 120.6 Z" fill="#000"/></g><path d="M69.88 10 L246 10 L193.64000000000001 57.4 L243.62 57.4 L174.6 168 L8 168 L65.12 120.6 L12.76 120.6 Z" fill="#000" stroke="#000" stroke-width="14" stroke-linejoin="round"/><path d="M69.88 10 L246 10 L193.64000000000001 57.4 L243.62 57.4 L174.6 168 L8 168 L65.12 120.6 L12.76 120.6 Z" fill="#17365a"/><g transform="translate(0 126.92) skewX(-12) translate(0 -126.92)"><text x="103.20" y="126.92" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="150.00" text-anchor="middle" fill="#fff" stroke="#fff" stroke-width="11.20" stroke-linejoin="round">J</text><text x="103.20" y="126.92" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="150.00" text-anchor="middle" fill="#0bdb05">J</text></g><g transform="translate(0 70) skewX(-12) translate(0 -70)"><g transform="translate(9.00 9.00)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><g transform="translate(8.10 8.10)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><g transform="translate(7.20 7.20)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><g transform="translate(6.30 6.30)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><g transform="translate(5.40 5.40)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><g transform="translate(4.50 4.50)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><g transform="translate(3.60 3.60)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><g transform="translate(2.70 2.70)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><g transform="translate(1.80 1.80)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><g transform="translate(0.90 0.90)"><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text></g><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">JDC LAWN CARE</text><text x="266.00" y="70.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#0bdb05">JDC LAWN CARE</text></g><g transform="translate(0 128) skewX(-12) translate(0 -128)"><g transform="translate(9.00 9.00)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><g transform="translate(8.10 8.10)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><g transform="translate(7.20 7.20)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><g transform="translate(6.30 6.30)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><g transform="translate(5.40 5.40)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><g transform="translate(4.50 4.50)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><g transform="translate(3.60 3.60)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><g transform="translate(2.70 2.70)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><g transform="translate(1.80 1.80)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><g transform="translate(0.90 0.90)"><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text></g><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#000" stroke="#000" stroke-width="7.00" stroke-linejoin="round">&amp; LANDSCAPING</text><text x="266.00" y="128.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="60.00" fill="#0bdb05">&amp; LANDSCAPING</text></g><g transform="translate(0 124.4) skewX(-12) translate(0 -124.4)"><text x="616.94" y="124.40" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="18.00" fill="#000" stroke="#000" stroke-width="3.85" stroke-linejoin="round">LLC</text><text x="616.94" y="124.40" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="18.00" fill="#fff">LLC</text></g><g transform="translate(0 166) skewX(-12) translate(0 -166)"><text x="266.00" y="166.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="25.00" fill="#000" stroke="#000" stroke-width="4.90" stroke-linejoin="round">LANDSCAPING AND LAWN CARE</text><text x="266.00" y="166.00" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="25.00" fill="#fff">LANDSCAPING AND LAWN CARE</text></g></g></defs></svg>
 
 
@@ -4028,7 +4043,11 @@ html body .lccta .lccta-book:hover,html body .lccta .lccta-book:focus{background
 	
 	<div class="page-content">
 				<div data-elementor-type="wp-page" data-elementor-id="122" class="elementor elementor-122" data-elementor-post-type="page">
-				<div class="elementor-element elementor-element-1f91cb0 e-flex e-con-boxed e-con e-parent e-lazyloaded" data-id="1f91cb0" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"><div class="lctruck" aria-hidden="true"><div class="lctruck-face"><svg class="bmk lctruck-mk" viewBox="0 0 800 178"><use href="#lcBrandmark" xlink:href="#lcBrandmark"/></svg></div></div>
+				<div class="elementor-element elementor-element-1f91cb0 e-flex e-con-boxed e-con e-parent e-lazyloaded" data-id="1f91cb0" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+<div class="zs-herovid" aria-hidden="true">
+  <video class="zs-herovid__v" muted loop playsinline preload="none" poster="https://demo.solidbookedpro.com/assets/landscaping-c/video/hero-poster.jpg" tabindex="-1"></video>
+  <div class="zs-herovid__scrim"></div>
+</div>
 					<div class="e-con-inner">
 		<div class="elementor-element elementor-element-88ebe78 e-flex e-con-boxed e-con e-child" data-id="88ebe78" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
 					<div class="e-con-inner">
@@ -8708,6 +8727,41 @@ angieCanvasTemplateData = {"templateSlug":"angie-canvas"};
 })();
 
 </script>
+<script>
+
+/* Gated hero-video loader. Attaches sources only when it is worth the bytes, so the first
+   screen stays light and mobile/metered/reduced-motion users keep the static photo. */
+(function () {
+  var wrap = document.querySelector('.zs-herovid');
+  if (!wrap) return;
+  var v = wrap.querySelector('video');
+  if (!v || !v.canPlayType) return;
+
+  try { if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; } catch (e) {}
+  if (window.innerWidth < 900) return;
+  var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection || {};
+  if (c.saveData) return;
+  if (/(^|-)2g$/.test(c.effectiveType || '')) return;
+
+  function start() {
+    // WebM first (6.0MB VP9); Safari, which cannot decode it, falls through to MP4 (8.4MB)
+    [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(function (t) {
+      var s = document.createElement('source');
+      s.src = 'https://demo.solidbookedpro.com/assets/landscaping-c/video/hero-loop.' + t[0];
+      s.type = t[1];
+      v.appendChild(s);
+    });
+    v.load();
+    v.addEventListener('playing', function () { wrap.classList.add('is-playing'); }, { once: true });
+    var p = v.play();
+    if (p && p.catch) p.catch(function () { /* autoplay refused -> photo stays */ });
+  }
+
+  if ('requestIdleCallback' in window) window.requestIdleCallback(start, { timeout: 2500 });
+  else setTimeout(start, 900);
+})();
+
+</script>
 <script id="lc-estimate-js">
 (function () {
   var f = document.querySelector('[data-estimate-form]');
@@ -8770,74 +8824,6 @@ angieCanvasTemplateData = {"templateSlug":"angie-canvas"};
   addEventListener('scroll', schedule, { passive: true });
   addEventListener('resize', schedule);
   schedule();
-})();
-</script>
-<script id="lc-truck-js">
-(function () {
-  var IMG_W = 2560, IMG_H = 1860;
-  var QUAD = [[2004,696],[2266,644],[2292,848],[2012,914]];              // tl, tr, br, bl in source pixels
-
-  // Solve the 8 unknowns of the homography taking (0,0),(w,0),(w,h),(0,h) -> dst.
-  // Gaussian elimination on an 8x9 augmented matrix; small and exact enough at this size.
-  function homography(w, h, d) {
-    var src = [[0, 0], [w, 0], [w, h], [0, h]], A = [], i;
-    for (i = 0; i < 4; i++) {
-      var sx = src[i][0], sy = src[i][1], dx = d[i][0], dy = d[i][1];
-      A.push([sx, sy, 1, 0, 0, 0, -sx * dx, -sy * dx, dx]);
-      A.push([0, 0, 0, sx, sy, 1, -sx * dy, -sy * dy, dy]);
-    }
-    for (i = 0; i < 8; i++) {
-      var p = i;
-      for (var r = i + 1; r < 8; r++) if (Math.abs(A[r][i]) > Math.abs(A[p][i])) p = r;
-      var t = A[i]; A[i] = A[p]; A[p] = t;
-      if (Math.abs(A[i][i]) < 1e-12) return null;
-      for (var r2 = 0; r2 < 8; r2++) {
-        if (r2 === i) continue;
-        var f = A[r2][i] / A[i][i];
-        for (var c = i; c < 9; c++) A[r2][c] -= f * A[i][c];
-      }
-    }
-    var v = [];
-    for (i = 0; i < 8; i++) v.push(A[i][8] / A[i][i]);
-    return v; // a b c d e f g h  ->  x' = (ax+by+c)/(gx+hy+1)
-  }
-
-  function place() {
-    var host = document.querySelector('.elementor-element-1f91cb0');
-    var box = host && host.querySelector('.lctruck');
-    if (!box) return;
-    var face = box.querySelector('.lctruck-face');
-    var cw = host.clientWidth, ch = host.clientHeight;
-    if (!cw || !ch) return;
-
-    // background-size:cover + background-position:center center, reproduced exactly
-    var sc = Math.max(cw / IMG_W, ch / IMG_H);
-    var ox = (cw - IMG_W * sc) / 2, oy = (ch - IMG_H * sc) / 2;
-    var dst = QUAD.map(function (p) { return [p[0] * sc + ox, p[1] * sc + oy]; });
-
-    // an unrotated rect of the panel's own proportions, so the lockup is not pre-distorted
-    function len(a, b) { var dx = a[0] - b[0], dy = a[1] - b[1]; return Math.sqrt(dx * dx + dy * dy); }
-    var w = (len(dst[0], dst[1]) + len(dst[3], dst[2])) / 2;
-    var h = (len(dst[0], dst[3]) + len(dst[1], dst[2])) / 2;
-    if (w < 8 || h < 8) { box.classList.remove('is-on'); return; }
-
-    var m = homography(w, h, dst);
-    if (!m) { box.classList.remove('is-on'); return; }
-    face.style.width = w + 'px';
-    face.style.height = h + 'px';
-    face.style.transform = 'matrix3d(' +
-      [m[0], m[3], 0, m[6], m[1], m[4], 0, m[7], 0, 0, 1, 0, m[2], m[5], 0, 1].join(',') + ')';
-    box.classList.add('is-on');
-  }
-
-  var raf;
-  function schedule() { cancelAnimationFrame(raf); raf = requestAnimationFrame(place); }
-  if (document.readyState !== 'loading') schedule();
-  else document.addEventListener('DOMContentLoaded', schedule);
-  addEventListener('resize', schedule);
-  addEventListener('orientationchange', schedule);
-  // Anton loads after first paint; the lockup's internal metrics shift when it swaps in
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
 })();
 </script>
 </body></html>
